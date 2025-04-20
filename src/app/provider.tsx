@@ -1,0 +1,25 @@
+'use client';
+import { Provider } from 'react-redux';
+import store from '../store/store';
+import { ProgressProvider } from '@bprogress/next/app';
+import { Toaster } from 'sonner';
+
+const Providers: React.FC<Readonly<{ children: React.ReactNode }>> = ({
+  children,
+}) => {
+  return (
+    <>
+      <ProgressProvider
+        height="4px"
+        color="#26619c"
+        options={{ showSpinner: false }}
+        shallowRouting
+      >
+        <Toaster />
+
+        <Provider store={store}>{children}</Provider>
+      </ProgressProvider>
+    </>
+  );
+};
+export default Providers;
