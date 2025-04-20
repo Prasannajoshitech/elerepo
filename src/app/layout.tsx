@@ -1,20 +1,20 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import "./globals.css";
 
-import { Noto_Sans } from 'next/font/google';
-import Providers from './provider';
-import Header from '@/common/Header';
-import Footer from '@/common/Footer';
+import { Noto_Sans } from "next/font/google";
+import Providers from "./provider";
+import Header from "@/common/Header";
+import Footer from "@/common/Footer";
 
 const notoSans = Noto_Sans({
-  variable: '--font-noto-sans',
-  subsets: ['latin'],
-  weight: ['200', '300', '400', '500', '600', '700', '800'],
+  variable: "--font-noto-sans",
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: 'Electricity Commission',
-  description: 'Nepal Electricity Authority',
+  title: "Electricity Commission",
+  description: "Nepal Electricity Authority",
 };
 
 export default function RootLayout({

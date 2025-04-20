@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -187,13 +187,13 @@
   @apply font-normal text-[0.5625rem] leading-[135%];
 }
 
-/* @utility padding-x {
+@utility padding-x {
   @apply px-4 sm:px-10;
 }
 
 @utility padding-y {
   @apply py-4 sm:py-10;
-} */
+}
 
 @layer base {
   * {
