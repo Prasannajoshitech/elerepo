@@ -266,3 +266,7 @@
     background: linear-gradient(180deg, #3360a9 0%, #0052cc 100%);
   }
 }
+
+@utility typography-p1-regular {
+  @apply font-normal text-[1rem] leading-[150%];
+}
