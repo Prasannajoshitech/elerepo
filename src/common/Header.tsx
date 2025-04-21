@@ -49,7 +49,7 @@ const Header = () => {
           </div>
 
           {/* Right Logo */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center ">
+          <div className="flex flex-row gap-2 sm:gap-4 items-center ">
             <div className="w-[3.5rem] sm:w-[4.5rem] md:w-[4.875rem] aspect-square flex-shrink-0">
               <Image
                 src="/logo.png"
@@ -59,7 +59,7 @@ const Header = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-[2.5rem] sm:w-[2.75rem] md:w-[3rem] aspect-[24/31] flex-shrink-0 ml-6 sm:ml-0">
+            <div className="hidden lg:block w-[2.5rem] sm:w-[2.75rem] md:w-[3rem] aspect-[24/31] flex-shrink-0 ml-6 sm:ml-0">
               <Image
                 src="/flag.gif"
                 alt="flag"
