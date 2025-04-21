@@ -177,6 +177,9 @@
 @utility typography-h1 {
   @apply font-normal text-[1.25rem] lg:text-[3rem] leading-[135%];
 }
+@utility typography-h1-bold {
+  @apply font-medium lg:font-bold text-[2rem] lg:text-[2.9375rem] leading-[150%];
+}
 
 @utility typography-h2 {
   @apply font-normal text-[1.125rem] lg:text-[2.25rem] leading-[135%];
@@ -184,6 +187,9 @@
 
 @utility typography-h3 {
   @apply font-normal text-[1.6875rem] leading-[135%];
+}
+@utility typography-h3-bold {
+  @apply text-[1.5rem] lg:text-[1.6875rem] font-medium lg:font-bold  leading-[135%];
 }
 
 @utility typography-h4 {
@@ -208,6 +214,12 @@
 
 @utility typography-p-small {
   @apply font-normal text-[0.75rem] leading-[120%];
+}
+@utility typography-p-regular-bold {
+  @apply font-bold text-[1rem] leading-[120%];
+}
+@utility typography-p-large-semi-bold {
+  @apply font-semibold text-[1.315rem] leading-[120%];
 }
 
 @utility padding-x {
