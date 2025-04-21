@@ -4,7 +4,7 @@ import missionVision from "@/assets/home/mission&vision.png";
 
 const MissionVision = () => {
   return (
-    <div className="bg-background-100 rounded-[0.25rem] mb-[2.5rem]">
+    <div className="bg-background-100 rounded-[0.25rem] mb-[1.5rem] lg:mb-[2.5rem]">
       <div className="p-[1rem] lg:p-[5rem] flex flex-col lg:flex-row gap-[2.5rem] items-center">
         <div className="lg:w-[37.5rem] lg:h-[25rem]">
           <Image

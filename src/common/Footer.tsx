@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* links  */}
-      <div className="pt-[2.5rem] pb-[1.44rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2.88rem]">
+      <div className="pt-[1.5rem] lg:pt-[2.5rem] pb-[1.44rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2.88rem]">
         {/* Company Section */}
         <div>
           <h2 className="mb-[1.5rem] text-white typography-p-large font-semibold">
@@ -131,6 +131,36 @@ const Footer: React.FC = () => {
               </div>
             ))}
           </ul>
+        </div>
+      </div>
+      {/* Disclaimer  */}
+      <div>
+        <p className="typography-p-regular font-semibold text-white pt-[1.44rem] pb-[0.87rem]">
+          Disclaimer
+        </p>
+        <p className="text-white typography-p-small pb-[1.94rem]">
+          While every care has been taken to ensure the accuracy of information
+          furnished in this website, ERC does not accept any responsibility or
+          liability for any damage or loss to any person for the result of any
+          action taken on the basis of this information. However, ERC shall be
+          obliged if errors/omissions are brought to its notice for carrying out
+          corrections in the next update.
+        </p>
+      </div>
+
+      <div className="border-b-[0.0375rem] border-blue-50 mb-[1.88rem]" />
+
+      <div className="flex justify-between pb-[1.87rem] gap-10">
+        <div className="flex gap-[1.25rem] typography-p-regular font-semibold text-white">
+          <p>Electricity Regulatory Commission © All Rights Reserved</p>
+        </div>
+        <div className="flex gap-2 lg:gap-[1.25rem] typography-p-regular font-semibold text-white">
+          <Link href={""} className="cursor-pointer">
+            Terms & Condition
+          </Link>
+          <Link href={""} className="cursor-pointer">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>

@@ -4,7 +4,7 @@ import React from "react";
 
 const ImpServices = () => {
   return (
-    <div className="padding-x grid sm:grid-cols-2 lg:grid-cols-4 gap-[1.25rem] mb-[2.5rem]">
+    <div className="padding-x grid sm:grid-cols-2 lg:grid-cols-4 gap-[1.25rem] mb-[1.5rem] lg:mb-[2.5rem]">
       {services.map((service, index) => (
         <div
           key={index}
