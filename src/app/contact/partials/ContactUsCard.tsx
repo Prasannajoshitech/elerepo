@@ -18,7 +18,7 @@ const ContactUsCard: React.FC<IProps> = ({ data }) => {
           src={data.icon}
           width={44}
           height={44}
-          unoptimized
+
           className="w-11"
         />
         <div>

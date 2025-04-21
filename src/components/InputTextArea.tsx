@@ -40,9 +40,8 @@ const InputTextarea: React.FC<InputTextareaProps> = ({
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
-        className={`w-full mt-3.5 p-5 rounded-lg typography-p-regular text-text-200 border resize-none ${
-          touched && error ? "border-red-500" : "border-gray-300"
-        }`}
+        className={`w-full mt-3.5 p-5 rounded-lg typography-p-regular text-text-200 border resize-none ${touched && error ? "border-red-500" : "border-gray-300"
+          }`}
         {...rest}
       />
       {touched && error && <p className="text-red-500 text-sm mt-1">{error}</p>}

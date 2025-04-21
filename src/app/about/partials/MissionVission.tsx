@@ -16,7 +16,7 @@ const MissionVission = () => {
             <Image
               src={missionIcon}
               alt="mission"
-              unoptimized
+
               width={80}
               height={80}
               className="w-20 h-20 object-cover object-center"
@@ -42,7 +42,7 @@ const MissionVission = () => {
             <Image
               src={vissionIcon}
               alt="vission"
-              unoptimized
+
               width={80}
               height={80}
               className="w-20 h-20 object-cover object-center"
