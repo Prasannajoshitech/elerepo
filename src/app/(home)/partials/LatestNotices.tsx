@@ -38,20 +38,30 @@ const LatestNotices = () => {
           </h3>
           <div className="grid grid-cols-3 gap-4 lg:gap-[1.5rem]">
             {services?.map((service, index) => (
-              <div key={index} className="flex gap-[0.75rem] items-center">
-                <div className="bg-blue-400 rounded-[0.5rem] p-4 lg:p-0 lg:pr-[2.56rem] lg:pl-[2.62rem] lg:pt-[2.06rem] lg:pb-[2.12rem] text-center">
-                  <div className="lg:w-[5rem] lg:h-[5rem] mx-auto">
-                    <Image
-                      src={service.icon}
-                      alt={service.title}
-                      width={600}
-                      height={600}
-                      className="w-full h-full object-cover"
-                    />
+              <div
+                key={index}
+                className="flex gap-[0.75rem] items-center group relative"
+              >
+                {/* Base Card */}
+                <div className="bg-blue-400 rounded-[0.5rem] p-4 lg:p-0 lg:pr-[2.56rem] lg:pl-[2.62rem] lg:pt-[2.06rem] lg:pb-[2.12rem] text-center relative overflow-hidden cursor-pointer">
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+                  {/* Content */}
+                  <div className="relative z-20">
+                    <div className="lg:w-[5rem] lg:h-[5rem] mx-auto">
+                      <Image
+                        src={service.icon}
+                        alt={service.title}
+                        width={600}
+                        height={600}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h2 className="typography-p-large font-semibold text-white pt-[0.75rem]">
+                      {service.title}
+                    </h2>
                   </div>
-                  <h2 className="typography-p-large font-semibold text-white pt-[0.75rem]">
-                    {service.title}
-                  </h2>
                 </div>
               </div>
             ))}
