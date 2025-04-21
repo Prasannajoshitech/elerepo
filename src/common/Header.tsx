@@ -66,7 +66,6 @@ const Header = () => {
                 width={1000}
                 height={1000}
                 className="w-full h-full object-contain"
-
               />
             </div>
 
