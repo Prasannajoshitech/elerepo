@@ -37,8 +37,9 @@ const InputText: React.FC<InputTextProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className={`w-full p-4 rounded-lg border typography-p-regular text-text-200 ${touched && error ? "border-red-500" : "border-gray-300"
-          }`}
+        className={`w-full p-4 rounded-lg border typography-p-regular text-text-200 ${
+          touched && error ? "border-red-500" : "border-gray-300"
+        }`}
         placeholder={placeholder}
         {...rest}
       />
