@@ -17,7 +17,7 @@ const TeamBottom = () => {
             <div className="aspect-[344.53/272.00]">
               <Image
                 src={team?.image}
-                alt="ceo"
+                alt={`Image of ${team?.name}, ${team?.position}`}
                 width={800}
                 height={800}
                 className="w-full h-full object-cover"
