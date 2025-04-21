@@ -4,7 +4,7 @@ import hero from "@/assets/home/hero.jpg";
 
 const Hero = () => {
   return (
-    <div className="my-[2.5rem] padding-x">
+    <div className="my-[1.5rem] lg:my-[2.5rem] padding-x">
       {/* Linear Gradient */}
       <div
         className="relative z-10 bg-blue-500 text-white pt-[3.22rem] px-4 lg:px-0 lg:pl-[3.75rem] pb-[4.25rem] rounded-[0.25rem]"
