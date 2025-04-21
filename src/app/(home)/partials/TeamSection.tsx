@@ -9,15 +9,16 @@ import Link from "next/link";
 const TeamSection = () => {
   return (
     <div className="padding-x relative mb-[2.5rem]">
-      <div className="w-[21.53331rem] mx-auto mb-[1.5rem] lg:mb-[10rem]">
-        {/* Image */}
-        <div className="aspect-[344.53/272.00]">
+      {/* Chairperson Block */}
+      <div className="w-[21.53331rem] mx-auto mb-[1.5rem] lg:mb-[10rem] group">
+        {/* Image with hover effect */}
+        <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer">
           <Image
             src={ceo}
             alt="ceo"
             width={800}
             height={800}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         </div>
 
@@ -38,7 +39,8 @@ const TeamSection = () => {
         </div>
       </div>
 
-      <div className="hidden lg:block absolute -bottom-5.5 right-3 w-full">
+      {/* Connector line */}
+      <div className="hidden lg:block absolute -bottom-4.5 right-3 w-full">
         <Image
           src={connector}
           alt="connector-line"
@@ -48,22 +50,23 @@ const TeamSection = () => {
         />
       </div>
 
+      {/* Other team members */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10">
         {teamMember?.map((team, index) => (
-          <div key={index} className="lg:w-[19.25rem]">
+          <div key={index} className="lg:w-[19.25rem] group">
             {/* Image */}
-            <div className="aspect-[344.53/272.00]">
+            <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer">
               <Image
                 src={team?.image}
-                alt="ceo"
+                alt={team?.name}
                 width={800}
                 height={800}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
 
             {/* Text box */}
-            <div className=" bg-background-100 border-2 border-background-100 rounded-[0.5rem] overflow-hidden">
+            <div className="bg-background-100 border-2 border-background-100 rounded-[0.5rem] overflow-hidden">
               <div className="p-[0.57rem] lg:p-[1.56rem]">
                 <h2 className="text-blue-500 typography-p-large font-bold pb-[0.5rem]">
                   {team?.name}
