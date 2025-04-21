@@ -11,7 +11,7 @@ const page = () => {
     text: "About Us",
   };
   return (
-    <div className="padding-x bg-background-400 border border-green-500 pb-10">
+    <div className="padding-x bg-background-400 pb-10">
       <HeroSection data={heroSectionData} />
       <Introduction />
       <MissionVission />
