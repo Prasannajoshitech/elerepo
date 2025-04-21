@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notoSans.variable} antialiased font-noto-sans `}>
+      <body
+        className={`${notoSans.variable} antialiased font-noto-sans bg-background-400`}
+      >
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Header />
