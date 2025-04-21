@@ -1,18 +1,23 @@
-import React from 'react'
+import React from "react";
 
 const GoalAnimation = () => {
-   return (
-      <div className='relative px-6 pt-8 pb-8 bg-background-50 shadow-sm rounded-[0.5rem] group'>
-         <div className='relative z-20'>
-            <button className='mx-auto w-11 h-11 p-5 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 text-[1.25rem] font-bold leading-[120%]'>1</button>
-            <p className='mt-5 typography-p-large-semi-bold text-text-400 group-hover:text-white text-center'>Ensure Transparent & Fair Regulation</p>
-            <p className='mt-5 typography-p-regular text-text-400 group-hover:text-white text-center'>Establish and enforce clear, consistent, and impartial electricity regulations to ensure public trust and good governance.</p>
-
-
-         </div>
-         <div className='absolute z-10 bottom-0 left-1/2 -translate-x-1/2 bg-blue-400 w-24 h-3 rounded-t-[0.75rem] group-hover:w-full group-hover:h-full transition-all duration-500' />
+  return (
+    <div className="relative px-6 pt-8 pb-8 bg-background-50 shadow-sm rounded-[0.5rem] group">
+      <div className="relative z-20">
+        <button className="mx-auto w-11 h-11 p-5 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 text-[1.25rem] font-bold leading-[120%]">
+          1
+        </button>
+        <p className="mt-5 typography-p-large-semi-bold text-text-400 group-hover:text-white text-center">
+          Ensure Transparent & Fair Regulation
+        </p>
+        <p className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center">
+          Establish and enforce clear, consistent, and impartial electricity
+          regulations to ensure public trust and good governance.
+        </p>
       </div>
-   )
-}
+      <div className="absolute z-10 bottom-0 left-1/2 -translate-x-1/2 bg-blue-400 w-24 h-3 rounded-t-[0.75rem] group-hover:w-full group-hover:h-full transition-all duration-500" />
+    </div>
+  );
+};
 
-export default GoalAnimation
+export default GoalAnimation;
