@@ -10,22 +10,22 @@ const TeamBottom = () => {
       <h3 className="text-text-500 font-bold typography-h3 leading-[150%] pb-[1.25rem]">
         Technical Personalities
       </h3>
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-10">
-        {teamMember?.slice(0, 3).map((team, index) => (
-          <div key={index} className="lg:w-[19.25rem]">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 max-w-[280rem] mx-auto ">
+        {teamMember?.map((team, index) => (
+          <div key={index} className="lg:w-[19.25rem] group  mx-auto">
             {/* Image */}
-            <div className="aspect-[344.53/272.00]">
+            <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer">
               <Image
                 src={team?.image}
-                alt={`Image of ${team?.name}, ${team?.position}`}
+                alt={team?.name}
                 width={800}
                 height={800}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
 
             {/* Text box */}
-            <div className=" bg-background-100 border-2 border-background-100 rounded-[0.5rem] overflow-hidden">
+            <div className="bg-background-100 border-2 border-background-100 rounded-[0.5rem] overflow-hidden">
               <div className="p-[0.57rem] lg:p-[1.56rem]">
                 <h2 className="text-blue-500 typography-p-large font-bold pb-[0.5rem]">
                   {team?.name}

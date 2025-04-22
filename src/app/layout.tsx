@@ -5,6 +5,7 @@ import { Noto_Sans } from "next/font/google";
 import Providers from "./provider";
 import Header from "@/common/Header";
 import Footer from "@/common/Footer";
+import { GoogleTranslateProvider } from "./GoogleLanguageProvider";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -28,11 +29,13 @@ export default function RootLayout({
         className={`${notoSans.variable} antialiased font-noto-sans bg-background-400`}
       >
         <Providers>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <div className="flex-grow">{children}</div>
-            <Footer />
-          </div>
+          <GoogleTranslateProvider>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <div className="flex-grow">{children}</div>
+              <Footer />
+            </div>
+          </GoogleTranslateProvider>
         </Providers>
       </body>
     </html>

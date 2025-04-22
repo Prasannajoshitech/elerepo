@@ -14,7 +14,7 @@ const Hero = () => {
         // }}
       >
         {/* Background Image */}
-        <div className="absolute inset-0 ">
+        <div className="absolute inset-0 w-full ">
           <Image
             src={hero}
             alt="Background Image"

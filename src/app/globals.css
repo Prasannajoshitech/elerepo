@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+#\:1\.container {
+  display: none;
+}
+
 @theme inline {
   /* Primary colors */
   --color-red-50: #fae7e9;
