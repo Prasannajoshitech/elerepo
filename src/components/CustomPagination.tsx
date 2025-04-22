@@ -2,11 +2,8 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 type PaginationProps = {
   currentPage: number;
-  totalItems: number;
   pageCount: number;
-  perPage: number;
   onPageChange: (page: number) => void;
-  recordPerPage?: React.ReactNode;
 };
 
 const CustomPagination = ({

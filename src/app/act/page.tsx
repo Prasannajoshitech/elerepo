@@ -78,13 +78,8 @@ export default function RegulatoryDocsPage() {
       <div className="mt-6">
         <CustomPagination
           currentPage={currentPage}
-          totalItems={totalItems}
           pageCount={pageCount}
-          perPage={PER_PAGE}
           onPageChange={handlePageChange}
-          recordPerPage={
-            <span className="text-sm text-gray-600">{PER_PAGE} per page</span>
-          }
         />
       </div>
     </div>

@@ -4,14 +4,14 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const LanguageSwitcher = () => {
-  const [activeLang, setActiveLang] = useState("eng");
+  const [activeLang, setActiveLang] = useState<"eng" | "nep">("eng");
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const baseStyle = "cursor-pointer pb-1 z-20";
   const activeStyle = "border-b-2 border-white";
   const inactiveStyle = "border-b-2 border-transparent";
 
-  const handleLanguageChange = (lang: string) => {
+  const handleLanguageChange = (lang: "eng" | "nep") => {
     setActiveLang(lang);
     // Trigger Google Translate language change
     if (window.google && window.google.translate) {
