@@ -105,10 +105,10 @@ function DocumentCard({ title, date }: { title: string; date: string }) {
           Published Date : {date}
         </p>
       </div>
-      <div className="flex items-center gap-[1.75rem]">
+      <div className="flex items-center gap-[0.75rem]">
         <Link
           href="#"
-          className="flex items-center justify-center "
+          className="flex items-center justify-center w-[1.25rem] h-[1.25rem] lg:w-[2.125rem] lg:h-[2.125rem]"
           title="Download PDF"
         >
           <Image
@@ -124,7 +124,7 @@ function DocumentCard({ title, date }: { title: string; date: string }) {
           className="flex items-center justify-center "
           title="View Document"
         >
-          <IoEyeSharp className="text-blue-400 w-[2.125rem] h-[2.125rem]" />
+          <IoEyeSharp className="text-blue-400  lg:w-[2.125rem] lg:h-[2.125rem]" />
         </Link>
       </div>
     </div>

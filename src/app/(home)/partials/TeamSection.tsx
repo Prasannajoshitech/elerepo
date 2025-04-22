@@ -1,16 +1,16 @@
 import Image from "next/image";
 import React from "react";
 import ceo from "@/assets/home/team/ceo.png";
-import connector from "@/assets/home/line.png";
+import connector from "@/assets/home/linee.png";
 import { CiMail } from "react-icons/ci";
 import { teamMember } from "@/data/teamMember";
 import Link from "next/link";
 
 const TeamSection = () => {
   return (
-    <div className="padding-x relative mb-[2.5rem]">
+    <div className="padding-x  mb-[2.5rem]">
       {/* Chairperson Block */}
-      <div className="w-[21.53331rem] mx-auto mb-[1.5rem] lg:mb-[10rem] group">
+      <div className="w-[21.53331rem] mx-auto group">
         {/* Image with hover effect */}
         <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer">
           <Image
@@ -40,7 +40,7 @@ const TeamSection = () => {
       </div>
 
       {/* Connector line */}
-      <div className="hidden lg:block absolute -bottom-4.5 right-3 w-full">
+      <div className="hidden lg:block w-full px-[12%] -mt-2">
         <Image
           src={connector}
           alt="connector-line"
@@ -51,9 +51,9 @@ const TeamSection = () => {
       </div>
 
       {/* Other team members */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 max-w-[280rem] mx-auto ">
         {teamMember?.map((team, index) => (
-          <div key={index} className="lg:w-[19.25rem] group">
+          <div key={index} className="lg:w-[19.25rem] group  mx-auto">
             {/* Image */}
             <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer">
               <Image
