@@ -19,17 +19,17 @@ const DesktopNavbar = () => {
 
           return (
             <div
-              key={navItem.name}
+              key={navItem?.name}
               className="relative group"
-              onMouseEnter={() => setActiveDropdown(navItem.name)}
+              onMouseEnter={() => setActiveDropdown(navItem?.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button
-                onClick={() => toggleDropdown(navItem.name)}
+                onClick={() => toggleDropdown(navItem?.name)}
                 className="group relative cursor-pointer typography-p-regular font-medium text-text-500 hover:text-blue-500 transition-colors duration-300"
               >
                 <Link href={navItem?.url} className="flex items-center gap-1">
-                  {navItem.name}
+                  {navItem?.name}
                   {navItem?.dropdown && (
                     <ChevronDown
                       className={`h-4 w-4 transform transition-transform duration-300 ${
@@ -52,12 +52,12 @@ const DesktopNavbar = () => {
               >
                 {navItem?.dropdown?.map((subItem) => (
                   <Link
-                    key={subItem.name}
-                    href={subItem.url}
+                    key={subItem?.name}
+                    href={subItem?.url}
                     onClick={() => setActiveDropdown(null)}
                     className="block px-4 py-[0.62rem] text-sm text-text-500 hover:bg-blue-400 hover:text-white"
                   >
-                    {subItem.name}
+                    {subItem?.name}
                   </Link>
                 ))}
               </div>
