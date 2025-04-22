@@ -4,10 +4,35 @@ import Link from "next/link";
 import { IoEyeSharp } from "react-icons/io5";
 import { documents } from "@/data/actDocument";
 import Image from "next/image";
+import CustomPagination from "@/components/CustomPagination";
+
+const PER_PAGE = 4;
 
 export default function RegulatoryDocsPage() {
   const [selectedCategory, setSelectedCategory] =
     useState<keyof typeof documents>("Act & Rules");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const selectedDocs = documents[selectedCategory] || [];
+  const totalItems = selectedDocs.length;
+  const pageCount = Math.ceil(totalItems / PER_PAGE);
+
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  // Get paginated docs for the current page
+  const paginatedDocs = selectedDocs.slice(
+    (currentPage - 1) * PER_PAGE,
+    currentPage * PER_PAGE
+  );
+
+  // Reset page to 1 if category changes
+  const handleCategoryChange = (category: keyof typeof documents) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="container mx-auto py-[2.5rem] px-[1rem] lg:px-[3.12rem] rounded-[0.65rem] bg-background-100 my-[1.5rem] lg:my-[2.5rem]">
@@ -27,7 +52,7 @@ export default function RegulatoryDocsPage() {
               <button
                 key={category}
                 onClick={() =>
-                  setSelectedCategory(category as keyof typeof documents)
+                  handleCategoryChange(category as keyof typeof documents)
                 }
                 className={`py-3 px-4 text-left rounded-md transition-colors ${
                   selectedCategory === category
@@ -43,10 +68,24 @@ export default function RegulatoryDocsPage() {
 
         {/* Document Listings */}
         <div className="md:col-span-3 space-y-[0.62rem]">
-          {documents[selectedCategory]?.map((doc, index) => (
+          {paginatedDocs.map((doc, index) => (
             <DocumentCard key={index} title={doc.title} date={doc.date} />
           ))}
         </div>
+      </div>
+
+      {/* Pagination */}
+      <div className="mt-6">
+        <CustomPagination
+          currentPage={currentPage}
+          totalItems={totalItems}
+          pageCount={pageCount}
+          perPage={PER_PAGE}
+          onPageChange={handlePageChange}
+          recordPerPage={
+            <span className="text-sm text-gray-600">{PER_PAGE} per page</span>
+          }
+        />
       </div>
     </div>
   );
