@@ -20,7 +20,7 @@ const Hero = () => {
             alt="Background Image"
             width={1000}
             height={1000}
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-20 "
           />
         </div>
 

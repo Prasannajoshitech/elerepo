@@ -28,14 +28,16 @@ const DesktopNavbar = () => {
                 onClick={() => toggleDropdown(navItem.name)}
                 className="group relative cursor-pointer typography-p-regular font-medium text-text-500 hover:text-blue-500 transition-colors duration-300"
               >
-                <span className="flex items-center gap-1">
+                <Link href={navItem?.url} className="flex items-center gap-1">
                   {navItem.name}
-                  <ChevronDown
-                    className={`h-4 w-4 transform transition-transform duration-300 ${
-                      isActive ? "rotate-180" : "rotate-0"
-                    }`}
-                  />
-                </span>
+                  {navItem?.dropdown && (
+                    <ChevronDown
+                      className={`h-4 w-4 transform transition-transform duration-300 ${
+                        isActive ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  )}
+                </Link>
                 <div
                   className={`absolute left-1/2 -translate-x-1/2 -bottom-2 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full ${
                     isActive ? "w-full" : ""
@@ -48,10 +50,11 @@ const DesktopNavbar = () => {
                   isActive ? "opacity-100 visible" : "opacity-0 invisible"
                 }`}
               >
-                {navItem.dropdown.map((subItem) => (
+                {navItem?.dropdown?.map((subItem) => (
                   <Link
                     key={subItem.name}
                     href={subItem.url}
+                    onClick={() => setActiveDropdown(null)}
                     className="block px-4 py-[0.62rem] text-sm text-text-500 hover:bg-blue-400 hover:text-white"
                   >
                     {subItem.name}
