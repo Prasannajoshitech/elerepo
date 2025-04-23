@@ -6,19 +6,35 @@ import LatestNotices from "./partials/LatestNotices";
 import TeamSection from "./partials/TeamSection";
 import MandatesCommission from "./partials/MandatesCommission";
 import TeamBottom from "./partials/TeamBottom";
+import { getHomePageData } from "./hooks/home.hook";
+import ErrorMessage from "@/components/ErrorMessage";
 
-const Home = () => {
-  return (
-    <div>
-      <Hero />
-      <ImpServices />
-      <MissionVision />
-      <LatestNotices />
-      <TeamSection />
-      <MandatesCommission />
-      <TeamBottom />
-    </div>
-  );
+const Home = async () => {
+  try {
+    const { homeData, impServiceData, missionVisionData, teamData } =
+      await getHomePageData();
+
+    // console.log(teamData?.data, "teamData");
+
+    return (
+      <div>
+        <Hero heroData={homeData?.data?.[0]} />
+        <ImpServices impServiceData={impServiceData?.data} />
+        <MissionVision
+          missionVisionData={missionVisionData?.data?.[0]?.mission_vision}
+        />
+        <LatestNotices serviceData={impServiceData?.data} />
+        <TeamSection teamData={teamData?.data} />
+        <MandatesCommission
+          mandatesData={missionVisionData?.data?.[0]?.goals_objectives}
+        />
+        <TeamBottom teamData={teamData?.data} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+    return <ErrorMessage />;
+  }
 };
 
 export default Home;

@@ -1,8 +1,12 @@
 import Image from "next/image";
 import React from "react";
-import hero from "@/assets/home/hero.jpg";
+import { IHomeHeroDaum } from "../interface/homeHero.interface";
 
-const Hero = () => {
+interface Props {
+  heroData: IHomeHeroDaum;
+}
+
+const Hero: React.FC<Props> = ({ heroData }) => {
   return (
     <div className="my-[1.5rem] lg:my-[2.5rem] padding-x">
       {/* Linear Gradient */}
@@ -16,7 +20,7 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 w-full ">
           <Image
-            src={hero}
+            src={heroData?.image}
             alt="Background Image"
             width={1000}
             height={1000}
@@ -26,11 +30,10 @@ const Hero = () => {
 
         <div className="lg:w-[32rem]">
           <h1 className=" text-[1.9375rem] lg:text-[2.9375rem] text-white font-bold leading-[130%] pb-[0.62rem]">
-            Powering the Nation with Transparency & Regulation
+            {heroData?.slogan}
           </h1>
           <p className="typography-p-large text-white pb-[1.25rem]">
-            We regulate tariffs, protect consumer rights, and ensure reliable
-            power for every citizen.
+            {heroData?.title}
           </p>
 
           <div className="flex flex-col lg:flex-row gap-[1.12rem]">

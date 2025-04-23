@@ -1,7 +1,11 @@
-import { mandatesData } from "@/data/mandatesData";
 import React from "react";
+import { IMissionVisionGoalsObjec } from "../interface/homeMissionVision.interface";
 
-const MandatesCommission = () => {
+interface Props {
+  mandatesData: IMissionVisionGoalsObjec[];
+}
+
+const MandatesCommission: React.FC<Props> = ({ mandatesData }) => {
   return (
     <div className="padding-x mb-[1.5rem] lg:mb-[2.5rem]">
       <h3 className="text-text-500 font-bold typography-h3 leading-[150%] pb-[1.25rem]">
@@ -15,13 +19,13 @@ const MandatesCommission = () => {
           >
             <div className="relative z-20">
               <button className="mx-auto w-11 h-11 p-5 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 text-[1.25rem] font-bold leading-[120%]">
-                {mandate.number}
+                {mandate?.ordering}
               </button>
               <p className="mt-5 typography-p-large-semi-bold text-text-400 group-hover:text-white text-center">
-                {mandate.title}
+                {mandate?.title}
               </p>
               <p className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center">
-                {mandate.description}
+                {mandate?.description}
               </p>
             </div>
 
