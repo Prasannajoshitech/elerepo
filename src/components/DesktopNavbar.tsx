@@ -9,9 +9,7 @@ interface Props {
   desktopData: INavLinksDaum;
 }
 
-const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
-  const data = desktopData;
-
+const DesktopNavbar: React.FC<Props> = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (name: string) => {
