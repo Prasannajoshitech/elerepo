@@ -12,7 +12,7 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
       {impServiceData?.map((service, index) => (
         <div
           key={index}
-          className="bg-background-50 p-[1.5rem] rounded-[0.5rem] cursor-pointer border border-transparent transform transition-all duration-300 ease-in-out hover:border-blue-500 hover:scale-[1.02]"
+          className="bg-background-50 p-[1.2rem] rounded-[0.5rem] cursor-pointer border border-transparent transform transition-all duration-300 ease-in-out hover:border-blue-500 hover:scale-[1.02]"
         >
           <div className="flex gap-[0.75rem] items-center">
             <div className="bg-blue-400 rounded-[0.5rem] px-[0.88rem] pt-[0.84rem] pb-[0.91rem]">

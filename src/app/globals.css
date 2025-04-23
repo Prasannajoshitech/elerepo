@@ -198,8 +198,8 @@
 @utility typography-h3-bold {
   @apply text-[1.5rem] lg:text-[1.6875rem] font-medium lg:font-bold  leading-[135%];
 }
-@utility typography-h3-bold {
-  @apply text-[1.5rem] lg:text-[1.6875rem] font-medium lg:font-bold  leading-[135%];
+@utility typography-h3-semi-bold {
+  @apply text-[1.5rem] lg:text-[1.6875rem] font-medium lg:font-semibold  leading-[150%];
 }
 
 @utility typography-h4 {
@@ -265,4 +265,8 @@
   .footer-gradient {
     background: linear-gradient(180deg, #3360a9 0%, #0052cc 100%);
   }
+}
+
+@utility typography-p1-regular {
+  @apply font-normal text-[1rem] leading-[150%];
 }

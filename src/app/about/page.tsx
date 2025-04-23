@@ -3,6 +3,7 @@ import HeroSection from "./partials/HeroSection";
 import Introduction from "./partials/Introduction";
 import MissionVission from "./partials/MissionVission";
 import GoalsObjective from "./partials/GoalsObjective";
+import FunctionDuties from "./partials/FunctionDuties";
 
 const page = () => {
   const heroSectionData = {
@@ -16,6 +17,7 @@ const page = () => {
       <Introduction />
       <MissionVission />
       <GoalsObjective />
+      <FunctionDuties />
     </div>
   );
 };

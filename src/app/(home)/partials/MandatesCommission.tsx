@@ -28,7 +28,15 @@ const MandatesCommission: React.FC<Props> = ({ mandatesData }) => {
                 {mandate?.description}
               </p>
             </div>
-            <div className="absolute z-10 bottom-0 left-1/2 -translate-x-1/2 bg-blue-400 w-24 h-3 rounded-t-[0.75rem] group-hover:w-full group-hover:h-full transition-all duration-500" />
+
+            <div
+              style={{
+                transitionProperty: "width, height",
+                transitionDuration: "400ms, 400ms",
+                transitionDelay: "0ms, 70ms",
+              }}
+              className="absolute z-10 bottom-0 left-1/2 -translate-x-1/2 bg-blue-400 w-24 h-3 rounded-t-[0.75rem] group-hover:w-full group-hover:h-full "
+            />
           </div>
         ))}
       </div>

@@ -26,27 +26,27 @@ const MobileNavbar = () => {
       {mobileMenuOpen && (
         <div className="mt-4 flex flex-col gap-4">
           {navLinks.map((navItem) => (
-            <div key={navItem.name} className="flex flex-col">
+            <div key={navItem?.name} className="flex flex-col">
               <button
-                onClick={() => toggleDropdown(navItem.name)}
+                onClick={() => toggleDropdown(navItem?.name)}
                 className="flex items-center justify-between text-text-500 font-medium"
               >
-                {navItem.name}
+                {navItem?.name}
                 <ChevronDown
                   className={`h-4 w-4 transform transition-transform duration-300 ${
-                    activeDropdown === navItem.name ? "rotate-180" : ""
+                    activeDropdown === navItem?.name ? "rotate-180" : ""
                   }`}
                 />
               </button>
-              {activeDropdown === navItem.name && (
+              {activeDropdown === navItem?.name && (
                 <div className="mt-2 ml-4 flex flex-col gap-2">
-                  {navItem.dropdown.map((subItem) => (
+                  {navItem?.dropdown?.map((subItem) => (
                     <Link
-                      key={subItem.name}
-                      href={subItem.url}
+                      key={subItem?.name}
+                      href={subItem?.url}
                       className="text-sm text-text-500 hover:text-blue-500"
                     >
-                      {subItem.name}
+                      {subItem?.name}
                     </Link>
                   ))}
                 </div>
