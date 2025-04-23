@@ -14,9 +14,9 @@ const TeamBottom: React.FC<Props> = ({ teamData }) => {
       <h3 className="text-text-500 font-bold typography-h3 leading-[150%] pb-[1.25rem]">
         Technical Personalities
       </h3>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 max-w-[280rem] mx-auto ">
+      <div className="grid grid-cols-2 lg:grid-cols-4 mt-6 lg:mt-0 gap-4 lg:gap-10 max-w-[280rem] mx-auto ">
         {teamData?.map((team, index) => (
-          <div key={index} className="lg:w-[19.25rem] group  mx-auto">
+          <div key={index} className="w-full lg:w-[19.25rem] group  mx-auto">
             {/* Image */}
             <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer">
               <Image

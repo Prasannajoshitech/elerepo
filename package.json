@@ -19,6 +19,7 @@
     "formik": "^2.4.6",
     "framer-motion": "^12.7.4",
     "lucide-react": "^0.501.0",
+    "nepali-date-converter": "^3.4.0",
     "next": "15.3.0",
     "pdfjs-dist": "^4.8.69",
     "prettier": "^3.5.3",
