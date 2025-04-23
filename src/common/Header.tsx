@@ -5,15 +5,15 @@ import React from "react";
 import Navbar from "./Navbar";
 import Link from "next/link";
 import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
-import { getGlobalData } from "@/hooks/globalHook";
 import ErrorMessage from "@/components/ErrorMessage";
+import { getOrganizationSettingData } from "@/hooks/globalHook";
 
 const Header = async () => {
   try {
     // global custom hook
-    const { organizationSettingData } = await getGlobalData();
+    const organizationSettingData = await getOrganizationSettingData();
 
-    const footerData: IOrganizationSettingDaum =
+    const headerData: IOrganizationSettingDaum =
       organizationSettingData?.data[0];
 
     return (
@@ -46,7 +46,7 @@ const Header = async () => {
                 className="w-[4.5rem] sm:w-[5rem] md:w-[5.47988rem] aspect-[87.68/74] flex-shrink-0 "
               >
                 <Image
-                  src={footerData?.gov_logo}
+                  src={headerData?.gov_logo}
                   alt="Nepal Government Emblem"
                   width={1000}
                   height={1000}
@@ -55,10 +55,10 @@ const Header = async () => {
               </Link>
               <div className="text-white">
                 <h1 className="text-lg sm:text-xl notranslate md:text-[1.85125rem] font-semibold leading-[150%] tracking-tight">
-                  {footerData?.org_name_nepali}
+                  {headerData?.org_name_nepali}
                 </h1>
                 <p className="text-sm sm:text-base md:text-[0.92563rem] font-medium leading-[120%]">
-                  {footerData?.org_name_eng}
+                  {headerData?.org_name_eng}
                 </p>
               </div>
             </div>
@@ -70,7 +70,7 @@ const Header = async () => {
                 className="w-[3.5rem] sm:w-[4.5rem] md:w-[4.875rem] aspect-square flex-shrink-0"
               >
                 <Image
-                  src={footerData?.erc_logo}
+                  src={headerData?.erc_logo}
                   alt="logo"
                   width={1000}
                   height={1000}

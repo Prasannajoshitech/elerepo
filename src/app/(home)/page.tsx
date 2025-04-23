@@ -8,18 +8,16 @@ import MandatesCommission from "./partials/MandatesCommission";
 import TeamBottom from "./partials/TeamBottom";
 import { getHomePageData } from "./hooks/home.hook";
 import ErrorMessage from "@/components/ErrorMessage";
-import { getGlobalData } from "@/hooks/globalHook";
 
 const Home = async () => {
   try {
-    // home page custom hook
-    const { homeData } = await getHomePageData();
-
-    // global custom hook
-    const { documentData, impServiceData, missionVisionData, teamData } =
-      await getGlobalData();
-
-    // console.log(documentData?.data, "documentData");
+    const {
+      homeData,
+      documentData,
+      impServiceData,
+      missionVisionData,
+      teamData,
+    } = await getHomePageData();
 
     return (
       <div>

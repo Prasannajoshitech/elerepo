@@ -4,7 +4,7 @@ import {
   ImportantLinks,
   OfficeHours,
 } from "@/data/footer";
-import { getGlobalData } from "@/hooks/globalHook";
+import { getOrganizationSettingData } from "@/hooks/globalHook";
 import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +16,7 @@ import { MdCall, MdLocationOn } from "react-icons/md";
 const Footer: React.FC = async () => {
   try {
     // global custom hook
-    const { organizationSettingData } = await getGlobalData();
+    const organizationSettingData = await getOrganizationSettingData();
 
     const footerData: IOrganizationSettingDaum =
       organizationSettingData?.data[0];
