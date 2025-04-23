@@ -16,3 +16,8 @@ export const getOrganizationSettingData = async () => {
   );
   return organizationSettingData;
 };
+
+export const getNavLinksData = async () => {
+  const navLinks = await safeFetch(endpoints.navLinks);
+  return navLinks;
+};

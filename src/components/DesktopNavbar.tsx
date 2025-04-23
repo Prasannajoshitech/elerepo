@@ -3,8 +3,15 @@ import { navLinks } from "@/data/navLinks";
 import Link from "next/link";
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { INavLinksDaum } from "@/Interface/navlinks.interface";
 
-const DesktopNavbar = () => {
+interface Props {
+  desktopData: INavLinksDaum;
+}
+
+const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
+  const data = desktopData;
+
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (name: string) => {

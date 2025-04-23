@@ -19,8 +19,26 @@ export interface IOrganizationSettingDaum {
   google_map: string;
   disclaimer: string;
   domain: string;
-  office_hours: string;
-  social_media: string[];
+  office_hours: IOrganizationSettingOfficeHour[];
+  social_media: IOrganizationSettingSocialMedia;
   terms_condition: string;
   privacy_policy: string;
+}
+
+export interface IOrganizationSettingOfficeHour {
+  season: string;
+  start_date: string;
+  end_date: string;
+  days: string;
+  opening_time: string;
+  closing_time: string;
+}
+
+export interface IOrganizationSettingSocialMedia {
+  facebook: string;
+  twitter: string;
+  youtube: string;
+  linkedin: string;
+  instagram: string;
+  tiktok: string;
 }

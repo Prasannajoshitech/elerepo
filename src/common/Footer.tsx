@@ -1,11 +1,8 @@
 import ErrorMessage from "@/components/ErrorMessage";
-import {
-  AffiliatedOrganizations,
-  ImportantLinks,
-  OfficeHours,
-} from "@/data/footer";
+import { AffiliatedOrganizations, ImportantLinks } from "@/data/footer";
 import { getOrganizationSettingData } from "@/hooks/globalHook";
 import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
+import { formatTime } from "@/utils/formatTime";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -84,8 +81,20 @@ const Footer: React.FC = async () => {
                   {footerData?.email}
                 </li>
                 <li className="flex items-center gap-[0.56rem]">
-                  <FaFacebook className="shrink-0" size={24} />
-                  <FaSquareXTwitter className="shrink-0" size={24} />
+                  <Link
+                    href={footerData?.social_media.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook className="shrink-0" size={24} />
+                  </Link>
+                  <Link
+                    href={footerData?.social_media.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaSquareXTwitter className="shrink-0" size={24} />
+                  </Link>
                 </li>
               </div>
             </ul>
@@ -135,11 +144,16 @@ const Footer: React.FC = async () => {
               Office Hours
             </h2>
             <ul className=" text-white typography-p-regular ">
-              {OfficeHours.map((item, index) => (
+              {footerData?.office_hours.map((item, index) => (
                 <div key={index}>
-                  <p className="font-semibold pb-[0.88rem]">{item.month}</p>
-                  <p className="font-medium pb-[0.88rem]">{item.week}</p>
-                  <p className="pb-[1.5rem] font-semibold ">{item.time}</p>
+                  <p className="font-semibold pb-[0.88rem]">
+                    {item?.season} {item?.start_date} to {item?.end_date}
+                  </p>
+                  <p className="font-medium pb-[0.88rem]">{item?.days}</p>
+                  <p className="pb-[1.5rem] font-semibold">
+                    {formatTime(item?.opening_time)} to{" "}
+                    {formatTime(item?.closing_time)}
+                  </p>
                 </div>
               ))}
             </ul>
