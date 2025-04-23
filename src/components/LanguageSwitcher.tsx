@@ -10,8 +10,23 @@ const LanguageSwitcher = () => {
   const baseStyle = "cursor-pointer pb-1 z-20";
   const activeStyle = "border-b-2 border-white";
   const inactiveStyle = "border-b-2 border-transparent";
+  const resetGoogleTranslate = () => {
+    // Remove translation-related cookies
+    document.cookie = "googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie =
+      "googtrans=;path=/;domain=" +
+      window.location.hostname +
+      ";expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    // Reload page to apply reset
+    window.location.reload();
+  };
 
   const handleLanguageChange = (lang: "eng" | "nep") => {
+    if (lang === "eng") {
+      resetGoogleTranslate();
+      return;
+    }
     setActiveLang(lang);
     // Trigger Google Translate language change
     if (window.google && window.google.translate) {

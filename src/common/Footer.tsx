@@ -18,7 +18,10 @@ const Footer: React.FC = () => {
       {/* logos  */}
       <div>
         <div className="flex gap-3 items-center">
-          <div className="w-[4.5rem] sm:w-[5rem] md:w-[5.47988rem] aspect-[87.68/74] flex-shrink-0">
+          <Link
+            href="/"
+            className="w-[4.5rem] sm:w-[5rem] md:w-[5.47988rem] aspect-[87.68/74] flex-shrink-0"
+          >
             <Image
               src="/nepal.png"
               alt="Nepal Government Emblem"
@@ -26,16 +29,19 @@ const Footer: React.FC = () => {
               height={1000}
               className="w-full h-full object-cover"
             />
-          </div>
+          </Link>
           <div className="text-white w-[9.5rem] sm:w-fit">
-            <h1 className="text-lg sm:text-xl md:text-[1.85125rem] font-semibold leading-[150%] tracking-tight">
+            <h1 className="text-lg sm:text-xl notranslate md:text-[1.85125rem] font-semibold leading-[150%] tracking-tight">
               विद्युत नियामक आयोग
             </h1>
             <p className="text-sm sm:text-base md:text-[0.92563rem] font-medium leading-[120%]">
               Electricity Regulatory Commission
             </p>
           </div>
-          <div className="w-[3.5rem] sm:w-[4.5rem] md:w-[4.875rem] aspect-square flex-shrink-0">
+          <Link
+            href="/"
+            className="w-[3.5rem] sm:w-[4.5rem] md:w-[4.875rem] aspect-square flex-shrink-0"
+          >
             <Image
               src="/logo.png"
               alt="logo"
@@ -43,7 +49,7 @@ const Footer: React.FC = () => {
               height={1000}
               className="w-full h-full object-cover"
             />
-          </div>
+          </Link>
         </div>
       </div>
 

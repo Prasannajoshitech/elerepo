@@ -30,9 +30,9 @@ const LatestNotices = () => {
 
   return (
     <div className="bg-background-400 mb-[2.5rem]">
-      <div className="flex flex-col lg:flex-row justify-between  padding-x pb-10">
+      <div className="flex flex-col lg:flex-row gap-[2.5rem] padding-x pb-10">
         {/* left  */}
-        <div>
+        <div className="w-full">
           <h3 className="text-text-500 typography-h3 font-bold leading-[150%] pb-[1.25rem]">
             Services
           </h3>
@@ -69,7 +69,7 @@ const LatestNotices = () => {
         </div>
 
         {/* right  */}
-        <div>
+        <div className="w-full">
           <h3 className="text-text-500 typography-h3 font-bold leading-[150%] pb-[1.25rem]">
             Latest Notices
           </h3>
