@@ -1,10 +1,14 @@
 import Image from "next/image";
 import React from "react";
-import { services } from "@/data/services";
+import { IImpServiceDaum } from "../interface/homeImpService.interface";
 import NoticeTab from "./NoticeTab";
 import TabContent from "./TabContent";
 
-const LatestNotices = () => {
+interface Props {
+  serviceData: IImpServiceDaum[];
+}
+
+const LatestNotices: React.FC<Props> = ({ serviceData }) => {
   const tabData = [
     {
       label: "General",
@@ -37,7 +41,7 @@ const LatestNotices = () => {
             Services
           </h3>
           <div className="grid grid-cols-3 gap-4 lg:gap-[1.5rem]">
-            {services?.map((service, index) => (
+            {serviceData?.map((service, index) => (
               <div
                 key={index}
                 className="flex gap-[0.75rem] items-center group relative"
@@ -51,15 +55,15 @@ const LatestNotices = () => {
                   <div className="relative z-20">
                     <div className="lg:w-[5rem] lg:h-[5rem] mx-auto">
                       <Image
-                        src={service.icon}
-                        alt={service.title}
+                        src={service?.icon}
+                        alt="Service Icon"
                         width={600}
                         height={600}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <h2 className="typography-p-large font-semibold text-white pt-[0.75rem]">
-                      {service.title}
+                      {service?.name}
                     </h2>
                   </div>
                 </div>
