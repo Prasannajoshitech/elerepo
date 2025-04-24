@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { CiMail } from "react-icons/ci";
-import { IHomeTeamDaum } from "../interface/homeTeam.interface";
+import { IHomeTeamDaum } from "../../../Interface/team.interface";
 
 interface Props {
   teamData: IHomeTeamDaum[];

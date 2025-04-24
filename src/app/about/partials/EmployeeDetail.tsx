@@ -1,4 +1,4 @@
-import { IHomeTeamDaum } from "@/app/(home)/interface/homeTeam.interface";
+import { IHomeTeamDaum } from "@/Interface/team.interface";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
