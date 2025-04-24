@@ -1,12 +1,11 @@
+import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import NewsCarousel from "@/components/NewsCarousel";
-import Image from "next/image";
-import React from "react";
-import Navbar from "./Navbar";
-import Link from "next/link";
-import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
-import ErrorMessage from "@/components/ErrorMessage";
 import { getOrganizationSettingData } from "@/hooks/globalHook";
+import Image from "next/image";
+import Link from "next/link";
+import HeaderFallback from "./HeaderFallback";
+import Navbar from "./Navbar";
 
 const Header = async () => {
   try {
@@ -114,7 +113,7 @@ const Header = async () => {
     );
   } catch (error) {
     console.error("Error fetching header data:", error);
-    return <ErrorMessage />;
+    return <HeaderFallback />;
   }
 };
 
