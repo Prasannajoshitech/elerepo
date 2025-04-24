@@ -6,6 +6,8 @@ interface Endpoints {
   about: string;
   homeTeam: string;
   document: string;
+  actRule: string;
+
   aboutFunctionDuties: string;
   messageChairperson: string;
 
@@ -21,6 +23,7 @@ export const endpoints: Endpoints = {
   about: "/about/list/",
   homeTeam: "/team/list",
   document: "/document/list/",
+  actRule: "/subcategory/bydocumentlist/",
 
   aboutFunctionDuties: "/about/function-duties-authorities/list/",
   messageChairperson: "/team/chairperson-message/list/",

@@ -1,14 +1,14 @@
-import React from "react";
-import DocumentPage from "./partials/DocumentPage";
-import { getHomePageData } from "../(home)/hooks/home.hook";
 import ErrorMessage from "@/components/ErrorMessage";
+import { getActRuleData } from "./hooks/act.hook";
+import DocumentPage from "./partials/DocumentPage";
 
 const ActPage = async () => {
   try {
-    const { documentData } = await getHomePageData();
+    const documentData = await getActRuleData();
+
     return (
       <div>
-        <DocumentPage documentData={documentData?.data} />
+        <DocumentPage documentData={documentData?.actRuleData} />
       </div>
     );
   } catch (error) {

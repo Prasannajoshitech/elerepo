@@ -11,8 +11,8 @@ interface Props {
 
 const PER_PAGE = 4;
 
-const DocumentPage: React.FC<Props> = () => {
-  // console.log(documentData, "dataaa");
+const DocumentPage: React.FC<Props> = ({ documentData }) => {
+  console.log(documentData?.results, "documentData");
 
   const [selectedCategory, setSelectedCategory] =
     useState<keyof typeof documents>("Act & Rules");
