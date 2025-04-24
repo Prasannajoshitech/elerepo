@@ -1,17 +1,42 @@
+import { mapFallback } from "@/helper/mapFallback";
 import React from "react";
 
-const Location = () => {
+interface Props {
+  mapUrl: string;
+}
+
+// Extract place and convert to a simple embed link
+const getEmbedUrl = (rawUrl: string | undefined): string => {
+  if (!rawUrl) return mapFallback;
+
+  try {
+    // Try to extract the place name after /dir// and before @
+    const match = rawUrl.match(/\/dir\/.*?\/(.*?)@/);
+    if (match) {
+      const place = decodeURIComponent(match[1].replace(/\+/g, " "));
+      return `https://www.google.com/maps?q=${encodeURIComponent(place)}&output=embed`;
+    }
+  } catch (error) {
+    console.error("Error parsing map URL:", error);
+  }
+
+  return mapFallback;
+};
+
+const Location: React.FC<Props> = ({ mapUrl }) => {
+  const embedUrl = getEmbedUrl(mapUrl);
+
   return (
-    <div className="mt-10 w-full h-[600px]">
+    <div className="my-10 w-full h-[600px]">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.1823263138085!2d85.33116037548417!3d27.711656325301348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb194bd38786e7%3A0x46ea9967890821c4!2sElectricity%20Regulatory%20Commission!5e0!3m2!1sen!2snp!4v1745228500310!5m2!1sen!2snp"
-        width="600"
-        height="450"
+        src={embedUrl}
+        width="100%"
+        height="100%"
         style={{ border: 0 }}
         allowFullScreen
         loading="lazy"
-        className="w-full"
         referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-full"
       ></iframe>
     </div>
   );

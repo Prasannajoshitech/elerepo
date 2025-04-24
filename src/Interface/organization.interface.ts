@@ -23,6 +23,10 @@ export interface IOrganizationSettingDaum {
   social_media: IOrganizationSettingSocialMedia;
   terms_condition: string;
   privacy_policy: string;
+  office_address_icon: string;
+  email_icon: string;
+  fax_icon: string;
+  phone_icon: string;
 }
 
 export interface IOrganizationSettingOfficeHour {
