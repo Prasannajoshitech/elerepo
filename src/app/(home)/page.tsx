@@ -38,7 +38,7 @@ const Home = async () => {
       </div>
     );
   } catch (error) {
-    console.error("Error fetching blog data:", error);
+    console.error("Error fetching home data:", error);
     return <ErrorMessage />;
   }
 };

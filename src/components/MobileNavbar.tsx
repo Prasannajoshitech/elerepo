@@ -1,10 +1,14 @@
 "use client";
-import { navLinks } from "@/data/navLinks";
-import Link from "next/link";
+import { INavLinksDaum } from "@/Interface/navlinks.interface";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
-const MobileNavbar = () => {
+interface Props {
+  mobileData: INavLinksDaum[];
+}
+
+const MobileNavbar: React.FC<Props> = ({ mobileData }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
@@ -25,7 +29,7 @@ const MobileNavbar = () => {
 
       {mobileMenuOpen && (
         <div className="mt-4 flex flex-col gap-4">
-          {navLinks.map((navItem) => (
+          {mobileData?.map((navItem) => (
             <div key={navItem?.name} className="flex flex-col">
               <button
                 onClick={() => toggleDropdown(navItem?.name)}
@@ -40,10 +44,10 @@ const MobileNavbar = () => {
               </button>
               {activeDropdown === navItem?.name && (
                 <div className="mt-2 ml-4 flex flex-col gap-2">
-                  {navItem?.dropdown?.map((subItem) => (
+                  {navItem?.subcategories?.map((subItem) => (
                     <Link
                       key={subItem?.name}
-                      href={subItem?.url}
+                      href={subItem?.sub_ctg_slug}
                       className="text-sm text-text-500 hover:text-blue-500"
                     >
                       {subItem?.name}

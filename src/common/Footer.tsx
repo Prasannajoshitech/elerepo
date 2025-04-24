@@ -1,4 +1,3 @@
-import ErrorMessage from "@/components/ErrorMessage";
 import { AffiliatedOrganizations, ImportantLinks } from "@/data/footer";
 import { getOrganizationSettingData } from "@/hooks/globalHook";
 import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
@@ -9,6 +8,7 @@ import React from "react";
 import { FaFacebook, FaSquareXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import { MdCall, MdLocationOn } from "react-icons/md";
+import FooterFallback from "./FooterFallback";
 
 const Footer: React.FC = async () => {
   try {
@@ -190,8 +190,8 @@ const Footer: React.FC = async () => {
       </footer>
     );
   } catch (error) {
-    console.error("Error fetching blog data:", error);
-    return <ErrorMessage />;
+    console.error("Error fetching footer data:", error);
+    return <FooterFallback />;
   }
 };
 

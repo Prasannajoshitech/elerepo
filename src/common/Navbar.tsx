@@ -9,11 +9,11 @@ const Navbar = async () => {
     // global custom hook
     const navLinkData = await getNavLinksData();
 
-    const data: INavLinksDaum = navLinkData?.data;
+    const data: INavLinksDaum[] = navLinkData?.data;
 
     return (
       <nav className="bg-background-100">
-        <MobileNavbar />
+        <MobileNavbar mobileData={data} />
         <DesktopNavbar desktopData={data} />
       </nav>
     );
