@@ -8,7 +8,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="padding-x py-10">
       <div
         style={{
           backgroundImage: `url(${heroSectionData.image})`,

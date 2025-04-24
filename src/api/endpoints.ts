@@ -3,9 +3,11 @@ interface Endpoints {
   navLinks: string;
   homeHero: string;
   homeImpService: string;
-  homeMissionVision: string;
+  about: string;
   homeTeam: string;
   document: string;
+  aboutFunctionDuties: string;
+  messageChairperson: string;
 
   contact: string;
 }
@@ -16,9 +18,12 @@ export const endpoints: Endpoints = {
 
   homeHero: "/homepage/list",
   homeImpService: "/services/list",
-  homeMissionVision: "/about/list/",
+  about: "/about/list/",
   homeTeam: "/team/list",
   document: "/document/list/",
+
+  aboutFunctionDuties: "/about/function-duties-authorities/list/",
+  messageChairperson: "/team/chairperson-message/list/",
 
   contact: "/contact/create/",
 };
