@@ -35,7 +35,7 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
     url: `${endpoints.categoryDetail}/${slug}/`,
   });
 
-  // For Selected Category 
+  // For Selected Category
   const [selectedCategory, setSelectedCategory] = useState(
     categories[0]?.name || ""
   );
