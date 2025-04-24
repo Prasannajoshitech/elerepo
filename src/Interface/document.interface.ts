@@ -1,18 +1,30 @@
 export interface IDocumentRoot {
-  status: string;
-  status_code: number;
-  message: string;
-  data: IDocumentDaum[];
+  links: IDocumentLinks;
+  total_items: number;
+  total_pages: number;
+  current_page: number;
+  page_size: number;
+  results: IDocumentResult[];
 }
 
-export interface IDocumentDaum {
+export interface IDocumentLinks {
+  next: string;
+  previous: string;
+}
+
+export interface IDocumentResult {
   id: string;
-  main_category: string;
-  sub_category: string;
+  name: string;
+  sub_ctg_slug: string;
+  ordering: number;
+  document_list: IDocumentDocumentList[];
+}
+
+export interface IDocumentDocumentList {
+  id: string;
   title: string;
   description: string;
-  slug: string;
   file: string;
   image: string;
-  created_at: string;
+  slug: string;
 }

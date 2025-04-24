@@ -1,42 +1,55 @@
 "use client";
-import CustomPagination from "@/components/CustomPagination";
-import { documents } from "@/data/actDocument";
 import { useState } from "react";
+import {
+  IDocumentDocumentList,
+  IDocumentRoot,
+} from "@/Interface/document.interface";
 import DocumentCard from "./DocumentCard";
-import { IDocumentDaum } from "@/Interface/document.interface";
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
+import CustomPagination from "@/components/CustomPagination";
 
 interface Props {
-  documentData: IDocumentDaum[];
+  documentData: IDocumentRoot;
 }
 
-const PER_PAGE = 4;
-
 const DocumentPage: React.FC<Props> = ({ documentData }) => {
-  console.log(documentData?.results, "documentData");
+  const categories = documentData?.results || [];
 
-  const [selectedCategory, setSelectedCategory] =
-    useState<keyof typeof documents>("Act & Rules");
+  // For Category name and slug
+  const handleCategoryClick = (categoryName: {
+    name: string;
+    sub_ctg_slug: string;
+  }) => {
+    setSelectedCategory(categoryName.name);
+    setSlug(categoryName.sub_ctg_slug);
+  };
+
+  // Retriving slug
+  const [slug, setSlug] = useState<string>(
+    documentData?.results[0]?.sub_ctg_slug
+  );
+
+  // for mapping categoryDocumentData
+  const { data: categoryDocumentData } = useGetDataQuery({
+    url: `${endpoints.categoryDetail}/${slug}/`,
+  });
+
+  // For Selected Category 
+  const [selectedCategory, setSelectedCategory] = useState(
+    categories[0]?.name || ""
+  );
+
+  // For Pagination
+  const PER_PAGE = 4;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const selectedDocs = documents[selectedCategory] || [];
-  const totalItems = selectedDocs.length;
+  const totalItems = categoryDocumentData?.document_list.length;
   const pageCount = Math.ceil(totalItems / PER_PAGE);
 
   // Handle page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-  };
-
-  // Get paginated docs for the current page
-  const paginatedDocs = selectedDocs.slice(
-    (currentPage - 1) * PER_PAGE,
-    currentPage * PER_PAGE
-  );
-
-  // Reset page to 1 if category changes
-  const handleCategoryChange = (category: keyof typeof documents) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
   };
 
   return (
@@ -53,19 +66,17 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
           </h2>
 
           <nav className="flex flex-col space-y-2">
-            {Object.keys(documents).map((category) => (
+            {categories.map((category, idx) => (
               <button
-                key={category}
-                onClick={() =>
-                  handleCategoryChange(category as keyof typeof documents)
-                }
+                key={idx}
+                onClick={() => handleCategoryClick(category)}
                 className={`py-3 px-4 text-left rounded-md transition-colors ${
-                  selectedCategory === category
+                  selectedCategory === category.name
                     ? "bg-blue-300 text-white"
                     : "hover:bg-blue-100"
                 }`}
               >
-                {category}
+                {category.name}
               </button>
             ))}
           </nav>
@@ -73,9 +84,11 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
 
         {/* Document Listings */}
         <div className="md:col-span-3 space-y-[0.62rem]">
-          {paginatedDocs.map((doc, index) => (
-            <DocumentCard key={index} title={doc.title} date={doc.date} />
-          ))}
+          {categoryDocumentData?.document_list.map(
+            (doc: IDocumentDocumentList) => (
+              <DocumentCard key={doc.id} title={doc.title} date={doc?.title} />
+            )
+          )}
         </div>
       </div>
 
@@ -90,4 +103,5 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
     </div>
   );
 };
+
 export default DocumentPage;
