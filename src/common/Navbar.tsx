@@ -18,7 +18,7 @@ const Navbar = async () => {
       </nav>
     );
   } catch (error) {
-    console.error("Error fetching blog data:", error);
+    console.error("Error fetching navigation links:", error);
     return <ErrorMessage />;
   }
 };
