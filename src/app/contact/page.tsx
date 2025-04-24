@@ -2,21 +2,25 @@ import React from "react";
 import ContactHeroSection from "../about/partials/HeroSection";
 import GetInTouch from "./partials/GetInTouch";
 import Location from "./partials/Location";
+import ErrorMessage from "@/components/ErrorMessage";
+import { getOrganizationSettingData } from "@/hooks/globalHook";
 
-const ContactUs = () => {
-  const heroSectionData = {
-    image:
-      "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Contact Us",
-  };
-  return (
-    <div className="padding-x bg-background-400 ">
-      <ContactHeroSection data={heroSectionData} />
-      <GetInTouch />
+const ContactUs = async () => {
+  try {
+    const organizationSettingData = await getOrganizationSettingData();
 
-      <Location />
-    </div>
-  );
+    return (
+      <div className="padding-x bg-background-400 ">
+        <ContactHeroSection />
+        <GetInTouch data={organizationSettingData} />
+
+        <Location mapUrl={organizationSettingData?.data[0]?.google_map} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching contact data:", error);
+    return <ErrorMessage />;
+  }
 };
 
 export default ContactUs;

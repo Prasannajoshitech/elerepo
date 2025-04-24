@@ -1,8 +1,13 @@
+import { IOrganizationSettingRoot } from "@/Interface/organization.interface";
 import React from "react";
-import GetInTouchForm from "./GetInTouchForm";
 import ContactUs from "./ContactUs";
+import GetInTouchForm from "./GetInTouchForm";
 
-const GetInTouch = () => {
+interface Props {
+  data: IOrganizationSettingRoot;
+}
+
+const GetInTouch: React.FC<Props> = ({ data }) => {
   return (
     <div>
       <p className="typography-h3-bold text-black">Get In Touch</p>
@@ -18,7 +23,7 @@ const GetInTouch = () => {
         </div>
 
         <div className="lg:col-span-2">
-          <ContactUs />
+          <ContactUs data={data} />
         </div>
       </div>
     </div>
