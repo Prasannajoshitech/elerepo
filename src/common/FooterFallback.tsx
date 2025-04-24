@@ -1,4 +1,9 @@
-import { AffiliatedOrganizations, company, ImportantLinks, OfficeHours } from "@/data/footer";
+import {
+  AffiliatedOrganizations,
+  company,
+  ImportantLinks,
+  OfficeHours,
+} from "@/data/footer";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
