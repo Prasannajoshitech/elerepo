@@ -3,7 +3,7 @@ import Hero from "./partials/Hero";
 import ImpServices from "./partials/ImpServices";
 import MissionVision from "./partials/MissionVision";
 import LatestNotices from "./partials/LatestNotices";
-import TeamSection from "./partials/TeamSection";
+import TeamSection from "../../components/TeamSection";
 import MandatesCommission from "./partials/MandatesCommission";
 import TeamBottom from "./partials/TeamBottom";
 import { getHomePageData } from "./hooks/home.hook";

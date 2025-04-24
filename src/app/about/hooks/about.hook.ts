@@ -1,7 +1,7 @@
 import { getData } from "@/api/axios";
 import { endpoints } from "@/api/endpoints";
 
-export const getHomePageData = async () => {
+export const getAboutPageData = async () => {
   const safeFetch = async (endpoint: string) => {
     try {
       return await getData(endpoint);
@@ -11,17 +11,15 @@ export const getHomePageData = async () => {
     }
   };
 
-  const homeData = await safeFetch(endpoints.homeHero);
-  const impServiceData = await safeFetch(endpoints.homeImpService);
-  const missionVisionData = await safeFetch(endpoints.about);
+  const aboutData = await safeFetch(endpoints.about);
+  const functionDutiesData = await safeFetch(endpoints.aboutFunctionDuties);
   const teamData = await safeFetch(endpoints.homeTeam);
-  const documentData = await safeFetch(endpoints.document);
+  const messageChairperson = await safeFetch(endpoints.messageChairperson);
 
   return {
-    homeData,
-    impServiceData,
-    missionVisionData,
+    aboutData,
+    functionDutiesData,
     teamData,
-    documentData,
+    messageChairperson,
   };
 };
