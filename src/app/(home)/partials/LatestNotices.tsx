@@ -3,16 +3,18 @@ import React from "react";
 import { IImpServiceDaum } from "../interface/homeImpService.interface";
 import NoticeTab from "./NoticeTab";
 import TabContent from "./TabContent";
+import { IDocumentDaum } from "@/Interface/document.interface";
 
 interface Props {
   serviceData: IImpServiceDaum[];
+  documentData: IDocumentDaum[];
 }
 
-const LatestNotices: React.FC<Props> = ({ serviceData }) => {
+const LatestNotices: React.FC<Props> = ({ serviceData, documentData }) => {
   const tabData = [
     {
       label: "General",
-      content: <TabContent />,
+      content: <TabContent documentData={documentData} />,
     },
     {
       label: "Tariff ",

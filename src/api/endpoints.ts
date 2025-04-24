@@ -1,17 +1,24 @@
 interface Endpoints {
+  organizationSetting: string;
+  navLinks: string;
   homeHero: string;
   homeImpService: string;
   homeMissionVision: string;
   homeTeam: string;
+  document: string;
 
   contact: string;
 }
 
 export const endpoints: Endpoints = {
+  organizationSetting: "/organization/list/",
+  navLinks: "/maincategory/list/",
+
   homeHero: "/homepage/list",
   homeImpService: "/services/list",
   homeMissionVision: "/about/list/",
   homeTeam: "/team/list",
+  document: "/document/list/",
 
   contact: "/contact/create/",
 };
