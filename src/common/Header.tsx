@@ -113,7 +113,7 @@ const Header = async () => {
       </header>
     );
   } catch (error) {
-    console.error("Error fetching blog data:", error);
+    console.error("Error fetching header data:", error);
     return <ErrorMessage />;
   }
 };

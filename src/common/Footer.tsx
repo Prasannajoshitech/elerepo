@@ -190,7 +190,7 @@ const Footer: React.FC = async () => {
       </footer>
     );
   } catch (error) {
-    console.error("Error fetching blog data:", error);
+    console.error("Error fetching footer data:", error);
     return <ErrorMessage />;
   }
 };
