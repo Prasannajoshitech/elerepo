@@ -25,9 +25,12 @@ const GoalsObjective: React.FC<Props> = ({ goalsObjectiveData }) => {
               <p className="mt-5 typography-p-large-semi-bold text-text-400 group-hover:text-white text-center">
                 {objective?.title}
               </p>
-              <p className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center">
-                {objective?.description}
-              </p>
+              <p
+                className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center"
+                dangerouslySetInnerHTML={{
+                  __html: objective?.description || "",
+                }}
+              />
             </div>
 
             <div

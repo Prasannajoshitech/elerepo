@@ -24,9 +24,12 @@ const MandatesCommission: React.FC<Props> = ({ mandatesData }) => {
               <p className="mt-5 typography-p-large-semi-bold text-text-400 group-hover:text-white text-center">
                 {mandate?.title}
               </p>
-              <p className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center">
-                {mandate?.description}
-              </p>
+              <p
+                className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center"
+                dangerouslySetInnerHTML={{
+                  __html: mandate?.description || "",
+                }}
+              />
             </div>
 
             <div
