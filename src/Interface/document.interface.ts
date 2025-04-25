@@ -27,4 +27,5 @@ export interface IDocumentDocumentList {
   file: string;
   image: string;
   slug: string;
+  created_at: string;
 }

@@ -1,9 +1,9 @@
-import { IDocumentDaum } from "@/Interface/document.interface";
+import { IDocumentDocumentList } from "@/Interface/document.interface";
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 import React from "react";
 
 interface Props {
-  documentData: IDocumentDaum[];
+  documentData: IDocumentDocumentList[];
 }
 
 const TabContent: React.FC<Props> = ({ documentData }) => {
