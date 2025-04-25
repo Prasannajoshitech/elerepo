@@ -2,6 +2,7 @@ interface Endpoints {
   organizationSetting: string;
   navLinks: string;
   navNews: string;
+  popup: string;
 
   homeHero: string;
   homeImpService: string;
@@ -23,6 +24,7 @@ export const endpoints: Endpoints = {
   organizationSetting: "/organization/list/",
   navLinks: "/maincategory/list/",
   navNews: "/news/list/",
+  popup: "/popup/list/",
 
   homeHero: "/homepage/list",
   homeImpService: "/services/list",

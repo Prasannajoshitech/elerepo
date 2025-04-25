@@ -1,12 +1,22 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import React from "react";
 import { IHomeHeroDaum } from "../interface/homeHero.interface";
+import PdfModal from "@/components/modal/PdfModal";
 
 interface Props {
   heroData: IHomeHeroDaum;
 }
 
 const Hero: React.FC<Props> = ({ heroData }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Open modal on initial load
+    setIsModalOpen(true);
+  }, []);
+
   return (
     <div className="my-[1.5rem] lg:my-[2.5rem] padding-x">
       {/* Linear Gradient */}
@@ -47,6 +57,8 @@ const Hero: React.FC<Props> = ({ heroData }) => {
           </div>
         </div>
       </div>
+
+      <PdfModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
