@@ -9,35 +9,22 @@ import expandIcon from "@/assets/actRuleDetail/expand.svg";
 import optionIcon from "@/assets/actRuleDetail/option.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// --- Configuration for pdfjs worker ---
-// pdf.js needs a worker to process the PDF off the main thread.
-// You need to provide the path to the worker file.
-// This can often be copied from the `pdfjs-dist` package.
-// Check react-pdf documentation for the latest recommended setup,
-// especially with bundlers like Webpack (used by Next.js).
-
-// Example: Assuming you have copied the worker file to your public folder
-// You might need to install pdfjs-dist: npm install pdfjs-dist
-// Then copy node_modules/pdfjs-dist/build/pdf.worker.min.js to public/
-// pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.js`;
+import { IActDetailData } from "../interface/actDetail.interface";
 
 // --- OR --- Use CDN (easier for setup, relies on external source) ---
 pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
-// --- OR --- More robust CDN link
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 interface IPropf {
-  path: string;
+  actDetailData: IActDetailData;
 }
 
 // --- Your Component ---
-export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
+export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
   const viewerRef = useRef<HTMLDivElement>(null);
-  const pdfUrl = path; // Path to your PDF in the public folder
+  const pdfUrl = actDetailData?.file; // Path to your PDF in the public folder
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -71,7 +58,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
   };
 
   return (
-    <div ref={viewerRef} className="relative px-10 pb-4 w-fit mx-auto">
+    <div ref={viewerRef} className="relative px-10 mb-[4.75rem] w-fit mx-auto">
       <div className="mt-12 w-fit max-h-fit max-w-4xl mx-auto overflow-hidden">
         <Document
           file={pdfUrl}
@@ -105,7 +92,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
         </Document>
       </div>
 
-      {/* Icon for page */}
+      {/* Left and Right Navigation for PDF doc */}
       {numPages && (
         <div className="absolute top-1/2 left-0 -translate-x-full translate-y-1/2">
           <button
@@ -114,7 +101,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
             onClick={previousPage}
           >
             <ChevronLeft
-              className={`w-11 h-11  ${pageNumber !== 1 && pageNumber <= numPages ? "text-blue-300" : ""}`}
+              className={`w-11 h-11  ${pageNumber !== 1 && pageNumber <= numPages ? "text-blue-300" : "text-text-200"}`}
             />
           </button>
         </div>
@@ -128,14 +115,15 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
             onClick={nextPage}
           >
             <ChevronRight
-              className={`w-11 h-11  ${pageNumber < numPages ? "text-blue-300" : ""}`}
+              className={`w-11 h-11  ${pageNumber < numPages ? "text-blue-300" : "text-text-200"}`}
             />
           </button>
         </div>
       )}
 
+      {/* bottom Navigation & zoom option  */}
       {numPages && (
-        <div className="bg-white shadow-md absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3.5">
+        <div className="bg-white shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3.5 p-[0.88rem]">
           {/* Previous Page */}
           <button
             type="button"
@@ -146,7 +134,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
               className={
                 pageNumber !== 1 && pageNumber <= numPages
                   ? "text-blue-300"
-                  : ""
+                  : "text-text-200"
               }
             />
           </button>
@@ -163,7 +151,9 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
             onClick={nextPage}
           >
             <ChevronRight
-              className={pageNumber < numPages ? "text-blue-300" : ""}
+              className={
+                pageNumber < numPages ? "text-blue-300" : "text-text-200"
+              }
             />
           </button>
 
@@ -179,7 +169,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
               src={zoomInIcon}
               width={24}
               height={24}
-              className="w-11 h-11 object-center object-cover"
+              className="w-[1.5rem] aspect-square  object-cover"
             />
           </button>
 
@@ -195,7 +185,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
               src={zoomOutIcon}
               width={24}
               height={24}
-              className="w-11 h-11 object-center object-cover"
+              className="w-[1.5rem] aspect-square object-cover"
             />
           </button>
 
@@ -206,7 +196,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
               src={expandIcon}
               width={24}
               height={24}
-              className="w-11 h-11 object-center object-cover"
+              className="w-[1.5rem] aspect-square object-cover"
             />
           </button>
 
@@ -217,7 +207,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
               src={optionIcon}
               width={24}
               height={24}
-              className="w-11 h-11 object-center object-cover"
+              className="w-[1.5rem] aspect-square object-cover"
             />
           </button>
         </div>
@@ -227,8 +217,3 @@ export const DisplayPdf: React.FC<IPropf> = ({ path }) => {
 };
 
 export default DisplayPdf;
-
-// --- Optional: Add styling for react-pdf if needed ---
-// You might need to import the default styling or create your own
-// import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-// import 'react-pdf/dist/esm/Page/TextLayer.css';

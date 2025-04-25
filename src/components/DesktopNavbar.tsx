@@ -32,10 +32,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
                 onClick={() => toggleDropdown(navItem?.name)}
                 className="group relative cursor-pointer typography-p-regular font-medium text-text-500 hover:text-blue-500 transition-colors duration-300"
               >
-                <Link
-                  href={navItem?.main_ctg_slug}
-                  className="flex items-center gap-1"
-                >
+                <div className="flex items-center gap-1">
                   {navItem?.name}
                   {navItem?.subcategories && (
                     <ChevronDown
@@ -44,7 +41,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
                       }`}
                     />
                   )}
-                </Link>
+                </div>
                 <div
                   className={`absolute left-1/2 -translate-x-1/2 -bottom-2 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full ${
                     isActive ? "w-full" : ""
@@ -60,7 +57,8 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
                 {navItem?.subcategories?.map((subItem) => (
                   <Link
                     key={subItem?.name}
-                    href={subItem?.sub_ctg_slug}
+                    href={`about/`}
+                    // ${subItem?.sub_ctg_slug}
                     onClick={() => setActiveDropdown(null)}
                     className="block px-4 py-[0.62rem] text-sm text-text-500 hover:bg-blue-400 hover:text-white"
                   >

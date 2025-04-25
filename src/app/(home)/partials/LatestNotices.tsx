@@ -1,13 +1,13 @@
+import { IDocumentDocumentList } from "@/Interface/document.interface";
 import Image from "next/image";
 import React from "react";
 import { IImpServiceDaum } from "../interface/homeImpService.interface";
 import NoticeTab from "./NoticeTab";
 import TabContent from "./TabContent";
-import { IDocumentDaum } from "@/Interface/document.interface";
 
 interface Props {
   serviceData: IImpServiceDaum[];
-  documentData: IDocumentDaum[];
+  documentData: IDocumentDocumentList[];
 }
 
 const LatestNotices: React.FC<Props> = ({ serviceData, documentData }) => {

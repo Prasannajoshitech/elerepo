@@ -13,10 +13,8 @@ import EmployeeDetail from "./partials/EmployeeDetail";
 
 const AboutUs = async () => {
   try {
-    const { aboutData, teamData, functionDutiesData } =
+    const { aboutData, teamData, functionDutiesData, aboutOrganizational } =
       await getAboutPageData();
-
-    // console.log(messageChairperson, "messageChairperson");
 
     return (
       <div className=" bg-background-400 ">
@@ -32,16 +30,18 @@ const AboutUs = async () => {
         />
         <FunctionDuties functionDuties={functionDutiesData?.data[0]} />
 
-        <div className="padding-x">
-          <p className="typography-h3-bold text-text-500 pb-[1.25rem]">
+        <div>
+          <p className="padding-x typography-h3-bold text-text-500 pb-[1.25rem]">
             Commission
           </p>
           <TeamSection teamData={teamData?.data} />
         </div>
 
-        <OrganizationStructure />
+        <OrganizationStructure
+          orgazizationData={aboutOrganizational?.data[0]}
+        />
 
-        <CeoMessage />
+        <CeoMessage ceoMessage={teamData?.data[0]} />
         <EmployeeDetail teamData={teamData?.data} />
       </div>
     );
