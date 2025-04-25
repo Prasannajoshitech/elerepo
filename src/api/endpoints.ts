@@ -10,6 +10,7 @@ interface Endpoints {
   document: string;
   actRule: string;
   categoryDetail: string;
+  actDetail: string;
 
   aboutFunctionDuties: string;
 
@@ -29,6 +30,8 @@ export const endpoints: Endpoints = {
   document: "/document/list/",
   actRule: "/subcategory/bydocumentlist/",
   categoryDetail: "/subcategory/detail",
+
+  actDetail: "/document/detail",
 
   aboutFunctionDuties: "/about/function-duties-authorities/list/",
 

@@ -90,6 +90,7 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
                 key={doc.id}
                 title={doc.title}
                 date={doc?.created_at}
+                slug={doc?.slug}
               />
             )
           )}

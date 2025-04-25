@@ -1,18 +1,23 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { IoEyeSharp } from "react-icons/io5";
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
+import { useRouter } from "next/navigation";
 
 type DocumentCardProps = {
   title: string;
   date: string;
+  slug: string;
 };
 
-export default function DocumentCard({ title, date }: DocumentCardProps) {
+export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
+  const router = useRouter();
   return (
     <div
       className="flex justify-between items-center 
   py-[1rem] px-[1.25rem] rounded-[0.5rem] border-l-2 border-blue-300 bg-white shadow-[0px_2px_18px_4px rgba(51,96,169,0.06)] group cursor-pointer"
+      onClick={() => router.push(`/act/${slug}`)}
     >
       <div>
         <h3 className="typography-p-large text-text-500 font-medium pb-[0.62rem] group-hover:text-blue-500 transition-colors duration-300">

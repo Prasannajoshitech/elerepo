@@ -5,15 +5,21 @@ import messangerIcon from "@/assets/actRuleDetail/messanger.svg";
 import xIcon from "@/assets/actRuleDetail/x.svg";
 import mailIcon from "@/assets/actRuleDetail/mail.svg";
 import shareIcon from "@/assets/actRuleDetail/share.svg";
+import { IActDetailData } from "../interface/actDetail.interface";
+import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 
-const Header = () => {
+interface Props {
+  actDetailData: IActDetailData;
+}
+
+const Header: React.FC<Props> = ({ actDetailData }) => {
   return (
     <div className="mt-10 padding-x ">
       <div className="flex items-center justify-between">
         {/* Heading */}
         <div>
           <p className="typography-h3-semi-bold text-text-500">
-            Electricity Regulatory Commission Rules, 2018
+            {actDetailData?.title}
           </p>
         </div>
 
@@ -59,7 +65,7 @@ const Header = () => {
 
       <div className="mt-3.5">
         <p className="typography-p-regular-medium text-text-300">
-          Published Date : September 6, 2018
+          Published Date : {formatToNepaliDate(actDetailData?.created_at)}
         </p>
       </div>
     </div>
