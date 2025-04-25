@@ -19,6 +19,7 @@ const Home = async () => {
       teamData,
     } = await getHomePageData();
 
+
     return (
       <div>
         <Hero heroData={homeData?.data?.[0]} />
@@ -28,7 +29,7 @@ const Home = async () => {
         />
         <LatestNotices
           serviceData={impServiceData?.data}
-          documentData={documentData?.data}
+          documentData={documentData?.results}
         />
         <TeamSection teamData={teamData?.data} />
         <MandatesCommission
