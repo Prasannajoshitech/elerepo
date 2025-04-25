@@ -20,11 +20,22 @@ const AboutUs = async () => {
       <div className=" bg-background-400 ">
         <HeroSection />
 
-        <Introduction introData={aboutData?.data[0]} />
+        <div
+          className="scroll-m-0.5"
+          id={aboutData?.data[0]?.goals_objectives[0]?.slug}
+        >
+          <Introduction introData={aboutData?.data[0]} />
+        </div>
 
-        <MissionVission
-          missionVisionData={aboutData?.data[0]?.mission_vision}
-        />
+        <div
+          className="scroll-m-0.5"
+          id={aboutData?.data[0]?.mission_vision[0]?.slug}
+        >
+          <MissionVission
+            missionVisionData={aboutData?.data[0]?.mission_vision}
+          />
+        </div>
+
         <GoalsObjective
           goalsObjectiveData={aboutData?.data[0]?.goals_objectives}
         />

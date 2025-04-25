@@ -1,40 +1,70 @@
 "use client";
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
 import React, { useState } from "react";
+import TabContent from "./TabContent";
 
-type Tab = {
+interface Tab {
   label: string;
-  content: React.ReactNode;
-};
-
-interface TabsProps {
-  tabs: Tab[];
-  defaultIndex?: number;
+  id: string;
 }
 
-const NoticeTab: React.FC<TabsProps> = ({ tabs, defaultIndex = 0 }) => {
-  const [activeIndex, setActiveIndex] = useState(defaultIndex);
+const NoticeTab = () => {
+  const [selectedTab, setSelectedTab] = useState("");
+
+  const { data } = useGetDataQuery({
+    url: endpoints.document,
+    params: {
+      search: selectedTab,
+    },
+  });
+
+  const tabs = [
+    {
+      label: "General",
+      id: "",
+    },
+    {
+      label: "Tariff ",
+      id: "Law",
+    },
+    {
+      label: "Regulations",
+      id: "Regulations",
+    },
+    {
+      label: "Consumers",
+      id: "Consumers",
+    },
+    {
+      label: "Licensees ",
+      id: "Licensees",
+    },
+  ];
 
   return (
     <div className="w-full">
       {/* Tab buttons */}
       <div className="flex flex-wrap lg:gap-4 bg-blue-400 rounded-t-[0.7rem] lg:pt-[0.31rem] pb-[0.25rem] lg:pl-[0.25rem] lg:pr-[0.25rem]">
-        {tabs.map((tab, index) => (
+        {tabs.map((tab: Tab, index: number) => (
           <button
             key={index}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => setSelectedTab(tab?.id)}
             className={`p-[0.75rem] lg:p-[1rem] typography-p-regular hover:border-b-2 font-semibold text-center transition-all duration-200 text-white ${
-              index === activeIndex
+              tab.id === selectedTab
                 ? "border-b-2  border-white text-white "
                 : ""
             }`}
           >
-            {tab.label}
+            {tab?.label}
           </button>
         ))}
       </div>
 
       {/* Tab content */}
-      <div className="mt-4">{tabs[activeIndex]?.content}</div>
+      <div className="mt-4">
+        <TabContent documentData={data?.results} />
+      </div>
     </div>
   );
 };

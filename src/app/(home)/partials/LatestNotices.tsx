@@ -3,37 +3,13 @@ import Image from "next/image";
 import React from "react";
 import { IImpServiceDaum } from "../interface/homeImpService.interface";
 import NoticeTab from "./NoticeTab";
-import TabContent from "./TabContent";
 
 interface Props {
   serviceData: IImpServiceDaum[];
   documentData: IDocumentDocumentList[];
 }
 
-const LatestNotices: React.FC<Props> = ({ serviceData, documentData }) => {
-  const tabData = [
-    {
-      label: "General",
-      content: <TabContent documentData={documentData} />,
-    },
-    {
-      label: "Tariff ",
-      content: <p>This is the detailed information.</p>,
-    },
-    {
-      label: "Regulations",
-      content: <p>Here you can contact support.</p>,
-    },
-    {
-      label: "Consumers",
-      content: <p>Here you can contact support.</p>,
-    },
-    {
-      label: "Licensees ",
-      content: <p>Here you can contact support.</p>,
-    },
-  ];
-
+const LatestNotices: React.FC<Props> = ({ serviceData }) => {
   return (
     <div className="bg-background-400 mb-[2.5rem]">
       <div className="flex flex-col lg:flex-row gap-[2.5rem] padding-x pb-10">
@@ -79,7 +55,7 @@ const LatestNotices: React.FC<Props> = ({ serviceData, documentData }) => {
           <h3 className="text-text-500 typography-h3 font-bold leading-[150%] pb-[1.25rem]">
             Latest Notices
           </h3>
-          <NoticeTab tabs={tabData} />
+          <NoticeTab />
         </div>
       </div>
     </div>

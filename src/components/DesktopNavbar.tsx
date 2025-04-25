@@ -57,8 +57,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
                 {navItem?.subcategories?.map((subItem) => (
                   <Link
                     key={subItem?.name}
-                    href={`about/`}
-                    // ${subItem?.sub_ctg_slug}
+                    href={`about#${subItem?.sub_ctg_slug}`}
                     onClick={() => setActiveDropdown(null)}
                     className="block px-4 py-[0.62rem] text-sm text-text-500 hover:bg-blue-400 hover:text-white"
                   >

@@ -28,7 +28,7 @@ const Home = async () => {
         />
         <LatestNotices
           serviceData={impServiceData?.data}
-          documentData={documentData?.data}
+          documentData={documentData?.results}
         />
         <TeamSection teamData={teamData?.data} />
         <MandatesCommission
