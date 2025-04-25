@@ -1,9 +1,8 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import { IoEyeSharp } from "react-icons/io5";
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { IoEyeSharp } from "react-icons/io5";
 
 type DocumentCardProps = {
   title: string;
@@ -12,18 +11,19 @@ type DocumentCardProps = {
 };
 
 export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
-  const router = useRouter();
   return (
     <div
       className="flex justify-between items-center 
   py-[1rem] px-[1.25rem] rounded-[0.5rem] border-l-2 border-blue-300 bg-white shadow-[0px_2px_18px_4px rgba(51,96,169,0.06)] group cursor-pointer"
-      onClick={() => router.push(`/act/${slug}`)}
     >
       <div>
-        <h3 className="typography-p-large text-text-500 font-medium pb-[0.62rem] group-hover:text-blue-500 transition-colors duration-300">
+        <Link
+          href={`/act/${slug}`}
+          className="typography-p-large text-text-500 font-medium group-hover:text-blue-500 transition-colors duration-300"
+        >
           {title}
-        </h3>
-        <p className="typography-p-small text-text-300 font-medium">
+        </Link>
+        <p className="typography-p-small text-text-300 font-medium pt-[0.62rem]">
           Published Date : {formatToNepaliDate(date)}
         </p>
       </div>
@@ -42,7 +42,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
           />
         </Link>
         <Link
-          href="#"
+          href={`/act/${slug}`}
           className="flex items-center justify-center "
           title="View Document"
         >
