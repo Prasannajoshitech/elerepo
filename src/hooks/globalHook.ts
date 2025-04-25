@@ -21,3 +21,8 @@ export const getNavLinksData = async () => {
   const navLinks = await safeFetch(endpoints.navLinks);
   return navLinks;
 };
+
+export const getNavNewsData = async () => {
+  const navNews = await safeFetch(endpoints.navNews);
+  return navNews;
+};
