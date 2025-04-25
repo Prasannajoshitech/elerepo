@@ -4,13 +4,14 @@ interface Endpoints {
   homeHero: string;
   homeImpService: string;
   about: string;
+  aboutOrganizational: string;
+
   homeTeam: string;
   document: string;
   actRule: string;
   categoryDetail: string;
 
   aboutFunctionDuties: string;
-  messageChairperson: string;
 
   contact: string;
 }
@@ -22,13 +23,14 @@ export const endpoints: Endpoints = {
   homeHero: "/homepage/list",
   homeImpService: "/services/list",
   about: "/about/list/",
+  aboutOrganizational: "/about/organizational-structure/list/",
+
   homeTeam: "/team/list",
   document: "/document/list/",
   actRule: "/subcategory/bydocumentlist/",
   categoryDetail: "/subcategory/detail",
 
   aboutFunctionDuties: "/about/function-duties-authorities/list/",
-  messageChairperson: "/team/chairperson-message/list/",
 
   contact: "/contact/create/",
 };

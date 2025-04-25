@@ -23,7 +23,12 @@ const MissionVisionCard: React.FC<IMissionVisionMissionVision> = ({
     </div>
     <div className="mt-3.5 flex flex-col gap-2.5">
       <p className="typography-p-large-semi-bold text-text-500">{title}</p>
-      <p className="typography-p-regular text-text-400">{description}</p>
+      <p
+        className="typography-p-regular text-text-400"
+        dangerouslySetInnerHTML={{
+          __html: description || "",
+        }}
+      />
     </div>
   </div>
 );
