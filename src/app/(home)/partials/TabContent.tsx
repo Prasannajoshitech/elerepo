@@ -8,7 +8,6 @@ interface Props {
 }
 
 const TabContent: React.FC<Props> = ({ documentData }) => {
-  
   return (
     <div className="space-y-[0.88rem]">
       {documentData?.map((item, index) => (
