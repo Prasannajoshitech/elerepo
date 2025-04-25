@@ -9,7 +9,7 @@ import expandIcon from "@/assets/actRuleDetail/expand.svg";
 import optionIcon from "@/assets/actRuleDetail/option.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { IActDetailData } from "../interface/actDetail.interface";
+import { IActDetailData } from "../app/act/[slug]/interface/actDetail.interface";
 
 // --- OR --- Use CDN (easier for setup, relies on external source) ---
 pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
@@ -58,14 +58,15 @@ export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
   };
 
   return (
-    <div ref={viewerRef} className="relative px-10 mb-[4.75rem] w-fit mx-auto">
-      <div className="mt-12 w-fit max-h-fit max-w-4xl mx-auto overflow-hidden">
+    <div ref={viewerRef} className="relative h-full py-4  ">
+      <div className="w-fit mx-auto h-full  overflow-hidden  ">
         <Document
           file={pdfUrl}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={(error) => console.error("Error loading PDF:", error)}
           loading={<div>Loading PDF...</div>}
           error={<div>Failed to load PDF file.</div>}
+          className={"h-full "}
         >
           {/* You can choose to render only the current page or all pages */}
 
@@ -82,7 +83,8 @@ export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
                 pageNumber={pageNumber}
                 renderTextLayer={false}
                 renderAnnotationLayer={false}
-                className={"w-fit"}
+                className={"w-fit h-full"}
+                height={750}
               />
             </motion.div>
           </AnimatePresence>

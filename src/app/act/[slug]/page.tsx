@@ -1,4 +1,4 @@
-import DisplayPdf from "@/app/act/[slug]/partials/PdfViewer";
+import DisplayPdf from "@/components/PdfViewer";
 import React from "react";
 import Header from "./partials/Header";
 import ErrorMessage from "@/components/ErrorMessage";
