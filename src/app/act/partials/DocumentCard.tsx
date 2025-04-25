@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { IoEyeSharp } from "react-icons/io5";
+import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 
 type DocumentCardProps = {
   title: string;
@@ -18,7 +19,7 @@ export default function DocumentCard({ title, date }: DocumentCardProps) {
           {title}
         </h3>
         <p className="typography-p-small text-text-300 font-medium">
-          Published Date : {date}
+          Published Date : {formatToNepaliDate(date)}
         </p>
       </div>
       <div className="flex items-center gap-[0.75rem]">

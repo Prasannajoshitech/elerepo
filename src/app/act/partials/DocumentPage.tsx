@@ -86,7 +86,11 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
         <div className="md:col-span-3 space-y-[0.62rem]">
           {categoryDocumentData?.document_list.map(
             (doc: IDocumentDocumentList) => (
-              <DocumentCard key={doc.id} title={doc.title} date={doc?.title} />
+              <DocumentCard
+                key={doc.id}
+                title={doc.title}
+                date={doc?.created_at}
+              />
             )
           )}
         </div>
