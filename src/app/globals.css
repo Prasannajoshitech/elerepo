@@ -252,6 +252,10 @@
   @apply py-4 sm:py-10;
 }
 
+@utility cellStyle {
+  @apply text-[1rem] leading-[120%] font-normal  border-r border-b border-blue-50 text-text-400;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
