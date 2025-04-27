@@ -30,7 +30,7 @@ const CustomPagination = ({
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-80 mt-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ">
           <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}

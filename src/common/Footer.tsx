@@ -82,14 +82,14 @@ const Footer: React.FC = async () => {
                 </li>
                 <li className="flex items-center gap-[0.56rem]">
                   <Link
-                    href={footerData?.social_media.facebook}
+                    href={footerData?.social_media?.facebook || ""}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <FaFacebook className="shrink-0" size={24} />
                   </Link>
                   <Link
-                    href={footerData?.social_media.twitter}
+                    href={footerData?.social_media?.twitter || ""}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -128,10 +128,10 @@ const Footer: React.FC = async () => {
               {AffiliatedOrganizations.map((item, index) => (
                 <div key={index}>
                   <Link
-                    href={item.url}
+                    href={item?.url}
                     className="border-l rounded-[0.25rem] py-[0.1875rem] px-[0.625rem] cursor-pointer"
                   >
-                    {item.label}
+                    {item?.label}
                   </Link>
                 </div>
               ))}
@@ -144,7 +144,7 @@ const Footer: React.FC = async () => {
               Office Hours
             </h2>
             <ul className=" text-white typography-p-regular ">
-              {footerData?.office_hours.map((item, index) => (
+              {footerData?.office_hours?.map((item, index) => (
                 <div key={index}>
                   <p className="font-semibold pb-[0.88rem]">
                     {item?.season} {item?.start_date} to {item?.end_date}
