@@ -3,6 +3,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 type PaginationProps = {
   currentPage: number;
   pageCount: number;
+  totalItems?: number;
   onPageChange: (page: number) => void;
 };
 
