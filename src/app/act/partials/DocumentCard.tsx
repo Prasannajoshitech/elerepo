@@ -1,4 +1,5 @@
 "use client";
+import { PATH } from "@/constant/path";
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +19,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
     >
       <div>
         <Link
-          href={`/act/${slug}`}
+          href={`/${PATH.ACT}/${slug}`}
           className="typography-p-large text-text-500 font-medium group-hover:text-blue-500 transition-colors duration-300"
         >
           {title}
@@ -42,7 +43,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
           />
         </Link>
         <Link
-          href={`/act/${slug}`}
+          href={`/${PATH}/${slug}`}
           className="flex items-center justify-center "
           title="View Document"
         >

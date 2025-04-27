@@ -1,3 +1,4 @@
+import { PATH } from "@/constant/path";
 import { IDocumentDocumentList } from "@/Interface/document.interface";
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 import Link from "next/link";
@@ -16,7 +17,7 @@ const TabContent: React.FC<Props> = ({ documentData }) => {
           className="py-[1rem] px-[1.25rem] rounded-[0.5rem] border-l-2 border-blue-300 bg-background-100 shadow-[0px_2px_18px_4px rgba(51,96,169,0.06)] group"
         >
           <Link
-            href={`/act/${item?.slug}`}
+            href={`/${PATH.ACT}/${item?.slug}`}
             className="typography-p-large text-text-500 font-medium cursor-pointer group-hover:text-blue-500"
           >
             {item?.title}
