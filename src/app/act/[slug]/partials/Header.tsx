@@ -29,7 +29,7 @@ const Header: React.FC<Props> = ({ actDetailData }) => {
 
   return (
     <div className="mt-10 padding-x ">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
         {/* Heading */}
         <div>
           <p className="typography-h3-semi-bold text-text-500">

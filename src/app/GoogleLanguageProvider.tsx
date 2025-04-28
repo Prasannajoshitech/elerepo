@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect } from "react";
 
 declare global {
@@ -19,21 +20,26 @@ export const GoogleTranslateProvider = ({
 }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,ne",
-          },
-          "google_translate_element"
-        );
-      };
+      // Load only once
+      if (!document.getElementById("google-translate-script")) {
+        window.googleTranslateElementInit = () => {
+          new window.google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+              includedLanguages: "en,ne",
+              autoDisplay: false,
+            },
+            "google_translate_element"
+          );
+        };
 
-      const script = document.createElement("script");
-      script.src =
-        "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      document.body.appendChild(script);
+        const script = document.createElement("script");
+        script.id = "google-translate-script"; // important to prevent duplicate loading
+        script.src =
+          "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.body.appendChild(script);
+      }
     }
   }, []);
 
@@ -58,6 +64,7 @@ export const GoogleTranslateProvider = ({
 
   return (
     <>
+      {/* Google Translate hidden element */}
       <div
         id="google_translate_element"
         style={{ display: "none", pointerEvents: "none" }}

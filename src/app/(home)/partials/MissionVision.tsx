@@ -36,9 +36,12 @@ const MissionVision: React.FC<Props> = ({ missionVisionData }) => {
           <h4 className="typography-p-large capitalize text-text-500 font-semibold pb-[0.62rem] pt-[0.88]">
             {missionVisionData?.[0]?.select}
           </h4>
-          <p className="typography-p-regular text-text-400 text-justify">
-            {missionVisionData?.[0]?.description}
-          </p>
+          <p
+            className="typography-p-regular text-text-400 text-justify pb-[0.88rem]"
+            dangerouslySetInnerHTML={{
+              __html: missionVisionData?.[0]?.description || "",
+            }}
+          />
         </div>
       </div>
     </div>

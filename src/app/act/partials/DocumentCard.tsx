@@ -19,7 +19,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
     >
       <div>
         <Link
-          href={`/${PATH.ACT}/${slug}`}
+          href={`${PATH.ACT}/${slug}`}
           className="typography-p-large text-text-500 font-medium group-hover:text-blue-500 transition-colors duration-300"
         >
           {title}
@@ -43,7 +43,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
           />
         </Link>
         <Link
-          href={`/${PATH}/${slug}`}
+          href={`${PATH.ACT}/${slug}`}
           className="flex items-center justify-center "
           title="View Document"
         >

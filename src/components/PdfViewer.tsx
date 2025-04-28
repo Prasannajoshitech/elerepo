@@ -1,4 +1,4 @@
-"use client"; // <--- Mark as a Client Component
+"use client";
 
 import Image from "next/image";
 import React, { useState, useRef } from "react";
@@ -11,24 +11,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IActDetailData } from "../app/act/[slug]/interface/actDetail.interface";
 
-// --- OR --- Use CDN (easier for setup, relies on external source) ---
 pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
 
-interface IPropf {
+interface IProps {
   actDetailData: IActDetailData;
 }
 
-// --- Your Component ---
-export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
+export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [scale, setScale] = useState<number>(1.0);
+  const [scale, setScale] = useState<number>(1);
   const viewerRef = useRef<HTMLDivElement>(null);
-  const pdfUrl = actDetailData?.file; // Path to your PDF in the public folder
+  const pdfUrl = actDetailData?.file;
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
-    setPageNumber(1); // Reset to first page on new document load
+    setPageNumber(1);
   }
 
   function changePage(offset: number) {
@@ -46,6 +44,7 @@ export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
       changePage(1);
     }
   };
+
   const toggleFullScreen = () => {
     const viewer = viewerRef.current;
     if (!viewer) return;
@@ -58,18 +57,16 @@ export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
   };
 
   return (
-    <div ref={viewerRef} className="relative h-full py-4  ">
-      <div className="w-fit mx-auto h-full  overflow-hidden  ">
+    <div ref={viewerRef} className="relative h-full py-4 px-2 sm:px-4">
+      <div className="w-full mx-auto h-full flex justify-center overflow-hidden">
         <Document
           file={pdfUrl}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={(error) => console.error("Error loading PDF:", error)}
           loading={<div>Loading PDF...</div>}
           error={<div>Failed to load PDF file.</div>}
-          className={"h-full "}
+          className="h-full"
         >
-          {/* You can choose to render only the current page or all pages */}
-
           <AnimatePresence mode="wait">
             <motion.div
               key={pageNumber}
@@ -77,139 +74,141 @@ export const DisplayPdf: React.FC<IPropf> = ({ actDetailData }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              className="flex justify-center"
             >
               <Page
                 scale={scale}
                 pageNumber={pageNumber}
                 renderTextLayer={false}
                 renderAnnotationLayer={false}
-                className={"w-fit h-full"}
-                height={750}
+                className="w-auto h-auto"
+                width={
+                  window.innerWidth < 640 ? window.innerWidth - 32 : undefined
+                } // Responsive width
               />
             </motion.div>
           </AnimatePresence>
-
-          {/* renderTextLayer={false} and renderAnnotationLayer={false} can improve performance
-              if you don't need text selection or annotations. Remove them if you do. */}
         </Document>
       </div>
 
-      {/* Left and Right Navigation for PDF doc */}
+      {/* Left and Right Navigation Buttons */}
       {numPages && (
-        <div className="absolute top-1/2 left-0 -translate-x-full translate-y-1/2">
+        <>
+          <div className="absolute top-1/2 left-2  lg:left-4 -translate-y-1/2 z-10">
+            <button
+              type="button"
+              disabled={pageNumber <= 1}
+              onClick={previousPage}
+              className="p-2 sm:p-3 "
+            >
+              <ChevronLeft
+                className={`w-6 h-6 sm:w-8 sm:h-8 ${
+                  pageNumber > 1 ? "text-blue-500" : "text-gray-300"
+                }`}
+              />
+            </button>
+          </div>
+
+          <div className="absolute top-1/2 right-2 lg:right-4 -translate-y-1/2 z-10">
+            <button
+              type="button"
+              disabled={pageNumber >= (numPages || 0)}
+              onClick={nextPage}
+              className="p-2 sm:p-3 "
+            >
+              <ChevronRight
+                className={`w-6 h-6 sm:w-8 sm:h-8 ${
+                  pageNumber < (numPages || 0)
+                    ? "text-blue-500"
+                    : "text-gray-300"
+                }`}
+              />
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* Bottom Controls */}
+      {numPages && (
+        <div className="bg-white rounded-lg shadow-[0px_2px_16px_rgba(0,0,0,0.1)] absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 sm:gap-4 px-2 py-5 z-10">
+          {/* Previous */}
           <button
             type="button"
             disabled={pageNumber <= 1}
             onClick={previousPage}
           >
             <ChevronLeft
-              className={`w-11 h-11  ${pageNumber !== 1 && pageNumber <= numPages ? "text-blue-300" : "text-text-200"}`}
-            />
-          </button>
-        </div>
-      )}
-
-      {numPages && (
-        <div className="absolute top-1/2 right-0 translate-x-full translate-y-1/2">
-          <button
-            type="button"
-            disabled={numPages ? pageNumber >= numPages : true}
-            onClick={nextPage}
-          >
-            <ChevronRight
-              className={`w-11 h-11  ${pageNumber < numPages ? "text-blue-300" : "text-text-200"}`}
-            />
-          </button>
-        </div>
-      )}
-
-      {/* bottom Navigation & zoom option  */}
-      {numPages && (
-        <div className="bg-white shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3.5 p-[0.88rem]">
-          {/* Previous Page */}
-          <button
-            type="button"
-            disabled={pageNumber <= 1}
-            onClick={previousPage}
-          >
-            <ChevronLeft
-              className={
-                pageNumber !== 1 && pageNumber <= numPages
-                  ? "text-blue-300"
-                  : "text-text-200"
-              }
+              className={`w-5 h-5 sm:w-6 sm:h-6 ${
+                pageNumber > 1 ? "text-blue-500" : "text-gray-300"
+              }`}
             />
           </button>
 
-          {/* Page Number */}
-          <p>
-            {pageNumber}/{numPages}
+          {/* Page Info */}
+          <p className="text-xs sm:text-base font-medium  w-max">
+            {pageNumber} / {numPages}
           </p>
 
-          {/* Next Page */}
+          {/* Next */}
           <button
             type="button"
-            disabled={numPages ? pageNumber >= numPages : true}
+            disabled={pageNumber >= (numPages || 0)}
             onClick={nextPage}
           >
             <ChevronRight
-              className={
-                pageNumber < numPages ? "text-blue-300" : "text-text-200"
-              }
+              className={`w-5 h-5 sm:w-6 sm:h-6 ${
+                pageNumber < (numPages || 0) ? "text-blue-500" : "text-gray-300"
+              }`}
             />
           </button>
 
-          {/* Zoom In Icon */}
+          {/* Zoom In */}
           <button
-            onClick={() => {
-              setScale(scale + 0.05);
-            }}
+            onClick={() => setScale((prev) => Math.min(prev + 0.1, 3))}
             type="button"
           >
             <Image
-              alt="zoom in"
+              alt="Zoom In"
               src={zoomInIcon}
-              width={24}
-              height={24}
-              className="w-[1.5rem] aspect-square  object-cover"
+              width={20}
+              height={20}
+              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
             />
           </button>
 
-          {/* Zoom Out Icon */}
+          {/* Zoom Out */}
           <button
-            onClick={() => {
-              setScale(scale - 0.05);
-            }}
+            onClick={() => setScale((prev) => Math.max(prev - 0.1, 0.5))}
             type="button"
           >
             <Image
-              alt="zoom out"
+              alt="Zoom Out"
               src={zoomOutIcon}
-              width={24}
-              height={24}
-              className="w-[1.5rem] aspect-square object-cover"
+              width={20}
+              height={20}
+              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
             />
           </button>
 
-          {/* Expand Icon */}
+          {/* Expand */}
           <button onClick={toggleFullScreen} type="button">
             <Image
-              alt="expand icon"
+              alt="Expand"
               src={expandIcon}
-              width={24}
-              height={24}
-              className="w-[1.5rem] aspect-square object-cover"
+              width={20}
+              height={20}
+              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
             />
           </button>
 
-          {/* Option */}
+          {/* Options */}
           <button type="button">
             <Image
-              alt="option icon"
+              alt="Options"
               src={optionIcon}
-              width={24}
-              height={24}
-              className="w-[1.5rem] aspect-square object-cover"
+              width={20}
+              height={20}
+              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
             />
           </button>
         </div>

@@ -159,32 +159,46 @@ const Footer: React.FC = async () => {
             </ul>
           </div>
         </div>
-        {/* Disclaimer  */}
-        <div>
-          <p className="typography-p-regular font-semibold text-white pt-[1.44rem] pb-[0.87rem]">
-            Disclaimer
-          </p>
-          <p
-            className="text-white typography-p-small pb-[1.94rem] "
-            dangerouslySetInnerHTML={{
-              __html: footerData?.disclaimer || "",
-            }}
-          />
-        </div>
 
-        <div className="border-b-[0.0375rem] border-blue-50 mb-[1.88rem]" />
-
-        <div className="flex justify-between pb-[1.87rem] gap-10">
-          <div className="flex gap-[1.25rem] typography-p-regular font-semibold text-white">
-            <p>Electricity Regulatory Commission © All Rights Reserved</p>
+        <div className="relative">
+          {/* Disclaimer  */}
+          <div>
+            <p className="typography-p-regular font-semibold text-white pt-[1.44rem] pb-[0.87rem]">
+              Disclaimer
+            </p>
+            <p
+              className="text-white typography-p-small pb-[1.94rem] "
+              dangerouslySetInnerHTML={{
+                __html: footerData?.disclaimer || "",
+              }}
+            />
           </div>
-          <div className="flex gap-2 lg:gap-[1.25rem] typography-p-regular font-semibold text-white">
-            <Link href={""} className="cursor-pointer">
-              Terms & Condition
-            </Link>
-            <Link href={""} className="cursor-pointer">
-              Privacy Policy
-            </Link>
+
+          {/* Background Image */}
+          <div className="absolute inset-0 ">
+            <Image
+              src="/img-header.png"
+              alt="Background Image"
+              width={1000}
+              height={1000}
+              className="w-full h-full object-cover opacity-10"
+            />
+          </div>
+
+          <div className="border-b-[0.0375rem] border-blue-50 mb-[1.88rem]" />
+
+          <div className="flex justify-between pb-[1.87rem] gap-10">
+            <div className="flex gap-[1.25rem] typography-p-regular font-semibold text-white">
+              <p>Electricity Regulatory Commission © All Rights Reserved</p>
+            </div>
+            <div className="flex gap-2 lg:gap-[1.25rem] typography-p-regular font-semibold text-white">
+              <Link href={""} className="cursor-pointer">
+                Terms & Condition
+              </Link>
+              <Link href={""} className="cursor-pointer">
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
       </footer>

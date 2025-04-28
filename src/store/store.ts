@@ -1,13 +1,20 @@
-import { apiSlice } from "@/api/api";
 import { configureStore } from "@reduxjs/toolkit";
+import { apiSlice } from "../api/api";
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
-  middleware(getDefaultMiddleware) {
-    return getDefaultMiddleware().concat(apiSlice.middleware);
-  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppSelector = <TSelected>(
+  selector: (state: RootState) => TSelected
+) => {
+  return selector(store.getState());
+};
 
 export default store;
