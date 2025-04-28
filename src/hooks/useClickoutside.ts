@@ -1,21 +1,27 @@
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect } from "react";
 
-const useClickOutside = (callback: () => void) => {
-  const ref = useRef<HTMLDivElement | null>(null);
-
+export const useClickOutside = (
+  ref: React.RefObject<HTMLDivElement | null>,
+  visible: boolean,
+  setVisible: (val: boolean) => void,
+  ignoreRefs: RefObject<HTMLElement | null>[] = []
+) => {
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        callback();
+    const clickHandler = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (!ref.current) return;
+      if (
+        !visible ||
+        ref.current.contains(target) ||
+        ignoreRefs.some(
+          (ignoreRef) => ignoreRef.current && ignoreRef.current.contains(target)
+        )
+      ) {
+        return;
       }
+      setVisible(false);
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [callback]);
-
-  return ref;
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  }, [ref, visible, setVisible, ignoreRefs]);
 };
-
-export default useClickOutside;

@@ -1,17 +1,19 @@
 "use client";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import { X } from "lucide-react";
 import DisplayPdf from "../PdfViewer";
 import { IActDetailData } from "@/app/act/[slug]/interface/actDetail.interface";
+import { useClickOutside } from "@/hooks/useClickoutside";
 
 interface PdfModalProps {
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onClose: () => void;
 }
 
-const PdfModal = ({ isOpen, onClose }: PdfModalProps) => {
+const PdfModal = ({ isOpen, setIsOpen, onClose }: PdfModalProps) => {
   const { data } = useGetDataQuery({
     url: endpoints.popup,
   });
@@ -30,6 +32,8 @@ const PdfModal = ({ isOpen, onClose }: PdfModalProps) => {
       setCurrentIndex(0);
     }
   };
+  const ref = useRef<HTMLDivElement | null>(null);
+  useClickOutside(ref, isOpen, setIsOpen);
 
   return (
     <>
@@ -42,7 +46,10 @@ const PdfModal = ({ isOpen, onClose }: PdfModalProps) => {
             <X size={24} className="font-bold text-white" />
           </button>
 
-          <div className="flex items-center justify-center w-full md:h-full ">
+          <div
+            ref={ref}
+            className="flex items-center justify-center w-fit md:h-full "
+          >
             {files.length > 0 && (
               <DisplayPdf actDetailData={files[currentIndex]} />
             )}

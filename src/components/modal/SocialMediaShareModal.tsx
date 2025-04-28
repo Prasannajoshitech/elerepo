@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   FaFacebook,
   FaWhatsapp,
@@ -16,7 +16,7 @@ import {
 import { motion } from "framer-motion";
 import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "sonner";
-import useClickOutside from "@/hooks/useClickoutside";
+import { useClickOutside } from "@/hooks/useClickoutside";
 interface SocialMediaShareModalProps {
   isOpen: boolean | undefined;
   onClose: () => void;
@@ -27,7 +27,9 @@ const SocialMediaShareModal: React.FC<SocialMediaShareModalProps> = ({
   onClose,
   shareLink,
 }) => {
-  const modalRef = useClickOutside(onClose);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useClickOutside(ref, isOpen ?? false, onClose);
+
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareLink || "");
     toast.success("Link copied to clipboard!");
@@ -41,7 +43,7 @@ const SocialMediaShareModal: React.FC<SocialMediaShareModalProps> = ({
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
             className="w-auto px-10 py-7 shadow-md rounded-lg bg-white"
-            ref={modalRef}
+            ref={ref}
           >
             <h1 className="text-section-h1 mb-4 text-center">Share to:</h1>
             <div className="flex gap-10">

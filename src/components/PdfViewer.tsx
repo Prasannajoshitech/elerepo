@@ -85,6 +85,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
                 width={
                   window.innerWidth < 640 ? window.innerWidth - 32 : undefined
                 } // Responsive width
+                height={750}
               />
             </motion.div>
           </AnimatePresence>
@@ -130,7 +131,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
 
       {/* Bottom Controls */}
       {numPages && (
-        <div className="bg-white rounded-lg shadow-[0px_2px_16px_rgba(0,0,0,0.1)] absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 sm:gap-4 px-2 py-5 z-10">
+        <div className="bg-white rounded-lg shadow-[0px_2px_16px_rgba(0,0,0,0.1)] absolute bottom-0 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 sm:gap-4 px-2 py-5 z-10">
           {/* Previous */}
           <button
             type="button"

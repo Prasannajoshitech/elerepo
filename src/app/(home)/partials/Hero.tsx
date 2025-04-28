@@ -58,7 +58,11 @@ const Hero: React.FC<Props> = ({ heroData }) => {
         </div>
       </div>
 
-      <PdfModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <PdfModal
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
