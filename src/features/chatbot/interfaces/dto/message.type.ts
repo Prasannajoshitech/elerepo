@@ -2,12 +2,8 @@ import { FileTypes } from "../file.types";
 
 export interface IChatMessage {
   type: "chat_message" | string;
-  sender_id: string;
-  sender_name: string;
-  room_id: string;
-  room_name: string;
+  sender_id: "user" | "VirtualAssistant";
   message: string;
-  avatar: string;
   file?: string;
   file_type?: FileTypes | null;
   call_type?: string;

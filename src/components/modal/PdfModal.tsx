@@ -37,12 +37,12 @@ const PdfModal = ({ isOpen, onClose }: PdfModalProps) => {
         <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/60">
           <button
             onClick={handleNext}
-            className="top-[30%] lg:top-5 right-5 z-10 absolute flex justify-center items-center p-2 border border-white rounded-full w-10 h-10 cursor-pointer"
+            className="top-2 lg:top-5 right-5 z-10 absolute flex justify-center items-center p-2 border border-white rounded-full w-10 h-10 cursor-pointer"
           >
             <X size={24} className="font-bold text-white" />
           </button>
 
-          <div className="flex items-center justify-center w-full h-full">
+          <div className="flex items-center justify-center w-full md:h-full ">
             {files.length > 0 && (
               <DisplayPdf actDetailData={files[currentIndex]} />
             )}

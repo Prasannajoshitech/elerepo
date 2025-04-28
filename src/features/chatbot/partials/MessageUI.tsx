@@ -1,11 +1,6 @@
 "use client";
 
-import { useAppSelector } from "@/store/store";
-import { Loader2 } from "lucide-react";
-import { motion } from "motion/react";
 import { useChat } from "../hooks/useChat";
-import { useChatAuth } from "../hooks/useChatAuth";
-// import ChatLoginForm from "./ChatLoginForm";
 import ChatSuggestion from "./ChatSuggestion";
 import Header from "./Header";
 import MessageInput from "./MessageInput";
@@ -15,18 +10,15 @@ const MessageUI: React.FC<{ isOpen: boolean; closePopup: () => void }> = ({
   closePopup,
   isOpen,
 }) => {
-  const isLoggedIn = useAppSelector((state) => state.chat.isLoggedIn);
-  const { token, roomName } = useChatAuth();
   const {
     sendMessage,
     messages,
     chatContainerRef,
     isSending,
     suggestions,
-    fetchNextPage,
-    isFetchingNextPage,
+
     isConnected,
-  } = useChat(token, roomName);
+  } = useChat();
 
   return (
     <div
@@ -42,37 +34,17 @@ const MessageUI: React.FC<{ isOpen: boolean; closePopup: () => void }> = ({
     >
       <Header isConnected={isConnected} onClose={closePopup} />
 
-      {isLoggedIn ? (
-        <>
-          <div ref={chatContainerRef} className="flex-1 px-1.5 overflow-y-auto">
-            <motion.div
-              onViewportEnter={fetchNextPage}
-              className="flex justify-center items-center"
-            >
-              {isFetchingNextPage ? (
-                <>
-                  <Loader2 className="text-primary-500 animate-spin" />
-                  <span className="text-primary-500 text-xs">Loading...</span>
-                </>
-              ) : (
-                ""
-              )}
-            </motion.div>
-            <MessagesContainer messages={messages} />
-          </div>
-          <ChatSuggestion
-            sendMessage={sendMessage}
-            suggestions={suggestions}
-            disabled={isSending}
-          />
-          <div className="shrink-0">
-            <MessageInput disabled={isSending} sendMessage={sendMessage} />
-          </div>
-        </>
-      ) : (
-        // <ChatLoginForm handleLogin={handleLogin} />
-        ""
-      )}
+      <div ref={chatContainerRef} className="flex-1 px-1.5 overflow-y-auto">
+        <MessagesContainer messages={messages} />
+      </div>
+      <ChatSuggestion
+        sendMessage={sendMessage}
+        suggestions={suggestions}
+        disabled={isSending}
+      />
+      <div className="shrink-0">
+        <MessageInput disabled={isSending} sendMessage={sendMessage} />
+      </div>
     </div>
   );
 };

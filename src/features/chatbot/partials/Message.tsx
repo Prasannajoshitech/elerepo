@@ -43,8 +43,8 @@ const Message: React.FC<MessageProps> = ({ message }) => {
       <div
         className={`max-w-[70%] p-2.5 rounded-3xl ${
           message.sender == "user"
-            ? "bg-red-100/80 text-text-500 rounded-br-xs"
-            : "bg-blue-200 text-red-500 rounded-bl-xs"
+            ? "bg-blue-50 text-text-500 rounded-br-xs"
+            : "bg-blue-100 text-red-500 rounded-bl-xs"
         }`}
       >
         {message.file && message.file_type == "image" && (

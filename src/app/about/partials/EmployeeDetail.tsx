@@ -21,13 +21,13 @@ const EmployeeDetail: React.FC<Props> = ({ teamData }) => {
             className="w-full lg:w-[19.25rem] group mx-auto flex flex-col bg-background-100 border-2 border-background-100 rounded-[0.5rem]"
           >
             {/* Image */}
-            <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer w-full">
+            <div className="aspect-[344.53/272.00] overflow-hidden cursor-pointer w-full rounded-t-[0.5rem]">
               <Image
                 src={team?.image}
                 alt={team?.name}
                 width={800}
                 height={800}
-                className="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105"
+                className="w-full h-full object-cover rounded-t-[0.5rem] transform transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
 

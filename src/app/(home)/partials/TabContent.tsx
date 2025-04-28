@@ -15,6 +15,7 @@ const TabContent: React.FC<Props> = ({ documentData }) => {
         <div
           key={index}
           className="py-[1rem] px-[1.25rem] rounded-[0.5rem] border-l-2 border-blue-300 bg-background-100 shadow-[0px_2px_18px_4px rgba(51,96,169,0.06)] group"
+          
         >
           <Link
             href={`${PATH.ACT}/${item?.slug}`}
