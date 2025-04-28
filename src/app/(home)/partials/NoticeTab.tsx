@@ -50,11 +50,9 @@ const NoticeTab = () => {
           <button
             key={index}
             onClick={() => setSelectedTab(tab?.id)}
-            className={`p-[0.75rem] lg:p-[1rem] typography-p-regular hover:border-b-2 font-semibold text-center transition-all duration-200 text-white ${
-              tab.id === selectedTab
-                ? "border-b-2  border-white text-white "
-                : ""
-            }`}
+            className={`p-[0.75rem] lg:p-[1rem] typography-p-regular font-semibold text-center text-white border-b-2 ${
+              tab.id === selectedTab ? "border-white" : "border-transparent"
+            } hover:border-white`}
           >
             {tab?.label}
           </button>

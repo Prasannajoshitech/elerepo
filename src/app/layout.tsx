@@ -6,6 +6,7 @@ import Providers from "./provider";
 import Header from "@/common/Header";
 import Footer from "@/common/Footer";
 import { GoogleTranslateProvider } from "./GoogleLanguageProvider";
+import BotPopup from "@/features/chatbot/BotPopup";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
           <GoogleTranslateProvider>
             <div className="flex flex-col min-h-screen">
               <Header />
+              <BotPopup />
               <div className="flex-grow">{children}</div>
               <Footer />
             </div>

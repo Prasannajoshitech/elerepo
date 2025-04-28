@@ -15,4 +15,5 @@ export interface IActDetailData {
   slug: string;
   file: string;
   image: string;
+  is_active: boolean;
 }

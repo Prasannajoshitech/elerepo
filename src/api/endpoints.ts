@@ -18,6 +18,10 @@ interface Endpoints {
   aboutFunctionDuties: string;
 
   contact: string;
+
+  chatbot: {
+    register: string;
+  };
 }
 
 export const endpoints: Endpoints = {
@@ -33,7 +37,7 @@ export const endpoints: Endpoints = {
 
   homeTeam: "/team/list",
   document: "/document/list/",
-  actRule: "/subcategory/bydocumentlist/",
+  actRule: "/subcategory/documentlist/",
   categoryDetail: "/subcategory/detail",
 
   actDetail: "/document/detail",
@@ -41,6 +45,14 @@ export const endpoints: Endpoints = {
   aboutFunctionDuties: "/about/function-duties-authorities/list/",
 
   contact: "/contact/create/",
+
+  // Chatbot
+  chatbot: {
+    register: "/user/register",
+  },
 };
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const BASE_CHATBOT_URL = process.env.NEXT_PUBLIC_API_URL_CHATBOT;
+export const BASE_SOCKET_URL = process.env.NEXT_PUBLIC_CHATBOT_SOCKET_URL;

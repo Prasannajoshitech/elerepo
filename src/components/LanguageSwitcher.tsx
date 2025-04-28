@@ -6,38 +6,66 @@ import { ChevronDown } from "lucide-react";
 const LanguageSwitcher = () => {
   const [activeLang, setActiveLang] = useState<"eng" | "nep">("eng");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const baseStyle = "cursor-pointer pb-1 z-20";
   const activeStyle = "border-b-2 border-white";
   const inactiveStyle = "border-b-2 border-transparent";
+
   const resetGoogleTranslate = () => {
-    // Remove translation-related cookies
     document.cookie = "googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie =
       "googtrans=;path=/;domain=" +
       window.location.hostname +
       ";expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
-    // Reload page to apply reset
-    window.location.reload();
+    // Instead of reloading immediately, try reset first
+    const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+    if (select) {
+      select.value = "en";
+      select.dispatchEvent(new Event("change"));
+    } else {
+      window.location.reload(); // fallback if select not found
+    }
   };
 
   const handleLanguageChange = (lang: "eng" | "nep") => {
+    setActiveLang(lang);
+    setError(null);
+
     if (lang === "eng") {
       resetGoogleTranslate();
       return;
     }
-    setActiveLang(lang);
-    // Trigger Google Translate language change
-    if (window.google && window.google.translate) {
-      const langCode = lang === "nep" ? "ne" : "en";
+
+    const langCode = lang === "nep" ? "ne" : "en";
+
+    let retries = 0;
+    const maxRetries = 10;
+
+    const tryChangeLanguage = () => {
       const select =
         document.querySelector<HTMLSelectElement>(".goog-te-combo");
+
       if (select) {
-        select.value = langCode;
-        select.dispatchEvent(new Event("change"));
+        if (select.options.length > 1) {
+          select.value = langCode;
+          select.dispatchEvent(new Event("change"));
+        } else if (retries < maxRetries) {
+          retries++;
+          setTimeout(tryChangeLanguage, 300);
+        } else {
+          setError("Failed to switch language. Please try again.");
+        }
+      } else if (retries < maxRetries) {
+        retries++;
+        setTimeout(tryChangeLanguage, 300);
+      } else {
+        setError("Translation service unavailable. Please refresh the page.");
       }
-    }
+    };
+
+    tryChangeLanguage();
   };
 
   return (
@@ -77,13 +105,13 @@ const LanguageSwitcher = () => {
           />
         </button>
         {dropdownOpen && (
-          <div className="absolute mt-2 bg-white text-text-500 rounded shadow-md w-20 z-50">
+          <div className="absolute mt-2 bg-white text-black rounded shadow-md w-20 z-50">
             <div
               onClick={() => {
                 handleLanguageChange("nep");
                 setDropdownOpen(false);
               }}
-              className="notranslate px-3 py-2 hover:bg-black-100 cursor-pointer"
+              className="notranslate px-3 py-2 hover:bg-gray-200 cursor-pointer"
             >
               Nep
             </div>
@@ -92,23 +120,16 @@ const LanguageSwitcher = () => {
                 handleLanguageChange("eng");
                 setDropdownOpen(false);
               }}
-              className="notranslate px-3 py-2 hover:bg-black-100 cursor-pointer"
-            >
-              Eng
-            </div>
-
-            <div
-              onClick={() => {
-                handleLanguageChange("eng");
-                setDropdownOpen(false);
-              }}
-              className="px-3 py-2 hover:bg-blue-100 cursor-pointer"
+              className="notranslate px-3 py-2 hover:bg-gray-200 cursor-pointer"
             >
               Eng
             </div>
           </div>
         )}
       </div>
+
+      {/* Error message */}
+      {error && <div className="text-red-500 mt-2 text-sm pl-3">{error}</div>}
     </div>
   );
 };
