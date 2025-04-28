@@ -11,7 +11,7 @@ const Providers: React.FC<Readonly<{ children: React.ReactNode }>> = ({
     <>
       <ProgressProvider
         height="4px"
-        color="#26619c"
+        color="#001f51"
         options={{ showSpinner: false }}
         shallowRouting
       >

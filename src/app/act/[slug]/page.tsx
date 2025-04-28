@@ -1,4 +1,4 @@
-import DisplayPdf from "@/components/PdfViewer";
+import DisplayPdf from "@/components/DisplayPdf";
 import React from "react";
 import Header from "./partials/Header";
 import ErrorMessage from "@/components/ErrorMessage";
@@ -19,7 +19,9 @@ const ActDetail = async ({ params }: ActDetailSlug) => {
       <div>
         <Header actDetailData={actDetail?.data} />
 
-        <DisplayPdf actDetailData={actDetail?.data} />
+        <div className=" mb-10">
+          <DisplayPdf actDetailData={actDetail?.data} />
+        </div>
       </div>
     );
   } catch (error) {

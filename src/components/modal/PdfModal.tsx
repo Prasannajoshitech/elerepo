@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import { X } from "lucide-react";
-import DisplayPdf from "../PdfViewer";
+import DisplayPdf from "../DisplayPdf";
 import { IActDetailData } from "@/app/act/[slug]/interface/actDetail.interface";
 import { useClickOutside } from "@/hooks/useClickoutside";
 
