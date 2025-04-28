@@ -6,7 +6,7 @@ export interface IFileUploadResponse {
 export interface Data {
   file_url: string;
   sender: string;
-  room: null|string;
+  room: null | string;
   message: string;
 }
 
