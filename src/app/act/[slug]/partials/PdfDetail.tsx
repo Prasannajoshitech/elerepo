@@ -1,6 +1,6 @@
 import React from "react";
 import { IActDetailData } from "../interface/actDetail.interface";
-import DisplayPdf from "@/components/PdfViewer";
+import DisplayPdf from "@/components/DisplayPdf";
 
 interface Props {
   actDetailData: IActDetailData;

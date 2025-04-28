@@ -131,7 +131,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
 
       {/* Bottom Controls */}
       {numPages && (
-        <div className="bg-white rounded-lg shadow-[0px_2px_16px_rgba(0,0,0,0.1)] absolute bottom-0 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 sm:gap-4 px-2 py-5 z-10">
+        <div className="bg-white rounded-lg shadow-[0px_2px_16px_rgba(0,0,0,0.1)] absolute bottom-1  left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 sm:gap-4 px-2 py-5 z-10">
           {/* Previous */}
           <button
             type="button"
@@ -139,14 +139,14 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
             onClick={previousPage}
           >
             <ChevronLeft
-              className={`w-5 h-5 sm:w-6 sm:h-6 ${
+              className={`w-5 h-5  ${
                 pageNumber > 1 ? "text-blue-500" : "text-gray-300"
               }`}
             />
           </button>
 
           {/* Page Info */}
-          <p className="text-xs sm:text-base font-medium  w-max">
+          <p className="text-xs font-medium  w-max">
             {pageNumber} / {numPages}
           </p>
 
@@ -157,7 +157,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
             onClick={nextPage}
           >
             <ChevronRight
-              className={`w-5 h-5 sm:w-6 sm:h-6 ${
+              className={`w-5 h-5  ${
                 pageNumber < (numPages || 0) ? "text-blue-500" : "text-gray-300"
               }`}
             />
@@ -173,7 +173,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
               src={zoomInIcon}
               width={20}
               height={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+              className="w-5 h-5  object-contain"
             />
           </button>
 
@@ -187,7 +187,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
               src={zoomOutIcon}
               width={20}
               height={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+              className="w-5 h-5  object-contain"
             />
           </button>
 
@@ -198,7 +198,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
               src={expandIcon}
               width={20}
               height={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+              className="w-5 h-5  object-contain"
             />
           </button>
 
@@ -209,7 +209,7 @@ export const DisplayPdf: React.FC<IProps> = ({ actDetailData }) => {
               src={optionIcon}
               width={20}
               height={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+              className="w-5 h-5  object-contain"
             />
           </button>
         </div>
