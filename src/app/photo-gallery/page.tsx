@@ -5,11 +5,14 @@ import ErrorMessage from "@/components/ErrorMessage";
 
 const PhotoGallery = async () => {
   try {
-    const { photoGalleryData } = await getGalleryPageData();
+    const { photoGalleryData, photoGalleryBanner } = await getGalleryPageData();
 
     return (
       <div className="padding-x my-10">
-        <PhotoAlbum photoData={photoGalleryData?.data} />
+        <PhotoAlbum
+          photoData={photoGalleryData}
+          photoGalleryBanner={photoGalleryBanner?.data}
+        />
       </div>
     );
   } catch (error) {

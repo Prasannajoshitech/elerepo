@@ -19,6 +19,7 @@ interface Endpoints {
 
   contact: string;
   photoGallery: string;
+  photoGalleryBanner: string;
   photoDetail: string;
 
   chatbot: {
@@ -49,6 +50,7 @@ export const endpoints: Endpoints = {
   contact: "/contact/create/",
 
   photoGallery: "/gallery/list/",
+  photoGalleryBanner: "/gallery/banner/list/",
   photoDetail: "/gallery/detail",
 
   // Chatbot

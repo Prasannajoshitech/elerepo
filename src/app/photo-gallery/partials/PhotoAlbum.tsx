@@ -1,24 +1,25 @@
 "use client";
 import banner from "@/assets/photoGallery/photoBanner.png";
 import CustomPagination from "@/components/CustomPagination";
+import usePaginationChange from "@/hooks/usePaginationHook";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { IPhotoDaum } from "../interface/photo.interface";
+import React from "react";
+import { IBannerRootDaum } from "../interface/banner.interface";
+import { IPhotoResult, IPhotoRoot } from "../interface/photo.interface";
 
 interface Props {
-  photoData: IPhotoDaum[];
+  photoData: IPhotoRoot;
+  photoGalleryBanner: IBannerRootDaum[];
 }
 
-const PER_PAGE = 4;
-const PhotoAlbum: React.FC<Props> = ({ photoData }) => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+const PhotoAlbum: React.FC<Props> = ({ photoData, photoGalleryBanner }) => {
+  const { handlePageChange, currentPage } = usePaginationChange();
 
-  const pageCount = Math.ceil(photoData?.length / PER_PAGE);
+  const galleryPhotoData = photoData?.results;
 
-  const handlePageChange = (page: number): void => {
-    setCurrentPage(page);
-  };
+  const pageCount = photoData?.total_pages;
+
   return (
     <div>
       <h3 className="typography-h3 text-black font-semibold leading-[150%] pb-5 lg:pb-10">
@@ -28,7 +29,7 @@ const PhotoAlbum: React.FC<Props> = ({ photoData }) => {
       {/* photo banner  */}
       <div className="w-full lg:h-[30rem] mb-[3.03rem]">
         <Image
-          src={banner}
+          src={photoGalleryBanner[0]?.image || banner}
           alt="photo-banner"
           width={800}
           height={800}
@@ -37,8 +38,8 @@ const PhotoAlbum: React.FC<Props> = ({ photoData }) => {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-[2rem] lg:gap-[3rem] mb-[2.5rem]">
-        {photoData?.map((photo, index) => (
-          <div key={index} className="flex flex-col lg:gap-[0.88rem] group">
+        {galleryPhotoData?.map((photo: IPhotoResult) => (
+          <div key={photo?.id} className="flex flex-col lg:gap-[0.88rem] group">
             <Link
               href={`photo-gallery/${photo?.id}`}
               className="w-full lg:w-[26.15625rem]  lg:aspect-[418.50/279] overflow-hidden"
@@ -62,9 +63,10 @@ const PhotoAlbum: React.FC<Props> = ({ photoData }) => {
 
       <CustomPagination
         currentPage={currentPage}
-        totalItems={photoData?.length}
-        pageCount={pageCount}
         onPageChange={handlePageChange}
+        pageCount={pageCount}
+        // perPage={5}
+        totalItems={10}
       />
     </div>
   );

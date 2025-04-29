@@ -11,6 +11,7 @@ import { IPhotoDaum, IPhotoImage } from "../../interface/photo.interface";
 
 import { Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 
 interface Props {
   photoData: IPhotoDaum;
@@ -41,7 +42,7 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
       </h3>
 
       <p className="typography-p1-regular font-medium text-text-300 leading-[120%] pb-5 lg:pb-10">
-        Published Date : September 6, 2018
+        Published Date : {formatToNepaliDate(photoData?.created_at)}
       </p>
 
       <div className="relative overflow-hidden">
