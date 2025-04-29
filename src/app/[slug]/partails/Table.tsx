@@ -1,5 +1,6 @@
 "use client";
 
+import CustomPagination from "@/components/CustomPagination";
 import {
   Table,
   TableBody,
@@ -8,10 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ISoaDetailDetail } from "@/Interface/soaDetai.interface";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { TeamViewData } from "@/data/tableData";
-import CustomPagination from "@/components/CustomPagination";
 
 // Define the shape of a member
 interface Member {
@@ -43,19 +43,29 @@ const columns: Column[] = [
 
 const PER_PAGE = 4;
 
-const UnderPreliminaryReview = () => {
+interface Props {
+  soaTableData: ISoaDetailDetail[];
+}
+
+const TableData: React.FC<Props> = ({ soaTableData }) => {
+  // console.log(soaTableData, "SOA Table Data");
+
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const pageCount = Math.ceil(TeamViewData.length / PER_PAGE);
+  const pageCount = Math.ceil(soaTableData?.length / PER_PAGE);
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page);
   };
 
-  const paginatedMembers = TeamViewData.slice(
+  const paginatedMembers = soaTableData?.slice(
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE
   );
+
+  if (!soaTableData) {
+    return <div>No data available</div>;
+  }
 
   return (
     <div>
@@ -94,16 +104,16 @@ const UnderPreliminaryReview = () => {
                     {(currentPage - 1) * PER_PAGE + index + 1}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.nameOfCompany}
+                    {member.company_name}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.conductOfApplication}
+                    {member.conduct_of_application}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.dateOfApplication}
+                    {member.date_of_application}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.dateOfCommissionDecision}
+                    {member.date_of_commision_decision}
                   </TableCell>
 
                   <TableCell className="cellStyle p-4">
@@ -130,4 +140,4 @@ const UnderPreliminaryReview = () => {
   );
 };
 
-export default UnderPreliminaryReview;
+export default TableData;

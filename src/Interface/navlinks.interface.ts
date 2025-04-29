@@ -18,4 +18,5 @@ export interface INavLinksSubcategory {
   name: string;
   sub_ctg_slug: string;
   ordering: number;
+  url: string;
 }

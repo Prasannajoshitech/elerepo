@@ -18,15 +18,16 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
   return (
     <div className="hidden md:flex justify-between items-center py-3 px-10">
       <div className="flex flex-wrap gap-[2.4rem] items-center">
+        
         {desktopData.map((navItem) => {
-          const isActive = activeDropdown === navItem.name;
+          const isActive = activeDropdown === navItem.id;
           const hasSubcategories = navItem.subcategories.length > 0;
 
           return (
             <div
               key={navItem?.name}
               className="relative group"
-              onMouseEnter={() => setActiveDropdown(navItem?.name)}
+              onMouseEnter={() => setActiveDropdown(navItem?.id)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               {/* If NO subcategories then  a link */}
@@ -40,7 +41,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
               ) : (
                 // If HAS subcategories, then just a button
                 <button
-                  onClick={() => toggleDropdown(navItem?.name)}
+                  onClick={() => toggleDropdown(navItem?.id)}
                   className="group relative cursor-pointer typography-p-regular font-medium text-text-500 hover:text-blue-500 transition-colors duration-300 flex items-center gap-1"
                 >
                   {navItem?.name}
