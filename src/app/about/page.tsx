@@ -1,5 +1,5 @@
 import React from "react";
-import HeroSection from "./partials/HeroSection";
+import HeroSection from "../../components/HeroSection";
 import Introduction from "./partials/Introduction";
 import MissionVission from "./partials/MissionVission";
 import GoalsObjective from "./partials/GoalsObjective";

@@ -1,4 +1,4 @@
-import { getData } from "@/api/axios";
+import { getData } from "@/api/fetch";
 import { endpoints } from "@/api/endpoints";
 
 const safeFetch = async (endpoint: string) => {
@@ -25,4 +25,9 @@ export const getNavLinksData = async () => {
 export const getNavNewsData = async () => {
   const navNews = await safeFetch(endpoints.navNews);
   return navNews;
+};
+
+export const getHeroSectionData = async () => {
+  const heroSection = await safeFetch(endpoints.heroSection);
+  return heroSection;
 };
