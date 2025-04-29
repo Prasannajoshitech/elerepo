@@ -6,7 +6,7 @@ const Header: React.FC<{ onClose: () => void; isConnected: boolean }> = ({
 }) => {
   return (
     <div className="flex items-center gap-2 bg-secondary-50 p-6 bg-blue-600">
-      <div className="bg-blue-500 rounded-full w-10 h-10">
+      <div className=" rounded-full w-10 h-10">
         <Image
           src={"/svg/bot-image1.svg"}
           width={50}
@@ -26,9 +26,9 @@ const Header: React.FC<{ onClose: () => void; isConnected: boolean }> = ({
       <div className="flex ml-auto">
         <button
           onClick={onClose}
-          className="flex justify-center items-center p-2 border border-red-400 rounded-full aspect-square cursor-pointer shrink-0 grow-0"
+          className="flex justify-center items-center p-2 border border-blue-50 rounded-full aspect-square cursor-pointer shrink-0 grow-0"
         >
-          <span className="inline-block bg-red-400 rounded-sm w-2 h-px" />
+          <span className="inline-block bg-blue-50 rounded-sm w-2 h-px" />
         </button>
       </div>
     </div>

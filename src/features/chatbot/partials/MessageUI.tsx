@@ -1,6 +1,7 @@
 "use client";
 
 import { useChat } from "../hooks/useChat";
+import CategoryChat from "./CategoryChat";
 import ChatSuggestion from "./ChatSuggestion";
 import Header from "./Header";
 import MessageInput from "./MessageInput";
@@ -42,6 +43,9 @@ const MessageUI: React.FC<{ isOpen: boolean; closePopup: () => void }> = ({
         suggestions={suggestions}
         disabled={isSending}
       />
+
+      <CategoryChat />
+
       <div className="shrink-0">
         <MessageInput disabled={isSending} sendMessage={sendMessage} />
       </div>
