@@ -17,7 +17,6 @@ const PhotoGallery: React.FC<Props> = async ({ searchParams }) => {
       page,
     });
 
-    
     return (
       <div className="padding-x my-10">
         <PhotoAlbum

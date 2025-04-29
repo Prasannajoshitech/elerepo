@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const usePaginationChange = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  
+
   const router = useRouter();
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(window.location.search);
