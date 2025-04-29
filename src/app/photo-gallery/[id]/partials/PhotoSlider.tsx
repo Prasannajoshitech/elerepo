@@ -20,6 +20,12 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const swiperRef = useRef<SwiperCore | null>(null);
 
+  // Combine thumbnail and image list
+  const allImages: IPhotoImage[] = [
+    { id: "thumbnail", image: photoData.thumbnail },
+    ...photoData.images,
+  ];
+
   const handlePrev = () => {
     swiperRef.current?.slidePrev();
   };
@@ -64,17 +70,17 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
           modules={[Navigation]}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          className="w-full h-[14rem] lg:h-[40rem] border "
+          className="w-full h-[14rem] lg:h-[40rem] border"
           navigation={false}
         >
-          {photoData?.images?.map((thumbnail: IPhotoImage, index) => (
+          {allImages.map((img: IPhotoImage, index) => (
             <SwiperSlide
               key={index}
               className="w-full h-full rounded-[0.25rem]"
             >
               <Image
-                src={thumbnail?.image}
-                alt={`Product ${index + 1}`}
+                src={img.image}
+                alt={`Slide ${index + 1}`}
                 width={322}
                 height={412}
                 className="w-full h-full object-fill rounded-[0.25rem]"
@@ -84,23 +90,23 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
         </Swiper>
 
         {/* Custom Pagination with Images */}
-        <div className="flex justify-center gap-2 mt-4">
-          {photoData?.images?.map((photo: IPhotoImage, index: number) => (
+        <div className="flex justify-center gap-2 mt-4 flex-wrap">
+          {allImages.map((photo: IPhotoImage, index: number) => (
             <div
               key={index}
               onClick={() => swiperRef.current?.slideTo(index)}
-              className="w-[15.6875rem] lg:h-[10.4375rem] rounded-[0.25rem]"
+              className="w-[6rem] h-[4rem] lg:w-[12.6875rem] lg:h-[10.4375rem] rounded-[0.25rem]"
             >
               <Image
-                src={photo?.image}
+                src={photo.image}
                 alt={`Photo ${index + 1}`}
-                width={50}
-                height={50}
+                width={100}
+                height={100}
                 className={`w-full h-full object-fill cursor-pointer border rounded-[0.25rem] ${
                   activeIndex === index
                     ? "border-blue-500"
                     : "border-transparent"
-                } `}
+                }`}
               />
             </div>
           ))}
