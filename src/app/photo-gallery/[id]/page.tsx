@@ -1,6 +1,6 @@
 import ErrorMessage from "@/components/ErrorMessage";
 import PhotoSlider from "./partials/PhotoSlider";
-import { getData } from "@/api/axios";
+import { getData } from "@/api/fetch";
 import { endpoints } from "@/api/endpoints";
 
 interface PhotoGalleryDetailId {

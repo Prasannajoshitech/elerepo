@@ -2,7 +2,7 @@ import DisplayPdf from "@/components/DisplayPdf";
 import React from "react";
 import Header from "./partials/Header";
 import ErrorMessage from "@/components/ErrorMessage";
-import { getData } from "@/api/axios";
+import { getData } from "@/api/fetch";
 import { endpoints } from "@/api/endpoints";
 
 interface ActDetailSlug {

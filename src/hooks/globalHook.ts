@@ -1,4 +1,4 @@
-import { getData } from "@/api/axios";
+import { getData } from "@/api/fetch";
 import { endpoints } from "@/api/endpoints";
 
 const safeFetch = async (endpoint: string) => {
