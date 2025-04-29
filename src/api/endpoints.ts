@@ -21,6 +21,7 @@ interface Endpoints {
   photoGallery: string;
   photoGalleryBanner: string;
   photoDetail: string;
+  heroSection: string;
 
   chatbot: {
     register: string;
@@ -52,6 +53,8 @@ export const endpoints: Endpoints = {
   photoGallery: "/gallery/list/",
   photoGalleryBanner: "/gallery/banner/list/",
   photoDetail: "/gallery/detail",
+
+  heroSection: "/herosection/list/",
 
   // Chatbot
   chatbot: {

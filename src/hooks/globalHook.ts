@@ -26,3 +26,8 @@ export const getNavNewsData = async () => {
   const navNews = await safeFetch(endpoints.navNews);
   return navNews;
 };
+
+export const getHeroSectionData = async () => {
+  const heroSection = await safeFetch(endpoints.heroSection);
+  return heroSection;
+};
