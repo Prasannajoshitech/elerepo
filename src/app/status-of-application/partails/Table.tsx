@@ -122,7 +122,6 @@ const UnderPreliminaryReview = () => {
       <div className="p-6 mb-8">
         <CustomPagination
           currentPage={currentPage}
-          totalItems={TeamViewData.length}
           pageCount={pageCount}
           onPageChange={handlePageChange}
         />

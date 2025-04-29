@@ -7,14 +7,14 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { IPhotoDaum, IPhotoImage } from "../../interface/photo.interface";
+import { IPhotoImage, IPhotoResult } from "../../interface/photo.interface";
 
 import { Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 
 interface Props {
-  photoData: IPhotoDaum;
+  photoData: IPhotoResult;
 }
 
 const PhotoSlider: React.FC<Props> = ({ photoData }) => {
@@ -23,7 +23,12 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
 
   // Combine thumbnail and image list
   const allImages: IPhotoImage[] = [
-    { id: "thumbnail", image: photoData.thumbnail },
+    {
+      id: "thumbnail",
+      image: photoData.thumbnail,
+      created_at: photoData.created_at,
+      updated_at: photoData.updated_at,
+    },
     ...photoData.images,
   ];
 
