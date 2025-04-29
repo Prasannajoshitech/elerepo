@@ -18,6 +18,8 @@ interface Endpoints {
   aboutFunctionDuties: string;
 
   contact: string;
+  photoGallery: string;
+  photoDetail: string;
 
   chatbot: {
     register: string;
@@ -45,6 +47,9 @@ export const endpoints: Endpoints = {
   aboutFunctionDuties: "/about/function-duties-authorities/list/",
 
   contact: "/contact/create/",
+
+  photoGallery: "/gallery/list/",
+  photoDetail: "/gallery/detail",
 
   // Chatbot
   chatbot: {
