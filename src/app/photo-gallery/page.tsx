@@ -3,10 +3,21 @@ import PhotoAlbum from "./partials/PhotoAlbum";
 import { getGalleryPageData } from "./hooks/photoGallery.hooks";
 import ErrorMessage from "@/components/ErrorMessage";
 
-const PhotoGallery = async () => {
-  try {
-    const { photoGalleryData, photoGalleryBanner } = await getGalleryPageData();
+interface Props {
+  searchParams?: Promise<{
+    page?: string | string[];
+  }>;
+}
 
+const PhotoGallery: React.FC<Props> = async ({ searchParams }) => {
+  try {
+    const page = (await Number((await searchParams)?.page)) || 1;
+
+    const { photoGalleryData, photoGalleryBanner } = await getGalleryPageData({
+      page,
+    });
+
+    
     return (
       <div className="padding-x my-10">
         <PhotoAlbum

@@ -65,8 +65,6 @@ const PhotoAlbum: React.FC<Props> = ({ photoData, photoGalleryBanner }) => {
         currentPage={currentPage}
         onPageChange={handlePageChange}
         pageCount={pageCount}
-        // perPage={5}
-        totalItems={10}
       />
     </div>
   );
