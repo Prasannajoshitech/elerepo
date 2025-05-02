@@ -27,6 +27,9 @@ interface Endpoints {
 
   chatbot: {
     register: string;
+    chatCategory: string;
+    subCategory: string;
+    chatAnswer: string;
   };
 }
 
@@ -63,10 +66,13 @@ export const endpoints: Endpoints = {
   // Chatbot
   chatbot: {
     register: "/user/register",
+    chatCategory: "/chat/category/list/",
+    subCategory: "/chat/subCategory/list/",
+    chatAnswer: "chat/answer/suggestion/get/",
   },
 };
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const BASE_CHATBOT_URL = process.env.NEXT_PUBLIC_API_URL_CHATBOT;
-export const BASE_SOCKET_URL = process.env.NEXT_PUBLIC_CHATBOT_SOCKET_URL;
+// export const BASE_SOCKET_URL = process.env.NEXT_PUBLIC_CHATBOT_SOCKET_URL;

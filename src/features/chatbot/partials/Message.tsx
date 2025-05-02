@@ -1,76 +1,68 @@
 import { Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
-import { IMessage } from "../hooks/useChat";
+import { IChatMessage } from "../interfaces/dto/message.type";
 
 type MessageProps = {
-  message: IMessage;
+  message: IChatMessage;
 };
 
 const Message: React.FC<MessageProps> = ({ message }) => {
+  // console.log(message, "chatAnsdafasdfdasfwerData");
+
+  const isSending = message.status === "sending";
+
+  const questionHTML = message.question;
+  const answerHTML = message.answers?.[0]?.answer;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: "100%" }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, bounce: 0.1 }}
-      className={`w-full flex justify-start gap-[0.88rem]  items-end ${
-        message.sender == "user" ? " flex-row-reverse" : " flex-row"
-      }
-        ${message.status == "sending" ? "animate-pulse opacity-50" : ""}
-         mb-2`}
-    >
-      <div className="relative">
-        {message.sender == "user" ? (
-          <div className="flex justify-center items-center bg-blue-400 rounded-full size-[1.75rem] font-semibold text-white text-sm">
-            {message.sender ? message.sender[0].toUpperCase() : ""}
-          </div>
-        ) : (
-          <Image
-            src={"/svg/bot-image.svg"}
-            width={50}
-            height={50}
-            alt="bot image"
-            className="rounded-full size-[1.75rem]"
-          />
-        )}
-        {status === "sending" && (
-          <div className="absolute inset-0 flex justify-center items-center bg-secondary-500/20 rounded-full">
-            <Loader2 className="text-secondary-500 animate-spin" />
-          </div>
-        )}
-      </div>
-      <div
-        className={`max-w-[70%] p-2.5 rounded-3xl ${
-          message.sender == "user"
-            ? "bg-blue-50 text-text-500 rounded-br-xs"
-            : "bg-blue-100 text-red-500 rounded-bl-xs"
+    <div className="flex flex-col gap-2 mb-3">
+      {/* User Question */}
+      <motion.div
+        initial={{ opacity: 0, y: "100%" }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, bounce: 0.1 }}
+        className={`w-full flex justify-end gap-[0.88rem] items-end ${
+          isSending ? "animate-pulse opacity-50" : ""
         }`}
       >
-        {message.file && message.file_type == "image" && (
-          <Link href={message.file} target="_blank">
+        <div className="max-w-[70%] p-2.5 rounded-3xl bg-blue-50 text-text-500 rounded-br-xs text-sm leading-relaxed">
+          <div dangerouslySetInnerHTML={{ __html: questionHTML || "" }} />
+        </div>
+        <div className="flex justify-center items-center bg-blue-400 rounded-full size-[1.75rem] font-semibold text-white text-sm">
+          U
+        </div>
+      </motion.div>
+
+      {/* Bot Answer */}
+      {answerHTML && (
+        <motion.div
+          initial={{ opacity: 0, y: "100%" }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, bounce: 0.1 }}
+          className="w-full flex justify-start gap-[0.88rem] items-end"
+        >
+          <div className="relative">
             <Image
-              src={message.file}
-              alt="file"
-              width={100}
-              height={100}
-              className="mb-2 rounded-lg w-auto max-h-24"
+              src="/svg/bot-image.svg"
+              width={50}
+              height={50}
+              alt="Bot"
+              className="rounded-full size-[1.75rem]"
             />
-          </Link>
-        )}
-        <p className="text-text-500">{message.message}</p>
-      </div>
-    </motion.div>
+            {isSending && (
+              <div className="absolute inset-0 flex justify-center items-center bg-secondary-500/20 rounded-full">
+                <Loader2 className="text-secondary-500 animate-spin" />
+              </div>
+            )}
+          </div>
+          <div className="max-w-[70%] p-2.5 rounded-3xl bg-blue-100 text-blue-800 rounded-bl-xs text-sm leading-relaxed">
+            <div dangerouslySetInnerHTML={{ __html: answerHTML }} />
+          </div>
+        </motion.div>
+      )}
+    </div>
   );
 };
-export default Message;
 
-// const TypingAnimation: React.FC = () => {
-//   return (
-//     <div className="flex items-center gap-2 px-2 py-1">
-//       <div className="bg-primary-500 rounded-full size-1.5 animate-bounce"></div>
-//       <div className="bg-primary-500 rounded-full size-1.5 animate-bounce delay-200"></div>
-//       <div className="bg-primary-500 rounded-full size-1.5 animate-bounce delay-400"></div>
-//     </div>
-//   );
-// };
+export default Message;

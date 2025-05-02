@@ -27,8 +27,8 @@ const MessageInput: React.FC<{
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className="px-5 pb-6">
-      <label className="flex items-center gap-2 bg-light-variant-100 pr-5 border-dark-variant-50 rounded-[1.75rem] bg-white">
+    <form onSubmit={formik.handleSubmit} className="">
+      <label className="flex items-center gap-2 bg-light-variant-100 pr-5 border border-text-50 rounded-[1.75rem] bg-white">
         <input
           type="text"
           placeholder="Type your message..."
@@ -36,14 +36,14 @@ const MessageInput: React.FC<{
           onKeyDown={handleKeyDown}
           autoComplete="off"
           autoFocus
-          className="flex-1 py-4 pl-5 rounded-full outline-0 focus:outline-none h-max text-text-400"
+          className="flex-1 py-4 pl-5 rounded-full outline-0 focus:outline-none h-max text-text-300"
         />
         <button
           disabled={disabled}
           type="submit"
           className="disabled:opacity-50 hover:brightness-110 cursor-pointer"
         >
-          <Send className="text-primary-900" />
+          <Send className="text-blue-400" />
         </button>
       </label>
     </form>

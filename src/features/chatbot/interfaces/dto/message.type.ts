@@ -4,12 +4,18 @@ export interface IChatMessage {
   type: "chat_message" | string;
   sender_id: "user" | "VirtualAssistant";
   message: string;
+  status?: "sending" | "sent" | "failed" | "typing";
   file?: string;
   file_type?: FileTypes | null;
   call_type?: string;
   created_at?: string;
   is_bot?: boolean;
   suggestions?: string[];
+  category?: string;
+  sub_category?: string;
+  child_category?: string;
+  question?: string;
+  answers?: IChatAnswer[];
 }
 
 export interface IChatMessageHistoryResponse {
@@ -46,4 +52,14 @@ export interface Message {
   is_bot: boolean;
   room: string;
   sender: string;
+}
+
+export interface IChatAnswer {
+  answer: string;
+  suggestions: IChatAnswerSuggestion[];
+}
+
+export interface IChatAnswerSuggestion {
+  id: string;
+  suggestion: string;
 }
