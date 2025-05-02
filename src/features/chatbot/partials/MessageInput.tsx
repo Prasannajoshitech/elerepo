@@ -28,7 +28,7 @@ const MessageInput: React.FC<{
 
   return (
     <form onSubmit={formik.handleSubmit} className="">
-      <label className="flex items-center gap-2 bg-light-variant-100 pr-5 border border-text-50 rounded-[1.75rem] bg-white">
+      <label className="flex items-center gap-2 bg-light-variant-100 pr-5 border border-text-50 rounded-[1.25rem] bg-blue-50/40">
         <input
           type="text"
           placeholder="Type your message..."

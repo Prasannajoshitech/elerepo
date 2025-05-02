@@ -21,7 +21,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-[0.64rem]">
+    <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-[0.64rem]">
       {subCategoryData?.map((item) => (
         <button
           key={item?.id}
@@ -39,7 +39,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               />
             </div>
           </div>
-          <div className="text-blue-400 font-noto-sans text-[0.68694rem] leading-[120%] font-semibold">
+          <div className="text-blue-400 font-noto-sans text-[0.68694rem] leading-[120%] font-semibold text-wrap">
             {item?.name}
           </div>
         </button>
