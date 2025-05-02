@@ -1,10 +1,27 @@
 "use client";
 
 import { useChat } from "../hooks/useChat";
+import CategoryChat from "./CategoryChat";
 import ChatSuggestion from "./ChatSuggestion";
 import Header from "./Header";
 import MessageInput from "./MessageInput";
 import MessagesContainer from "./MessagesContainer";
+import {
+  IChatAnswerQuestion,
+  IChatAnswerSuggestion,
+} from "../interfaces/chatAnswer";
+
+function extractSuggestions(
+  data: IChatAnswerQuestion[]
+): IChatAnswerSuggestion[] {
+  return (
+    data
+      ?.flatMap((item) =>
+        item.answers?.flatMap((answer) => answer.suggestions || [])
+      )
+      .filter((s) => !!s.suggestion) || []
+  );
+}
 
 const MessageUI: React.FC<{ isOpen: boolean; closePopup: () => void }> = ({
   closePopup,
@@ -12,13 +29,15 @@ const MessageUI: React.FC<{ isOpen: boolean; closePopup: () => void }> = ({
 }) => {
   const {
     sendMessage,
-    messages,
     chatContainerRef,
     isSending,
-    suggestions,
-
-    isConnected,
+    isModalOpen,
+    setIsModalOpen,
+    chatAnswerData,
   } = useChat();
+
+  const closeModal = () => setIsModalOpen(!isModalOpen);
+  const suggestions = extractSuggestions(chatAnswerData);
 
   return (
     <div
@@ -32,20 +51,35 @@ const MessageUI: React.FC<{ isOpen: boolean; closePopup: () => void }> = ({
       }}
       className="flex flex-col border rounded-[1.25rem] min-w-[25rem] h-[40rem] max-h-[calc(100vh-10rem)] overflow-hidden"
     >
-      <Header isConnected={isConnected} onClose={closePopup} />
+      <Header
+        onClose={closePopup}
+        isModalOpen={isModalOpen}
+        toggleCategoryModal={closeModal}
+      />
 
       <div ref={chatContainerRef} className="flex-1 px-1.5 overflow-y-auto">
-        <MessagesContainer messages={messages} />
+        <MessagesContainer chatAnswerData={chatAnswerData} />
       </div>
+
       <ChatSuggestion
         sendMessage={sendMessage}
         suggestions={suggestions}
         disabled={isSending}
       />
+
+      {isModalOpen && (
+        <div className="fixed top-22 z-50">
+          <div className="bg-white rounded-2xl w-full max-w-md p-4 relative h-120">
+            <CategoryChat closeModal={closeModal} />
+          </div>
+        </div>
+      )}
+
       <div className="shrink-0">
         <MessageInput disabled={isSending} sendMessage={sendMessage} />
       </div>
     </div>
   );
 };
+
 export default MessageUI;
