@@ -15,8 +15,6 @@ export function useChatCategories() {
     url: endpoints.chatbot.subCategory,
   });
 
-
-
   // Set first tab as active once categories load
   useEffect(() => {
     if (chatCategoryData?.results?.length && !activeTab) {
