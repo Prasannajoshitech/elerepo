@@ -1,3 +1,8 @@
+import { getNavData } from "@/hooks/globalHook";
+import { ISAOResult } from "@/Interface/soa.interface";
+
+const navData = await getNavData();
+
 export const navLinks = [
   {
     name: "About Us",
@@ -24,62 +29,47 @@ export const navLinks = [
       { name: "Proposed Draft", url: "/act" },
     ],
   },
-  {
-    name: "Tariffs",
-    url: "/act",
-    dropdown: [
-      { name: "Tariff Order", url: "/act" },
-      { name: "Consumer Tariff", url: "/act" },
-      { name: "Electricity Bill", url: "/act" },
-    ],
-  },
+
   {
     name: "Status of Application",
     url: "/status-of-application",
-    dropdown: [
-      { name: "IPO Pre Approval", url: "/notice-board/tenders" },
-      { name: "Right Share Pre Approval", url: "/notice-board/announcements" },
-      { name: "PPA Approval", url: "/notice-board/updates" },
-      { name: "Dispute Resolution", url: "/notice-board/updates" },
-      { name: "Share Structure Change", url: "/notice-board/updates" },
-      { name: "Tariff Filling", url: "/notice-board/updates" },
-      { name: "Acquisition Merger", url: "/notice-board/updates" },
-      { name: "Other Applications", url: "/notice-board/updates" },
-    ],
+    dropdown: navData?.results.map((item: ISAOResult) => ({
+      name: item?.title,
+      url: `${item?.slug}`,
+    })),
+    // { name: "Right Share Pre Approval", url: "/notice-board/announcements" },
+    // { name: "PPA Approval", url: "/notice-board/updates" },
+    // { name: "Dispute Resolution", url: "/notice-board/updates" },
+    // { name: "Share Structure Change", url: "/notice-board/updates" },
+    // { name: "Tariff Filling", url: "/notice-board/updates" },
+    // { name: "Acquisition Merger", url: "/notice-board/updates" },
+    // { name: "Other Applications", url: "/notice-board/updates" },
   },
-  {
-    name: "Notice Board",
-    url: "/act",
-    dropdown: [
-      { name: "Notices", url: "/act" },
-      { name: "Press Release", url: "/act" },
-      { name: "Tender", url: "/act" },
-      { name: "Public Hearing", url: "/act" },
-    ],
-  },
-  {
-    name: "Downloads",
-    url: "/downloads",
-    dropdown: [
-      { name: "Annual Reports ", url: "/downloads/forms" },
-      { name: "Document", url: "/downloads/documents" },
-      { name: "Others", url: "/downloads/reports" },
-    ],
-  },
+
+  // {
+  //   name: "Downloads",
+  //   url: "/downloads",
+  //   dropdown: [
+  //     { name: "Annual Reports ", url: "/downloads/forms" },
+  //     { name: "Document", url: "/downloads/documents" },
+  //     { name: "Others", url: "/downloads/reports" },
+  //   ],
+  // },
+
   {
     name: "Gallery",
     url: "/gallery",
     dropdown: [
-      { name: "Photo Gallery", url: "/gallery/photos" },
-      { name: "Video Gallery", url: "/gallery/videos" },
+      { name: "Photo Gallery", url: "/photo-gallery" },
+      { name: "Video Gallery", url: "/video-gallery" },
     ],
   },
   {
     name: "Contact Us",
-    url: "/contact",
+    url: "/contact-us",
   },
   {
     name: "E-Filing",
-    url: "/contact-us",
+    url: "/e-filing",
   },
 ];

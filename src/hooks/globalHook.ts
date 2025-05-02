@@ -31,3 +31,9 @@ export const getHeroSectionData = async () => {
   const heroSection = await safeFetch(endpoints.heroSection);
   return heroSection;
 };
+
+export const getNavData = async () => {
+  const navData = await safeFetch(endpoints.applicationStatus);
+
+  return navData;
+};
