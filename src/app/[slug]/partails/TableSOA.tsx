@@ -13,9 +13,9 @@ const TableSOA = ({ slug }: TableSOAProps) => {
 
   const { data } = useGetDataQuery({
     url: endpoints.soaDetail + `/${slug}/`,
-    // params: {
-    //   search: selectedTab,
-    // },
+    params: {
+      status: selectedTab,
+    },
   });
 
   const tabList = [
