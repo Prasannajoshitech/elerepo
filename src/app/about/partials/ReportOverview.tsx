@@ -3,41 +3,41 @@ import { endpoints } from "@/api/endpoints";
 import ErrorMessage from "@/components/ErrorMessage";
 import React from "react";
 
-interface IFunctionDuties {
+interface IReportOverview {
   title: string;
   description: string;
 }
 
-const FunctionDuties = () => {
+const ReportOverview = () => {
   const { data, isLoading, error } = useGetDataQuery({
-    url: endpoints.aboutFunctionDuties,
+    url: endpoints.about,
   });
 
   if (isLoading) {
     return <p className="text-center">Loading...</p>;
   }
 
-  if (error || !data?.data || !data.data[0]) {
-    console.error("Failed to load function and duties data:", error);
+  if (error || !data?.data || !data?.data[0]?.electricity_report_overview) {
+    console.error("Failed to load report review detail data:", error);
     return <ErrorMessage />;
   }
 
-  const aboutDutiesFunction: IFunctionDuties = data?.data[0];
+  const aboutReportOverview: IReportOverview =
+    data?.data[0]?.electricity_report_overview;
 
   return (
     <div className="padding-x bg-background-400 py-10">
       <p className="typography-h3-bold text-text-500">
-        {aboutDutiesFunction?.title}
+        {aboutReportOverview?.title}
       </p>
 
-      {/* Function */}
       <div className="mt-5">
         <p className="typography-p-regular-medium text-text-500">
-          {aboutDutiesFunction?.description}
+          {aboutReportOverview?.description}
         </p>
       </div>
     </div>
   );
 };
 
-export default FunctionDuties;
+export default ReportOverview;

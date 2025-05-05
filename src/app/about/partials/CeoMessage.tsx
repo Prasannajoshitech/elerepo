@@ -1,23 +1,35 @@
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
+import ErrorMessage from "@/components/ErrorMessage";
 import Image from "next/image";
 import React from "react";
 
-interface Props {
-  ceoMessage: {
-    name: string;
-    designation: string;
-    image: string;
-    message: string;
-  };
+interface ICeoMessage {
+  name: string;
+  designation: string;
+  image: string;
+  message: string;
 }
 
-const CeoMessage: React.FC<Props> = ({ ceoMessage }) => {
-  return (
-    <div className="padding-x my-10">
-      <h3 className="typography-h3-bold pb-[0.75rem] text-text-500">
-        Message from Chairperson
-      </h3>
+const CeoMessage = () => {
+  const { data, error, isLoading } = useGetDataQuery({
+    url: endpoints.homeTeam,
+  });
 
-      <div className="flex flex-col-reverse lg:flex-row justify-between gap-[2.5rem]">
+  if (isLoading) {
+    return <p className="text-center">Loading...</p>;
+  }
+
+  if (error || !data?.data || !data.data[0]) {
+    console.error("Failed to load Chairperson message data:", error);
+    return <ErrorMessage />;
+  }
+
+  const ceoMessage: ICeoMessage = data?.data[0];
+
+  return (
+    <>
+      <div className="flex flex-col-reverse lg:flex-row justify-between gap-10">
         {/* message from ceo  */}
         <p
           className="text-text-400 typography-p1-regular text-justify"
@@ -26,10 +38,9 @@ const CeoMessage: React.FC<Props> = ({ ceoMessage }) => {
           }}
         />
 
-        {/* image of ceo  */}
         <div>
           {/* Image with hover effect */}
-          <div className="w-full lg:w-[24.48931rem] lg:aspect-[391.83/459.00] ">
+          <div className="w-full lg:w-[16.25rem] lg:aspect-[65/76] ">
             <Image
               src={ceoMessage?.image}
               alt="ceo"
@@ -50,7 +61,7 @@ const CeoMessage: React.FC<Props> = ({ ceoMessage }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
