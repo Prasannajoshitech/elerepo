@@ -13,9 +13,9 @@ const TableSOA = ({ slug }: TableSOAProps) => {
 
   const { data } = useGetDataQuery({
     url: endpoints.soaDetail + `/${slug}/`,
-    params: {
-      search: selectedTab,
-    },
+    // params: {
+    //   search: selectedTab,
+    // },
   });
 
   const tabList = [
@@ -26,9 +26,10 @@ const TableSOA = ({ slug }: TableSOAProps) => {
     },
     {
       label: "Reviewed and Comment Said",
-      id: "Here goes data table for Reviewed and Comment Said",
+      id: "Reviewed and Comment Said",
     },
-    { label: "Approved", id: "Here goes data table for Approved" },
+
+    { label: "Approved", id: "Approved" },
   ];
 
   return (
@@ -54,7 +55,7 @@ const TableSOA = ({ slug }: TableSOAProps) => {
 
       {/* Tab Content */}
       <div className="padding-x">
-        <TableData soaTableData={data?.data?.details} />
+        <TableData soaTableData={data} />
       </div>
     </div>
   );

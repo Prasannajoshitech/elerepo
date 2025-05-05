@@ -9,7 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ISoaDetailDetail } from "@/Interface/soaDetai.interface";
+import {
+  ISoaDetailDetail,
+  ISoaDetailRoot,
+} from "@/Interface/soaDetai.interface";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -44,21 +47,19 @@ const columns: Column[] = [
 const PER_PAGE = 4;
 
 interface Props {
-  soaTableData: ISoaDetailDetail[];
+  soaTableData: ISoaDetailRoot;
 }
 
 const TableData: React.FC<Props> = ({ soaTableData }) => {
-  // console.log(soaTableData, "SOA Table Data");
-
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const pageCount = Math.ceil(soaTableData?.length / PER_PAGE);
+  const pageCount = soaTableData?.total_pages;
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page);
   };
 
-  const paginatedMembers = soaTableData?.slice(
+  const paginatedMembers: ISoaDetailDetail[] = soaTableData?.results?.slice(
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE
   );
@@ -99,28 +100,28 @@ const TableData: React.FC<Props> = ({ soaTableData }) => {
               </TableRow>
             ) : (
               paginatedMembers.map((member, index) => (
-                <TableRow key={`${member.id}-${index}`}>
+                <TableRow key={`${member?.id}-${index}`}>
                   <TableCell className={cn("text-center cellStyle p-4")}>
                     {(currentPage - 1) * PER_PAGE + index + 1}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.company_name}
+                    {member?.company_name}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.conduct_of_application}
+                    {member?.conduct_of_application}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.date_of_application}
+                    {member?.date_of_application}
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.date_of_commision_decision}
+                    {member?.date_of_commision_decision}
                   </TableCell>
 
                   <TableCell className="cellStyle p-4">
-                    <div>{member.status}</div>
+                    <div>{member?.status}</div>
                   </TableCell>
                   <TableCell className="cellStyle p-4">
-                    {member.remarks}
+                    {member?.remarks}
                   </TableCell>
                 </TableRow>
               ))
