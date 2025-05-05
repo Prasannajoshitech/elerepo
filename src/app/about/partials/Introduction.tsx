@@ -1,26 +1,27 @@
-import React from "react";
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
 
-interface Props {
-  introData: {
-    title: string;
-    description: string;
-  };
-}
+const Introduction = () => {
+  const { data } = useGetDataQuery({
+    url: endpoints.about,
+  });
 
-const Introduction: React.FC<Props> = ({ introData }) => {
+  console.log(data, "datafadsfgasjfkld");
+
   return (
-    <div className="padding-x">
-      <p className="typography-h3-bold">{introData?.title}</p>
+    <div>hello</div>
+    // <div className="padding-x">
+    //   <p className="typography-h3-bold">{aboutData?.data[0].title}</p>
 
-      <div className="mt-3">
-        <p
-          className="typography-p-regular text-text-400"
-          dangerouslySetInnerHTML={{
-            __html: introData?.description || "",
-          }}
-        />
-      </div>
-    </div>
+    //   <div className="mt-3">
+    //     <p
+    //       className="typography-p-regular text-text-400"
+    //       dangerouslySetInnerHTML={{
+    //         __html: aboutData?.data[0].description || "",
+    //       }}
+    //     />
+    //   </div>
+    // </div>
   );
 };
 
