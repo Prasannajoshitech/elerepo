@@ -26,7 +26,7 @@ const ReportOverview = () => {
     data?.data[0]?.electricity_report_overview;
 
   return (
-    <div className="padding-x bg-background-400 py-10">
+    <div className=" bg-background-400 ">
       <p className="typography-h3-bold text-text-500">
         {aboutReportOverview?.title}
       </p>

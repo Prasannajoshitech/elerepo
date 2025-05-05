@@ -25,7 +25,7 @@ const FunctionDuties = () => {
   const aboutDutiesFunction: IFunctionDuties = data?.data[0];
 
   return (
-    <div className="padding-x bg-background-400 py-10">
+    <div className=" bg-background-400 ">
       <p className="typography-h3-bold text-text-500">
         {aboutDutiesFunction?.title}
       </p>

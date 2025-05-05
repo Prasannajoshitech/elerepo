@@ -32,7 +32,7 @@ const AboutPage = () => {
           </span>
         </div>
       </div>
-      <div className="container mx-auto py-10 px-4 lg:px-12">
+      <div className="container mx-auto  px-4 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Sidebar Tabs */}
           <aside className="bg-[rgba(216,235,247,0.60)] rounded-[0.75rem] p-[1.25rem]">
