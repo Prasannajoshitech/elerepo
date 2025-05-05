@@ -24,6 +24,7 @@ interface Endpoints {
   heroSection: string;
   applicationStatus: string;
   soaDetail: string;
+  faq: string;
 
   chatbot: {
     register: string;
@@ -62,6 +63,7 @@ export const endpoints: Endpoints = {
   heroSection: "/herosection/list/",
   applicationStatus: "/applicationstatus/list/",
   soaDetail: "/applicationstatus/detail",
+  faq: "/faq/list/",
 
   // Chatbot
   chatbot: {
