@@ -1,22 +1,33 @@
-import React from "react";
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
+import { IMissionVisionDaum } from "@/app/(home)/interface/homeMissionVision.interface";
+import ErrorMessage from "@/components/ErrorMessage";
 
-interface Props {
-  introData: {
-    title: string;
-    description: string;
-  };
-}
+const Introduction = () => {
+  const { data, isLoading, error } = useGetDataQuery({
+    url: endpoints.about,
+  });
 
-const Introduction: React.FC<Props> = ({ introData }) => {
+  if (isLoading) {
+    return <p className="text-center">Loading...</p>;
+  }
+
+  if (error || !data?.data || !data.data[0]) {
+    console.error("Failed to load introduction data:", error);
+    return <ErrorMessage />;
+  }
+
+  const aboutIntroduction: IMissionVisionDaum = data?.data[0];
+
   return (
     <div className="padding-x">
-      <p className="typography-h3-bold">{introData?.title}</p>
+      <p className="typography-h3-bold">{aboutIntroduction?.title}</p>
 
       <div className="mt-3">
         <p
           className="typography-p-regular text-text-400"
           dangerouslySetInnerHTML={{
-            __html: introData?.description || "",
+            __html: aboutIntroduction?.description || "",
           }}
         />
       </div>

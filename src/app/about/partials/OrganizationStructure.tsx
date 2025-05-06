@@ -1,29 +1,40 @@
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
+import ErrorMessage from "@/components/ErrorMessage";
 import Image from "next/image";
 import React from "react";
 
-interface Props {
-  orgazizationData: {
-    title: string;
-    description: string;
-    image: string;
-  };
+interface IorgazizationData {
+  title: string;
+  description: string;
+  image: string;
 }
 
-const OrganizationStructure: React.FC<Props> = ({ orgazizationData }) => {
+const OrganizationStructure = () => {
+  const { data, error, isLoading } = useGetDataQuery({
+    url: endpoints.aboutOrganizational,
+  });
+
+  if (isLoading) {
+    return <p className="text-center">Loading...</p>;
+  }
+
+  if (error || !data?.data || !data.data[0]) {
+    console.error("Failed to load organization data:", error);
+    return <ErrorMessage />;
+  }
+
+  const organizationData: IorgazizationData = data.data[0];
+
   return (
-    <div className="padding-x my-10">
-      <p className="typography-h3-bold text-text-500 pb-[1.25rem]">
-        Organizational Structure
-      </p>
-      <div className="w-full aspect-[1353.57/962.00] ">
-        <Image
-          src={orgazizationData?.image}
-          alt="ceo"
-          width={800}
-          height={800}
-          className="w-full h-full object-cover "
-        />
-      </div>
+    <div className="w-full aspect-[1353.57/962.00]">
+      <Image
+        src={organizationData.image}
+        alt={organizationData.title || "Organization Structure"}
+        width={800}
+        height={800}
+        className="w-full h-full object-cover"
+      />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import { CiMail } from "react-icons/ci";
 
-const EmployeeDetail = () => {
+const Commission = () => {
   const { data, isLoading, error } = useGetDataQuery({
     url: endpoints.homeTeam,
   });
@@ -17,15 +17,15 @@ const EmployeeDetail = () => {
   }
 
   if (error || !data?.data || !data.data) {
-    console.error("Failed to load employee detail data:", error);
+    console.error("Failed to load comission data:", error);
     return <ErrorMessage />;
   }
 
-  const aboutEmployeeDetail: IHomeTeamDaum[] = data?.data;
+  const aboutCommission: IHomeTeamDaum[] = data?.data;
   return (
-    <>
+    <div>
       <div className="grid grid-cols-2 lg:grid-cols-3 mt-6 lg:mt-0 gap-4 lg:gap-8">
-        {aboutEmployeeDetail?.map((team, index) => (
+        {aboutCommission?.map((team, index) => (
           <div
             key={index}
             className="w-full lg:w-[18rem] group mx-auto flex flex-col bg-background-100 border-2 border-background-100 rounded-[0.5rem]"
@@ -61,8 +61,8 @@ const EmployeeDetail = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
-export default EmployeeDetail;
+export default Commission;

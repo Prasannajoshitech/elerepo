@@ -73,7 +73,7 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
                 className={`py-3 px-4 text-left rounded-md transition-colors ${
                   selectedCategory === category.name
                     ? "bg-blue-300 text-white"
-                    : "hover:bg-blue-100"
+                    : "bg-white hover:bg-blue-100 "
                 }`}
               >
                 {category.name}

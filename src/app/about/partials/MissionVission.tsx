@@ -1,10 +1,9 @@
+import { useGetDataQuery } from "@/api/api";
+import { endpoints } from "@/api/endpoints";
 import { IMissionVisionMissionVision } from "@/app/(home)/interface/homeMissionVision.interface";
+import ErrorMessage from "@/components/ErrorMessage";
 import Image from "next/image";
 import React from "react";
-
-interface Props {
-  missionVisionData: IMissionVisionMissionVision[];
-}
 
 const MissionVisionCard: React.FC<IMissionVisionMissionVision> = ({
   icon,
@@ -33,16 +32,31 @@ const MissionVisionCard: React.FC<IMissionVisionMissionVision> = ({
   </div>
 );
 
-const MissionVision: React.FC<Props> = ({ missionVisionData }) => {
-  if (!missionVisionData?.length) return null;
+const MissionVision = () => {
+  const { data, isLoading, error } = useGetDataQuery({
+    url: endpoints.about,
+  });
+
+  if (isLoading) {
+    return <p className="text-center">Loading...</p>;
+  }
+
+  if (error || !data?.data || !data?.data[0]?.mission_vision) {
+    console.error("Failed to load mission and vision data:", error);
+    return <ErrorMessage />;
+  }
+
+  const aboutMissionVision: IMissionVisionMissionVision[] =
+    data?.data[0]?.mission_vision;
+
+  if (!aboutMissionVision?.length) return null;
 
   return (
-    <div className="padding-x mt-10">
-      <p className="typography-h3-bold text-text-500">Mission and Vision</p>
-      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
-        {missionVisionData.slice(0, 2).map((item, index) => (
-          <MissionVisionCard key={index} {...item} />
-        ))}
+    <div className="lg:ml-10">
+      <div className="mt-5 grid grid-cols-1 gap-4 md:gap-10">
+        {aboutMissionVision
+          ?.slice(0, 2)
+          .map((item, index) => <MissionVisionCard key={index} {...item} />)}
       </div>
     </div>
   );
