@@ -33,13 +33,9 @@ const MissionVisionCard: React.FC<IMissionVisionMissionVision> = ({
 );
 
 const MissionVision = () => {
-  const { data, isLoading, error } = useGetDataQuery({
+  const { data, error } = useGetDataQuery({
     url: endpoints.about,
   });
-
-  if (isLoading) {
-    return <p className="text-center">Loading...</p>;
-  }
 
   if (error || !data?.data || !data?.data[0]?.mission_vision) {
     console.error("Failed to load mission and vision data:", error);

@@ -4,13 +4,9 @@ import { IMissionVisionDaum } from "@/app/(home)/interface/homeMissionVision.int
 import ErrorMessage from "@/components/ErrorMessage";
 
 const Introduction = () => {
-  const { data, isLoading, error } = useGetDataQuery({
+  const { data, error } = useGetDataQuery({
     url: endpoints.about,
   });
-
-  if (isLoading) {
-    return <p className="text-center">Loading...</p>;
-  }
 
   if (error || !data?.data || !data.data[0]) {
     console.error("Failed to load introduction data:", error);

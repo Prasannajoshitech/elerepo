@@ -58,7 +58,7 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
           loop={true}
           modules={[Pagination, Autoplay]}
         >
-          {impServiceData.map((service, index) => (
+          {impServiceData?.map((service, index) => (
             <SwiperSlide key={index}>
               <div
                 key={index}
