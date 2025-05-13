@@ -8,13 +8,9 @@ import React from "react";
 import { CiMail } from "react-icons/ci";
 
 const Commission = () => {
-  const { data, isLoading, error } = useGetDataQuery({
+  const { data, error } = useGetDataQuery({
     url: endpoints.homeTeam,
   });
-
-  if (isLoading) {
-    return <p className="text-center">Loading...</p>;
-  }
 
   if (error || !data?.data || !data.data) {
     console.error("Failed to load comission data:", error);

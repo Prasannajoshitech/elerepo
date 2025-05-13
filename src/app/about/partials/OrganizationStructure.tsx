@@ -11,13 +11,9 @@ interface IorgazizationData {
 }
 
 const OrganizationStructure = () => {
-  const { data, error, isLoading } = useGetDataQuery({
+  const { data, error } = useGetDataQuery({
     url: endpoints.aboutOrganizational,
   });
-
-  if (isLoading) {
-    return <p className="text-center">Loading...</p>;
-  }
 
   if (error || !data?.data || !data.data[0]) {
     console.error("Failed to load organization data:", error);
