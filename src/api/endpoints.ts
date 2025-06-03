@@ -27,6 +27,7 @@ interface Endpoints {
   faq: string;
 
   eFilingData: string;
+  createComplain: string;
 
   chatbot: {
     register: string;
@@ -68,6 +69,7 @@ export const endpoints: Endpoints = {
   faq: "/faq/list/",
 
   eFilingData: "/efiling/list/",
+  createComplain: "/complain/create/",
 
   // Chatbot
   chatbot: {

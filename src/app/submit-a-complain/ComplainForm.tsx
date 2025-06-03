@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const ComplainForm: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading] = useState<boolean>(false);
   const [document, setDocument] = useState<File | null>(null);
   const [formErrors, setFormErrors] = useState<{ document?: string }>({});
 
@@ -21,7 +21,7 @@ const ComplainForm: React.FC = () => {
   const formik = useFormik({
     initialValues: {
       first_name: "",
-      last_name: "",
+      // last_name: "",
       phone_no: "",
       email: "",
       complaint_type: "",
@@ -29,7 +29,7 @@ const ComplainForm: React.FC = () => {
     },
     validationSchema: Yup.object({
       first_name: Yup.string().required("First name is required"),
-      last_name: Yup.string().required("Last name is required"),
+      // last_name: Yup.string().required("Last name is required"),
       phone_no: Yup.string()
         .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
         .required("Contact number is required"),
@@ -40,9 +40,8 @@ const ComplainForm: React.FC = () => {
       message: Yup.string().required("Complaint message is required"),
     }),
     onSubmit: async () => {
-      setIsLoading(true);
-
-      //   console.log("Submission result:", values);
+      // setIsLoading(true);
+      // console.log("Submission result:", values);
     },
   });
 
@@ -97,7 +96,7 @@ const ComplainForm: React.FC = () => {
         </div>
 
         {/* Last Name */}
-        <div>
+        {/* <div>
           <label
             htmlFor="last_name"
             className="block mb-2 font-medium text-gray-700"
@@ -133,7 +132,7 @@ const ComplainForm: React.FC = () => {
               {formik.errors.last_name}
             </p>
           )}
-        </div>
+        </div> */}
 
         {/* Contact Number */}
         <div>

@@ -30,7 +30,7 @@ const MobileNavbar: React.FC<Props> = ({ mobileData }) => {
       {mobileMenuOpen && (
         <div className="mt-4 flex flex-col gap-4">
           {mobileData?.map((navItem) => {
-            const hasSubcategories = navItem.subcategories.length > 0;
+            const hasSubcategories = navItem?.subcategories?.length > 0;
             const isActive = activeDropdown === navItem.name;
 
             return (

@@ -20,7 +20,7 @@ const PhotoGalleryDetail = async ({ params }: PhotoGalleryDetailId) => {
     );
   } catch (error) {
     console.error("Error fetching photo gallery data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="photo gallery" />;
   }
 };
 

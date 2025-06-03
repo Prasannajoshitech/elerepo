@@ -24,8 +24,8 @@ const HeroSection = async () => {
       </div>
     );
   } catch (error) {
-    console.error("Error fetching contact data:", error);
-    return <ErrorMessage />;
+    console.error("Error fetching hero data:", error);
+    return <ErrorMessage errorMessage="hero data" />;
   }
 };
 

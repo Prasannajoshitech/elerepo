@@ -20,7 +20,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
       <div className="flex flex-wrap gap-[2.4rem] items-center">
         {desktopData.map((navItem) => {
           const isActive = activeDropdown === navItem.id;
-          const hasSubcategories = navItem.subcategories.length > 0;
+          const hasSubcategories = navItem?.subcategories?.length > 0;
 
           return (
             <div

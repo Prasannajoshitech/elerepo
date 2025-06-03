@@ -35,7 +35,7 @@ const Faq = async () => {
     );
   } catch (error) {
     console.error("Error fetching faq data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="fetching faq data" />;
   }
 };
 

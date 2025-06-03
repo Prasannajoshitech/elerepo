@@ -39,7 +39,7 @@ const Home = async () => {
     );
   } catch (error) {
     console.error("Error fetching home data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="home data" />;
   }
 };
 

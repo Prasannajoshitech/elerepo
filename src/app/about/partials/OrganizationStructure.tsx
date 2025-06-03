@@ -17,7 +17,7 @@ const OrganizationStructure = () => {
 
   if (error || !data?.data || !data.data[0]) {
     console.error("Failed to load organization data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="organization data" />;
   }
 
   const organizationData: IorgazizationData = data.data[0];

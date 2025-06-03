@@ -19,7 +19,7 @@ const StatusOfApplication = async ({ params }: SOASlug) => {
     );
   } catch (error) {
     console.error("Error fetching SOA data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="SOA data" />;
   }
 };
 

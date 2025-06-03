@@ -13,7 +13,7 @@ const NewsCarousel = async () => {
         <div className="flex animate-marquee group-hover:[animation-play-state:paused] space-x-4 md:space-x-10 text-white font-medium cursor-pointer">
           {newsData?.map((item: INewsResult) => (
             <Link key={item?.id} href={item?.slug}>
-              {item?.title}
+              {item?.title_en}
             </Link>
           ))}
         </div>
@@ -21,7 +21,7 @@ const NewsCarousel = async () => {
     );
   } catch (error) {
     console.error("Error fetching news data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="news data" />;
   }
 };
 

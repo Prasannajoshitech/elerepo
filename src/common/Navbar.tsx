@@ -35,7 +35,7 @@ const Navbar = async () => {
     );
   } catch (error) {
     console.error("Error fetching navigation links:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="navigation links" />;
   }
 };
 

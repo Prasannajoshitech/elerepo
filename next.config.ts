@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
+        hostname: "electricity.pokharauae.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
         hostname: "192.168.1.126",
         port: "8001",
         pathname: "/media/**",

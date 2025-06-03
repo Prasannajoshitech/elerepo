@@ -18,7 +18,7 @@ export interface INewsResult {
   updated_at: string;
   main_category: string;
   sub_category: string;
-  title: string;
+  title_en: string;
   description: string;
   slug: string;
   file: string;

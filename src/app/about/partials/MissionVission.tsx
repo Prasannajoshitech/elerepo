@@ -39,7 +39,7 @@ const MissionVision = () => {
 
   if (error || !data?.data || !data?.data[0]?.mission_vision) {
     console.error("Failed to load mission and vision data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="mission and vision data" />;
   }
 
   const aboutMissionVision: IMissionVisionMissionVision[] =
