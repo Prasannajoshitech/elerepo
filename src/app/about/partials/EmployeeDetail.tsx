@@ -14,7 +14,7 @@ const EmployeeDetail = () => {
 
   if (error || !data?.data || !data.data) {
     console.error("Failed to load employee detail data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="employee data" />;
   }
 
   const aboutEmployeeDetail: IHomeTeamDaum[] = data?.data;

@@ -25,8 +25,8 @@ const ActDetail = async ({ params }: ActDetailSlug) => {
       </div>
     );
   } catch (error) {
-    console.error("Error fetching home data:", error);
-    return <ErrorMessage />;
+    console.error("Error fetching Act data:", error);
+    return <ErrorMessage errorMessage="Act data" />;
   }
 };
 

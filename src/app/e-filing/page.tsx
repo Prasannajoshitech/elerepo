@@ -27,7 +27,7 @@ const EFiling = async () => {
     );
   } catch (error) {
     console.error("Error fetching e-filing data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="e-filing data" />;
   }
 };
 

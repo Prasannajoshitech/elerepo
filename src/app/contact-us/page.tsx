@@ -18,7 +18,7 @@ const ContactUs = async () => {
     );
   } catch (error) {
     console.error("Error fetching contact data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="contact data" />;
   }
 };
 

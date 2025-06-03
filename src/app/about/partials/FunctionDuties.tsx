@@ -15,7 +15,7 @@ const FunctionDuties = () => {
 
   if (error || !data?.data || !data.data[0]) {
     console.error("Failed to load function and duties data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="function and duties data" />;
   }
 
   const aboutDutiesFunction: IFunctionDuties = data?.data[0];

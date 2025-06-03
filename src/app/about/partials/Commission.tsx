@@ -14,7 +14,7 @@ const Commission = () => {
 
   if (error || !data?.data || !data.data) {
     console.error("Failed to load comission data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="comission data" />;
   }
 
   const aboutCommission: IHomeTeamDaum[] = data?.data;

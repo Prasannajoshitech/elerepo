@@ -10,7 +10,7 @@ const Introduction = () => {
 
   if (error || !data?.data || !data.data[0]) {
     console.error("Failed to load introduction data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="introduction data" />;
   }
 
   const aboutIntroduction: IMissionVisionDaum = data?.data[0];

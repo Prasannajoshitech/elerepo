@@ -18,7 +18,7 @@ const CeoMessage = () => {
 
   if (error || !data?.data || !data.data[0]) {
     console.error("Failed to load Chairperson message data:", error);
-    return <ErrorMessage />;
+    return <ErrorMessage errorMessage="Chairperson message data" />;
   }
 
   const ceoMessage: ICeoMessage = data?.data[0];
