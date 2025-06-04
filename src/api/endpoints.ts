@@ -8,6 +8,7 @@ interface Endpoints {
   homeImpService: string;
   about: string;
 
+  homeTeam: string;
   document: string;
   actRule: string;
   categoryDetail: string;
@@ -43,6 +44,7 @@ export const endpoints: Endpoints = {
   homeImpService: "/services/list",
   about: "/about/list/",
 
+  homeTeam: "/team/list/",
   document: "/document/list/",
   actRule: "/subcategory/documentlist/",
   categoryDetail: "/subcategory/detail",
