@@ -12,7 +12,7 @@ interface IorgazizationData {
 
 const OrganizationStructure = () => {
   const { data, error } = useGetDataQuery({
-    url: endpoints.aboutOrganizational,
+    url: endpoints.about,
   });
 
   if (error || !data?.data || !data.data[0]) {
@@ -20,13 +20,14 @@ const OrganizationStructure = () => {
     return <ErrorMessage errorMessage="organization data" />;
   }
 
-  const organizationData: IorgazizationData = data.data[0];
+  const organizationData: IorgazizationData =
+    data.data[0]?.organizational_structure[0];
 
   return (
     <div className="w-full aspect-[1353.57/962.00]">
       <Image
-        src={organizationData.image}
-        alt={organizationData.title || "Organization Structure"}
+        src={organizationData?.image}
+        alt={organizationData?.title || "Organization Structure"}
         width={800}
         height={800}
         className="w-full h-full object-cover"
