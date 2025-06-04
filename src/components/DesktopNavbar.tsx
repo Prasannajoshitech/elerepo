@@ -14,6 +14,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
+  // console.log(desktopData, "dekfdsjklfjdslk");
 
   return (
     <div className="hidden md:flex justify-between items-center py-3 padding-x">

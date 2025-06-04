@@ -4,7 +4,7 @@ export interface ISoaDetailRoot {
   total_pages: number;
   current_page: number;
   page_size: number;
-  results: ISoaDetailResult[];
+  data: ISoaDetailResult[];
 }
 
 export interface ISoaDetailLinks {

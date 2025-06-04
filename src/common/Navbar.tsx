@@ -12,8 +12,9 @@ const Navbar = async () => {
   try {
     const navLinkData = await getNavLinksData();
 
-    const data: INavLinksDaum[] = navLinkData?.data;
-    const formattedLinks: INavLinksDaum[] = navLinks.map((data, index) => ({
+    const dynamicLinks: INavLinksDaum[] = navLinkData?.data;
+
+    const staticLinks: INavLinksDaum[] = navLinks.map((data, index) => ({
       id: index.toString(),
       name: data.name,
       main_ctg_slug: data.url,
@@ -26,7 +27,11 @@ const Navbar = async () => {
           ordering: index,
         })) || [],
     }));
-    const mergedData = [...data, ...formattedLinks];
+    // console.log(staticLinks, "staticLinks");
+    // console.log(dynamicLinks, "dynamicLinks");
+
+    const mergedData = [...dynamicLinks, ...staticLinks];
+
     return (
       <nav className="bg-background-100">
         <MobileNavbar mobileData={mergedData} />

@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  ISoaDetailDetail,
+  ISoaDetailResult,
   ISoaDetailRoot,
 } from "@/Interface/soaDetai.interface";
 import { cn } from "@/lib/utils";
@@ -59,10 +59,11 @@ const TableData: React.FC<Props> = ({ soaTableData }) => {
     setCurrentPage(page);
   };
 
-  const paginatedMembers: ISoaDetailDetail[] = soaTableData?.results?.slice(
-    (currentPage - 1) * PER_PAGE,
-    currentPage * PER_PAGE
-  );
+  const paginatedMembers: ISoaDetailResult[] =
+    soaTableData?.data?.details?.slice(
+      (currentPage - 1) * PER_PAGE,
+      currentPage * PER_PAGE
+    );
 
   if (!soaTableData) {
     return <div>No data available</div>;
@@ -89,7 +90,7 @@ const TableData: React.FC<Props> = ({ soaTableData }) => {
           </TableHeader>
 
           <TableBody>
-            {paginatedMembers.length === 0 ? (
+            {paginatedMembers?.length === 0 ? (
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
@@ -99,7 +100,7 @@ const TableData: React.FC<Props> = ({ soaTableData }) => {
                 </TableCell>
               </TableRow>
             ) : (
-              paginatedMembers.map((member, index) => (
+              paginatedMembers?.map((member, index) => (
                 <TableRow key={`${member?.id}-${index}`}>
                   <TableCell className={cn("text-center cellStyle p-4")}>
                     {(currentPage - 1) * PER_PAGE + index + 1}

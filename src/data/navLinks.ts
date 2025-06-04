@@ -33,10 +33,11 @@ export const navLinks = [
   {
     name: "Status of Application",
     url: "/status-of-application",
-    dropdown: navData?.results?.map((item: ISAOResult) => ({
+    dropdown: navData?.data?.map((item: ISAOResult) => ({
       name: item?.title,
       url: `${item?.slug}`,
     })),
+
     // { name: "Right Share Pre Approval", url: "/notice-board/announcements" },
     // { name: "PPA Approval", url: "/notice-board/updates" },
     // { name: "Dispute Resolution", url: "/notice-board/updates" },
