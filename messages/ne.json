@@ -1,0 +1,22 @@
+{
+  "TabTitles": {
+    "home": "नेक्स्ट एप बनाउनुहोस्"
+  },
+  "HomePage": {
+    "list1": "नमस्ते, म नेपालबाट हुँ",
+    "list2": "म काठमाडौंमा बस्दैछु।"
+  },
+
+  "FooterLinks": {
+    "TariffDetermination": "दर निर्धारण",
+    "LicensingInformation": "इजाजतपत्र सम्बन्धी जानकारी",
+    "ElectricityMarketRegulations": "विद्युत बजार नियमावली",
+    "PublicationsReports": "प्रकाशन तथा प्रतिवेदन",
+    "ConsumerRights": "उपभोक्ता अधिकार",
+    "NEA": "नेपाल विद्युत प्राधिकरण (NEA)",
+    "HelloSarkar": "हेल्लो सरकार",
+    "NepalLawCommission": "नेपाल कानुन आयोग",
+    "PublicProcurementMonitoring": "सार्वजनिक खरीद अनुगमन",
+    "MinistryEnergy": "ऊर्जा मन्त्रालय"
+  }
+}
