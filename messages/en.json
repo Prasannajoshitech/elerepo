@@ -1,0 +1,21 @@
+{
+  "TabTitles": {
+    "home": "Create Next App"
+  },
+  "HomePage": {
+    "list1": "Hello, I am from Nepal",
+    "list2": "I am living in Kathmandu."
+  },
+  "FooterLinks": {
+    "TariffDetermination": "Tariff Determination",
+    "LicensingInformation": "Licensing Information",
+    "ElectricityMarketRegulations": "Electricity Market Regulations",
+    "PublicationsReports": "Publications & Reports",
+    "ConsumerRights": "Consumer Rights",
+    "NEA": "Nepal Electricity Authority (NEA)",
+    "HelloSarkar": "Hello Sarkar",
+    "NepalLawCommission": "Nepal Law Commission",
+    "PublicProcurementMonitoring": "Public Procurement Monitoring",
+    "MinistryEnergy": "Ministry of Energy"
+  }
+}

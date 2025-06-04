@@ -13,49 +13,22 @@ export const company = [
 ];
 
 export const ImportantLinks = [
+  { label: "TariffDetermination", url: "/tariff-determination" },
+  { label: "LicensingInformation", url: "/licensing-information" },
   {
-    label: "Tariff Determination",
-    url: "/tariff-determination",
-  },
-  {
-    label: "Licensing Information",
-    url: "/licensing-information",
-  },
-  {
-    label: "Electricity Market Regulations",
+    label: "ElectricityMarketRegulations",
     url: "/electricity-market-regulations",
   },
-  {
-    label: "Publications & Reports",
-    url: "/publications-reports",
-  },
-  {
-    label: "Consumer Rights",
-    url: "/consumer-rights",
-  },
+  { label: "PublicationsReports", url: "/publications-reports" },
+  { label: "ConsumerRights", url: "/consumer-rights" },
 ];
 
 export const AffiliatedOrganizations = [
-  {
-    label: "Nepal Electricity Authority (NEA)",
-    url: "/tariff-determination",
-  },
-  {
-    label: "Hello Sarkar",
-    url: "/licensing-information",
-  },
-  {
-    label: "Nepal Law Commission",
-    url: "/electricity-market-regulations",
-  },
-  {
-    label: "Public Procurement Monitoring ",
-    url: "/publications-reports",
-  },
-  {
-    label: "Ministry of Energy ",
-    url: "/consumer-rights",
-  },
+  { label: "NEA", url: "/tariff-determination" },
+  { label: "HelloSarkar", url: "/licensing-information" },
+  { label: "NepalLawCommission", url: "/electricity-market-regulations" },
+  { label: "PublicProcurementMonitoring", url: "/publications-reports" },
+  { label: "MinistryEnergy", url: "/consumer-rights" },
 ];
 
 export const OfficeHours = [
