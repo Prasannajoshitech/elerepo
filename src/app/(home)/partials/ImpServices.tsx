@@ -13,6 +13,8 @@ interface Props {
 }
 
 const ImpServices: React.FC<Props> = ({ impServiceData }) => {
+
+  
   return (
     <div className="padding-x  mb-[1.5rem] lg:mb-[2.5rem]">
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-[1.25rem] ">
