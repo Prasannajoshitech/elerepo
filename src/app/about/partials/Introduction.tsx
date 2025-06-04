@@ -4,16 +4,16 @@ import { IMissionVisionDaum } from "@/app/(home)/interface/homeMissionVision.int
 import ErrorMessage from "@/components/ErrorMessage";
 
 const Introduction = () => {
-  const { data, error } = useGetDataQuery({
+  const { data: IntroductionData, error } = useGetDataQuery({
     url: endpoints.about,
   });
 
-  if (error || !data?.data || !data.data[0]) {
+  if (error || !IntroductionData?.data || !IntroductionData.data[0]) {
     console.error("Failed to load introduction data:", error);
     return <ErrorMessage errorMessage="introduction data" />;
   }
 
-  const aboutIntroduction: IMissionVisionDaum = data?.data[0];
+  const aboutIntroduction: IMissionVisionDaum = IntroductionData?.data[0];
 
   return (
     <div className="padding-x">

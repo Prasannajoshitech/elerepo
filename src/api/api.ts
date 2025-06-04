@@ -2,6 +2,7 @@
 // import { logoutUser } from "@/store/features/authSlice";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_API_URL } from "./endpoints";
+import { getLangFromCookie } from "@/utils/getLangFromCookie";
 
 type InitialPageParam = {
   page: number;
@@ -61,7 +62,10 @@ export const apiSlice = createApi({
       query: ({ url, params }) => ({
         url,
         method: "GET",
-        params,
+        params: {
+          ...params,
+          lang: getLangFromCookie(),
+        },
       }),
       providesTags: (_, __, { tag }) =>
         tag ? [{ type: "Data", id: tag }] : [],

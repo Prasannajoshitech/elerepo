@@ -5,15 +5,15 @@ import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 
 const AboutPage = () => {
-  const { data: heroSectionData } = useGetDataQuery({
-    url: endpoints.heroSection,
-  });
-
   const [selectedSection, setSelectedSection] = useState(0);
 
   const handleCategoryClick = (idx: number) => {
     setSelectedSection(idx);
   };
+
+  const { data: heroSectionData } = useGetDataQuery({
+    url: endpoints.heroSection,
+  });
 
   return (
     <>
@@ -32,6 +32,7 @@ const AboutPage = () => {
           </span>
         </div>
       </div>
+
       <div className="container mx-auto  px-4 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Sidebar Tabs */}

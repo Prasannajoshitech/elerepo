@@ -33,7 +33,7 @@ export const navLinks = [
   {
     name: "Status of Application",
     url: "/status-of-application",
-    dropdown: navData?.results.map((item: ISAOResult) => ({
+    dropdown: navData?.results?.map((item: ISAOResult) => ({
       name: item?.title,
       url: `${item?.slug}`,
     })),
