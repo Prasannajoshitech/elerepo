@@ -1,10 +1,10 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { IFaqDaum } from "../interface/faq.interface";
+import { IFaqData } from "../interface/faq.interface";
 
 interface AccordionProps {
-  items: IFaqDaum[];
+  items: IFaqData[];
 }
 
 export default function Accordion({ items }: AccordionProps) {
