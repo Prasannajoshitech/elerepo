@@ -1,12 +1,10 @@
-import { IDocumentDocumentList } from "@/Interface/document.interface";
 import Image from "next/image";
 import React from "react";
-import { IImpServiceDaum } from "../interface/homeImpService.interface";
+import { IServiceData } from "../interface/homeImpService.interface";
 import NoticeTab from "./NoticeTab";
 
 interface Props {
-  serviceData: IImpServiceDaum[];
-  documentData: IDocumentDocumentList[];
+  serviceData: IServiceData;
 }
 
 const LatestNotices: React.FC<Props> = ({ serviceData }) => {
@@ -19,7 +17,7 @@ const LatestNotices: React.FC<Props> = ({ serviceData }) => {
             Services
           </h3>
           <div className="grid grid-cols-3 gap-4 lg:gap-[1.5rem]">
-            {serviceData?.map((service, index) => (
+            {serviceData?.records?.map((service, index) => (
               <div
                 key={index}
                 className="flex gap-[0.75rem] items-center group relative"

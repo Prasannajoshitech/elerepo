@@ -2,33 +2,52 @@ import DesktopNavbar from "@/components/DesktopNavbar";
 import ErrorMessage from "@/components/ErrorMessage";
 import MobileNavbar from "@/components/MobileNavbar";
 import { navLinks } from "@/data/navLinks";
-import { getNavLinksData } from "@/hooks/globalHook";
+import { getDynamicNavLinksData, getSOACategory } from "@/hooks/globalHook";
 import {
-  INavLinksDaum,
+  INavLinksCategory,
   INavLinksSubcategory,
 } from "@/Interface/navlinks.interface";
+import { ISAOResult } from "@/Interface/soa.interface";
 
 const Navbar = async () => {
   try {
-    const navLinkData = await getNavLinksData();
+    const [dynamicNavLinkData, soaCategoryData] = await Promise.all([
+      getDynamicNavLinksData(),
+      getSOACategory(),
+    ]);
 
-    const dynamicLinks: INavLinksDaum[] = navLinkData?.data;
+    const dynamicLinks: INavLinksCategory[] = dynamicNavLinkData?.data;
 
-    const staticLinks: INavLinksDaum[] = navLinks.map((data, index) => ({
-      id: index.toString(),
-      name: data.name,
-      main_ctg_slug: data.url,
-      ordering: index,
-      subcategories:
-        data?.dropdown?.map((item: INavLinksSubcategory, index: string) => ({
-          id: index.toString(),
-          name: item.name,
-          sub_ctg_slug: item.url,
-          ordering: index,
-        })) || [],
-    }));
-    // console.log(staticLinks, "staticLinks");
-    // console.log(dynamicLinks, "dynamicLinks");
+    // Inject dynamic dropdown into the "Status of Application" menu
+    const updatedNavLinks = navLinks.map((item) => {
+      if (item.name === "Status of Application") {
+        return {
+          ...item,
+          dropdown:
+            soaCategoryData?.data?.records.map((result: ISAOResult) => ({
+              name: result.title,
+              url: `/${result.slug}`,
+            })) || [],
+        };
+      }
+      return item;
+    });
+
+    const staticLinks: INavLinksCategory[] = updatedNavLinks.map(
+      (data, index) => ({
+        id: index.toString(),
+        name: data.name,
+        main_ctg_slug: data.url,
+        ordering: index,
+        subcategories:
+          data?.dropdown?.map((item: INavLinksSubcategory, idx: string) => ({
+            id: idx.toString(),
+            name: item.name,
+            sub_ctg_slug: item.url,
+            ordering: idx,
+          })) || [],
+      })
+    );
 
     const mergedData = [...dynamicLinks, ...staticLinks];
 

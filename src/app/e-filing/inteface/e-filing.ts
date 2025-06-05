@@ -1,18 +1,17 @@
-export interface IEFilingRoot {
+export interface IEfiling {
   status: string;
-  status_code: number;
+  statusCode: number;
   message: string;
-  data: IEFilingDaum[];
+  data: IEfilingData;
 }
 
-export interface IEFilingDaum {
+export interface IEfilingData {
   id: string;
-  ordering: number;
   title: string;
   description: string;
-  filing_type: string;
   document: string;
   image: string;
+  filing_type: string;
   submission_date: string;
   is_approved: boolean;
   remarks: string;

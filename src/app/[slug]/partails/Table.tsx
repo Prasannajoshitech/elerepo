@@ -9,10 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  ISoaDetailResult,
-  ISoaDetailRoot,
-} from "@/Interface/soaDetai.interface";
+import { ISoa } from "@/Interface/soaDetai.interface";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -47,23 +44,22 @@ const columns: Column[] = [
 const PER_PAGE = 4;
 
 interface Props {
-  soaTableData: ISoaDetailRoot;
+  soaTableData: ISoa;
 }
 
 const TableData: React.FC<Props> = ({ soaTableData }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const pageCount = soaTableData?.total_pages;
+  const pageCount = soaTableData?.totalPages;
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page);
   };
 
-  const paginatedMembers: ISoaDetailResult[] =
-    soaTableData?.data?.details?.slice(
-      (currentPage - 1) * PER_PAGE,
-      currentPage * PER_PAGE
-    );
+  const paginatedMembers = soaTableData?.data?.records?.slice(
+    (currentPage - 1) * PER_PAGE,
+    currentPage * PER_PAGE
+  );
 
   if (!soaTableData) {
     return <div>No data available</div>;

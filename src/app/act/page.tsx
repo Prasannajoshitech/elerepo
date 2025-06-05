@@ -8,7 +8,7 @@ const ActPage = async () => {
 
     return (
       <div>
-        <DocumentPage documentData={documentData?.actRuleData} />
+        <DocumentPage documentData={documentData?.actRuleData?.data} />
       </div>
     );
   } catch (error) {

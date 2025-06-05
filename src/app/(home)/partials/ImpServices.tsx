@@ -1,22 +1,21 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { IImpServiceDaum } from "../interface/homeImpService.interface";
-import { Swiper } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { IServiceData } from "../interface/homeImpService.interface";
 
 interface Props {
-  impServiceData: IImpServiceDaum[];
+  impServiceData: IServiceData;
 }
 
 const ImpServices: React.FC<Props> = ({ impServiceData }) => {
   return (
     <div className="padding-x  mb-[1.5rem] lg:mb-[2.5rem]">
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-[1.25rem] ">
-        {impServiceData?.map((service, index) => (
+        {impServiceData?.records?.map((service, index) => (
           <div
             key={index}
             className="bg-background-50 p-[1.2rem] rounded-[0.5rem] cursor-pointer border border-transparent transform transition-all duration-300 ease-in-out hover:border-blue-500 hover:scale-[1.02]"
@@ -37,9 +36,12 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
                 <h2 className="typography-p-large font-semibold text-text-500 pb-[0.25rem]">
                   {service?.name}
                 </h2>
-                <p className="text-text-400 typography-p-regular">
-                  {service?.description}
-                </p>
+                <p
+                  className="text-text-400 typography-p-regular"
+                  dangerouslySetInnerHTML={{
+                    __html: service?.description || "",
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -58,7 +60,7 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
           loop={true}
           modules={[Pagination, Autoplay]}
         >
-          {impServiceData?.map((service, index) => (
+          {impServiceData?.records?.map((service, index) => (
             <SwiperSlide key={index}>
               <div
                 key={index}
@@ -80,9 +82,12 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
                     <h2 className="typography-p-large font-semibold text-text-500 pb-[0.25rem]">
                       {service?.name}
                     </h2>
-                    <p className="text-text-400 typography-p-regular">
-                      {service?.description}
-                    </p>
+                    <p
+                      className="text-text-400 typography-p-regular"
+                      dangerouslySetInnerHTML={{
+                        __html: service?.description || "",
+                      }}
+                    />
                   </div>
                 </div>
               </div>

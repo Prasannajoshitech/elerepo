@@ -1,31 +1,37 @@
-export interface IDocumentRoot {
-  links: IDocumentLinks;
-  total_items: number;
-  total_pages: number;
-  current_page: number;
-  page_size: number;
-  results: IDocumentResult[];
-}
-
-export interface IDocumentLinks {
+export interface IDocument {
+  records: IDocumentRecord[];
+  totalRecords: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pagingCounter: number;
+  hasPrevious: boolean;
+  hasNext: boolean;
+  prev: string;
   next: string;
-  previous: string;
+  recordShown: number;
 }
 
-export interface IDocumentResult {
+export interface IDocumentRecord {
   id: string;
-  name: string;
-  sub_ctg_slug: string;
+  document_list: IDocumentList[];
+  created_at: string;
+  updated_at: string;
   ordering: number;
-  document_list: IDocumentDocumentList[];
+  name_en: string;
+  name_np: string;
+  sub_ctg_slug: string;
+  main_category: string;
 }
 
-export interface IDocumentDocumentList {
+export interface IDocumentList {
   id: string;
   title: string;
   description: string;
+  slug: string;
   file: string;
   image: string;
-  slug: string;
+  main_category: string;
+  sub_category: string;
   created_at: string;
 }

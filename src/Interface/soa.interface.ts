@@ -32,4 +32,5 @@ export interface ISAODetail {
   status: string;
   remarks: string;
   application_status: string;
+  application_status_title: string;
 }

@@ -1,20 +1,17 @@
 "use client";
-import { useState } from "react";
-import {
-  IDocumentDocumentList,
-  IDocumentRoot,
-} from "@/Interface/document.interface";
-import DocumentCard from "./DocumentCard";
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import CustomPagination from "@/components/CustomPagination";
+import { IDocument, IDocumentList } from "@/Interface/document.interface";
+import { useState } from "react";
+import DocumentCard from "./DocumentCard";
 
 interface Props {
-  documentData: IDocumentRoot;
+  documentData: IDocument;
 }
 
 const DocumentPage: React.FC<Props> = ({ documentData }) => {
-  const categories = documentData?.results || [];
+  const categories = documentData?.records || [];
 
   // For Category name and slug
   const handleCategoryClick = (categoryName: {
@@ -27,7 +24,7 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
 
   // Retriving slug
   const [slug, setSlug] = useState<string>(
-    documentData?.results[0]?.sub_ctg_slug
+    documentData?.records[0]?.sub_ctg_slug
   );
 
   // for mapping categoryDocumentData
@@ -84,16 +81,14 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
 
         {/* Document Listings */}
         <div className="md:col-span-3 space-y-[0.62rem]">
-          {categoryDocumentData?.document_list.map(
-            (doc: IDocumentDocumentList) => (
-              <DocumentCard
-                key={doc.id}
-                title={doc.title}
-                date={doc?.created_at}
-                slug={doc?.slug}
-              />
-            )
-          )}
+          {categoryDocumentData?.document_list.map((doc: IDocumentList) => (
+            <DocumentCard
+              key={doc.id}
+              title={doc.title}
+              date={doc?.created_at}
+              slug={doc?.slug}
+            />
+          ))}
         </div>
       </div>
 
