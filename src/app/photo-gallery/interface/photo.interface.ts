@@ -1,30 +1,26 @@
-export interface IPhotoRoot {
-  links: IPhotoLinks;
-  total_items: number;
-  total_pages: number;
-  current_page: number;
-  page_size: number;
-  results: IPhotoResult[];
+export interface IPhotoGallery {
+  status: string;
+  statusCode: number;
+  message: string;
+  data: IPhotoData[];
 }
 
-export interface IPhotoLinks {
-  next: string;
-  previous: string;
-}
-
-export interface IPhotoResult {
+export interface IPhotoData {
   id: string;
   created_at: string;
   updated_at: string;
   title: string;
-  description: string;
-  thumbnail: string;
   images: IPhotoImage[];
+  banners?: IPhotoBanners;
 }
 
 export interface IPhotoImage {
   id: string;
-  created_at: string;
-  updated_at: string;
+  image: string;
+}
+
+export interface IPhotoBanners {
+  id: string;
+  title: string;
   image: string;
 }

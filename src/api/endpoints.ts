@@ -16,7 +16,6 @@ interface Endpoints {
 
   contact: string;
   photoGallery: string;
-  photoGalleryBanner: string;
   photoDetail: string;
   heroSection: string;
   applicationStatus: string;
@@ -54,7 +53,6 @@ export const endpoints: Endpoints = {
   contact: "/contact/create/",
 
   photoGallery: "/gallery/list/",
-  photoGalleryBanner: "/gallery/banner/list/",
   photoDetail: "/gallery/detail",
 
   heroSection: "/herosection/list/",

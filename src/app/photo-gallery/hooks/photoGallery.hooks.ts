@@ -8,10 +8,7 @@ export const getGalleryPageData = async ({ page }: { page: number }) => {
     `${endpoints.photoGallery}?p=${page}&page_size=${perPage}`
   );
 
-  const photoGalleryBanner = await safeFetch(endpoints.photoGalleryBanner);
-
   return {
     photoGalleryData,
-    photoGalleryBanner,
   };
 };
