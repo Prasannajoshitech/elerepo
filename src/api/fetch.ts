@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BASE_API_URL } from "./endpoints";
+import { cookies } from "next/headers";
 
 export const getData = async <T = any>(
   url: string,
@@ -10,13 +11,28 @@ export const getData = async <T = any>(
 ): Promise<T> => {
   const controller = new AbortController();
   const timeout = options?.timeout ?? 30000;
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("MYNEXTAPP_LOCALEMANISH")?.value || "en";
+  const langParam = `?lang=${lang}`;
 
-  const queryString = params
-    ? `?${new URLSearchParams(params as Record<string, string>).toString()}`
-    : "";
+  // Merge params with lang from cookie, allow override
+  const queryParams = {
+    ...params,
+  };
 
-  const fetchUrl = `${BASE_API_URL}${url}${queryString}`;
+  const queryString = `${new URLSearchParams(
+    Object.entries(queryParams).reduce(
+      (acc, [key, value]) => {
+        if (value !== undefined && value !== null) {
+          acc[key] = String(value);
+        }
+        return acc;
+      },
+      {} as Record<string, string>
+    )
+  ).toString()}`;
 
+  const fetchUrl = `${BASE_API_URL}${url}${langParam}${queryString}`;
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
   try {
@@ -29,6 +45,7 @@ export const getData = async <T = any>(
         Expires: "0",
       },
       signal: controller.signal,
+      credentials: "include", // Include cookies if backend expects session
     });
 
     clearTimeout(timeoutId);

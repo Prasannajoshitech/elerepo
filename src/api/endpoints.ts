@@ -67,7 +67,7 @@ export const endpoints: Endpoints = {
 
   // Chatbot
   chatbot: {
-    register: "/user/register",
+    register: "/user/register/?lang=np",
     chatCategory: "/chat/category/list/",
     subCategory: "/chat/subCategory/list/",
     chatAnswer: "chat/answer/suggestion/get/",

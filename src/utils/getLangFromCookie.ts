@@ -1,5 +1,6 @@
 export const getLangFromCookie = (): string => {
   if (typeof document === "undefined") return "en";
+
   const lang =
     document.cookie
       .split("; ")
