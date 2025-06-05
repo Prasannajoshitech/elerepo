@@ -10,7 +10,7 @@ interface IFunctionDuties {
 
 const FunctionDuties = () => {
   const { data, error } = useGetDataQuery({
-    url: endpoints.aboutFunctionDuties,
+    url: endpoints.about,
   });
 
   if (error || !data?.data || !data.data[0]) {
@@ -18,7 +18,8 @@ const FunctionDuties = () => {
     return <ErrorMessage errorMessage="function and duties data" />;
   }
 
-  const aboutDutiesFunction: IFunctionDuties = data?.data[0];
+  const aboutDutiesFunction: IFunctionDuties =
+    data?.data[0]?.function_duties_authorities[0];
 
   return (
     <div className=" bg-background-400 ">
@@ -28,9 +29,12 @@ const FunctionDuties = () => {
 
       {/* Function */}
       <div className="mt-5">
-        <p className="typography-p-regular-medium text-text-500">
-          {aboutDutiesFunction?.description}
-        </p>
+        <p
+          className="typography-p-regular-medium text-text-500"
+          dangerouslySetInnerHTML={{
+            __html: aboutDutiesFunction?.description || "",
+          }}
+        />
       </div>
     </div>
   );

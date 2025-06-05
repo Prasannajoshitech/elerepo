@@ -7,15 +7,12 @@ interface Endpoints {
   homeHero: string;
   homeImpService: string;
   about: string;
-  aboutOrganizational: string;
 
   homeTeam: string;
   document: string;
   actRule: string;
   categoryDetail: string;
   actDetail: string;
-
-  aboutFunctionDuties: string;
 
   contact: string;
   photoGallery: string;
@@ -46,7 +43,6 @@ export const endpoints: Endpoints = {
   homeHero: "/homepage/list",
   homeImpService: "/services/list",
   about: "/about/list/",
-  aboutOrganizational: "/about/organizational-structure/list/",
 
   homeTeam: "/team/list/",
   document: "/document/list/",
@@ -54,8 +50,6 @@ export const endpoints: Endpoints = {
   categoryDetail: "/subcategory/detail",
 
   actDetail: "/document/detail",
-
-  aboutFunctionDuties: "/about/function-duties-authorities/list/",
 
   contact: "/contact/create/",
 

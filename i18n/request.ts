@@ -1,3 +1,4 @@
+// app/[locale]/utils/getRequestConfig.ts
 import { getRequestConfig } from "next-intl/server";
 import { cookies } from "next/headers";
 
@@ -5,12 +6,11 @@ export default getRequestConfig(async () => {
   const cookieLocale =
     (await cookies()).get("MYNEXTAPP_LOCALEMANISH")?.value || "en";
 
-  const locale = cookieLocale;
-
-  //   const locale = "en";
+  // Map 'np' to 'ne' internally if needed
+  const internalLocale = cookieLocale === "np" ? "ne" : cookieLocale;
 
   return {
-    locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
+    locale: internalLocale,
+    messages: (await import(`../messages/${internalLocale}.json`)).default,
   };
 });

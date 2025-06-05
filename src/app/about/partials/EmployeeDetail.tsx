@@ -1,15 +1,20 @@
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import ErrorMessage from "@/components/ErrorMessage";
-import { IHomeTeamDaum } from "@/Interface/team.interface";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { CiMail } from "react-icons/ci";
+
+interface IEmployeeDetail {
+  name: string;
+  designation: string;
+  image: string;
+  email: string;
+}
 
 const EmployeeDetail = () => {
   const { data, error } = useGetDataQuery({
-    url: endpoints.homeTeam,
+    url: endpoints.about,
   });
 
   if (error || !data?.data || !data.data) {
@@ -17,7 +22,9 @@ const EmployeeDetail = () => {
     return <ErrorMessage errorMessage="employee data" />;
   }
 
-  const aboutEmployeeDetail: IHomeTeamDaum[] = data?.data;
+  const aboutEmployeeDetail: IEmployeeDetail[] =
+    data?.data[0]?.employee_details;
+
   return (
     <>
       <div className="grid grid-cols-2 lg:grid-cols-3 mt-6 lg:mt-0 gap-4 lg:gap-8">

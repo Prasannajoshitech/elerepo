@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { useRouter } from "next/navigation";
+import TranslationLoader from "@/common/TranslationLoader";
 
 const LanguageSwitcher = () => {
   const [locale, setLocale] = useState<string>("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const cookieLocale = document.cookie
@@ -19,41 +19,49 @@ const LanguageSwitcher = () => {
       setLocale(cookieLocale);
     } else {
       const browserLocale = navigator.language.slice(0, 2);
-      setLocale(browserLocale);
-      document.cookie = `MYNEXTAPP_LOCALEMANISH=${browserLocale}`;
-      router.refresh();
+      const customLocale = browserLocale === "ne" ? "np" : browserLocale;
+      setLocale(customLocale);
+      document.cookie = `MYNEXTAPP_LOCALEMANISH=${customLocale}; path=/`;
+      window.location.reload(); // Full reload on first set
     }
-  }, [router]);
+  }, []);
 
-  const handleLanguageChange = (lang: "en" | "ne") => {
-    setLocale(lang);
-    document.cookie = `MYNEXTAPP_LOCALEMANISH=${lang}`;
-    router.refresh();
-    setDropdownOpen(false);
+  const handleLanguageChange = (lang: "en" | "np") => {
+    if (lang === locale) return;
+
+    setLoading(true);
+    document.cookie = `MYNEXTAPP_LOCALEMANISH=${lang}; path=/`;
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // Optional delay for smooth UX
   };
 
   const baseStyle = "cursor-pointer pb-1 z-20";
   const activeStyle = "border-b-2 border-white";
   const inactiveStyle = "border-b-2 border-transparent";
 
+  if (loading) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 bg-opacity-50">
+        <TranslationLoader />
+      </div>
+    );
+  }
+
   return (
     <div>
       {/* Desktop View */}
       <div className="pl-3 typography-p-regular font-semibold text-white hidden md:flex gap-2">
         <span
-          onClick={() => handleLanguageChange("ne")}
-          className={`${baseStyle} ${
-            locale === "ne" ? activeStyle : inactiveStyle
-          }`}
+          onClick={() => handleLanguageChange("np")}
+          className={`${baseStyle} ${locale === "np" ? activeStyle : inactiveStyle}`}
         >
           Nep
         </span>
         <span className="px-1">|</span>
         <span
           onClick={() => handleLanguageChange("en")}
-          className={`${baseStyle} ${
-            locale === "en" ? activeStyle : inactiveStyle
-          }`}
+          className={`${baseStyle} ${locale === "en" ? activeStyle : inactiveStyle}`}
         >
           Eng
         </span>
@@ -65,17 +73,15 @@ const LanguageSwitcher = () => {
           onClick={() => setDropdownOpen(!dropdownOpen)}
           className="flex items-center gap-1"
         >
-          {locale === "ne" ? "Nep" : "Eng"}
+          {locale === "np" ? "Nep" : "Eng"}
           <ChevronDown
-            className={`w-4 h-4 transition-transform duration-200 ${
-              dropdownOpen ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
           />
         </button>
         {dropdownOpen && (
           <div className="absolute mt-2 bg-white text-black rounded shadow-md w-20 z-50">
             <div
-              onClick={() => handleLanguageChange("ne")}
+              onClick={() => handleLanguageChange("np")}
               className="px-3 py-2 hover:bg-gray-200 cursor-pointer"
             >
               Nep

@@ -18,7 +18,7 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
   return (
     <div className="hidden md:flex justify-between items-center py-3 padding-x">
       <div className="flex flex-wrap gap-[2.4rem] items-center">
-        {desktopData.map((navItem) => {
+        {desktopData?.map((navItem) => {
           const isActive = activeDropdown === navItem.id;
           const hasSubcategories = navItem?.subcategories?.length > 0;
 

@@ -10,7 +10,7 @@ const MissionVisionCard: React.FC<IMissionVisionMissionVision> = ({
   title,
   description,
 }) => (
-  <div className="px-10 pt-10 pb-14 bg-white rounded-lg">
+  <div className="px-10 pt-10 pb-14 bg-white rounded-lg ">
     <div>
       <Image
         src={icon}
@@ -48,12 +48,10 @@ const MissionVision = () => {
   if (!aboutMissionVision?.length) return null;
 
   return (
-    <div className="lg:ml-10">
-      <div className="mt-5 grid grid-cols-1 gap-4 md:gap-10">
-        {aboutMissionVision
-          ?.slice(0, 2)
-          .map((item, index) => <MissionVisionCard key={index} {...item} />)}
-      </div>
+    <div className=" grid grid-cols-1 gap-4 md:gap-10">
+      {aboutMissionVision
+        ?.slice(0, 2)
+        .map((item, index) => <MissionVisionCard key={index} {...item} />)}
     </div>
   );
 };
