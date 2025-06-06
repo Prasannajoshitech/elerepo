@@ -1,11 +1,11 @@
 "use client";
-import { INavLinksDaum } from "@/Interface/navlinks.interface";
+import { INavLinksCategory } from "@/Interface/navlinks.interface";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
 interface Props {
-  desktopData: INavLinksDaum[];
+  desktopData: INavLinksCategory[];
 }
 
 const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
@@ -14,7 +14,6 @@ const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
-  // console.log(desktopData, "dekfdsjklfjdslk");
 
   return (
     <div className="hidden md:flex justify-between items-center py-3 padding-x">

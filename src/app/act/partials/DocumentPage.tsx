@@ -2,49 +2,61 @@
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import CustomPagination from "@/components/CustomPagination";
-import { IDocument, IDocumentList } from "@/Interface/document.interface";
+import {
+  IActData,
+  IActDocumentList,
+  IActRecord,
+} from "@/Interface/document.interface";
 import { useState } from "react";
 import DocumentCard from "./DocumentCard";
 
 interface Props {
-  documentData: IDocument;
+  documentData: IActData;
 }
 
+const PER_PAGE = 4;
+
 const DocumentPage: React.FC<Props> = ({ documentData }) => {
-  const categories = documentData?.records || [];
+  const categories: IActRecord[] = documentData?.records ?? [];
 
-  // For Category name and slug
-  const handleCategoryClick = (categoryName: {
-    name: string;
-    sub_ctg_slug: string;
-  }) => {
-    setSelectedCategory(categoryName.name);
-    setSlug(categoryName.sub_ctg_slug);
-  };
-
-  // Retriving slug
-  const [slug, setSlug] = useState<string>(
-    documentData?.records[0]?.sub_ctg_slug
+  const [slug, setSlug] = useState<string>(categories[0]?.sub_ctg_slug ?? "");
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    categories[0]?.name ?? ""
   );
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // for mapping categoryDocumentData
-  const { data: categoryDocumentData } = useGetDataQuery({
+  // Fetch documents for the selected slug
+  const { data: categoryDocumentData } = useGetDataQuery<{
+    data: {
+      data: IActRecord;
+      document_list: IActDocumentList[];
+    };
+  }>({
     url: `${endpoints.categoryDetail}/${slug}/`,
   });
 
-  // For Selected Category
-  const [selectedCategory, setSelectedCategory] = useState(
-    categories[0]?.name || ""
-  );
+  // Handle Category Click
+  const handleCategoryClick = (category: {
+    name: string;
+    sub_ctg_slug: string;
+  }) => {
+    setSelectedCategory(category.name);
+    setSlug(category.sub_ctg_slug);
+    setCurrentPage(1); // Reset to first page when category changes
+  };
 
-  // For Pagination
-  const PER_PAGE = 4;
-  const [currentPage, setCurrentPage] = useState(1);
+  const allDocuments: IActDocumentList[] =
+    categoryDocumentData?.data?.document_list ?? [];
 
-  const totalItems = categoryDocumentData?.document_list.length;
+  // Pagination Logic
+  const totalItems = allDocuments.length;
   const pageCount = Math.ceil(totalItems / PER_PAGE);
 
-  // Handle page change
+  const paginatedDocs = allDocuments.slice(
+    (currentPage - 1) * PER_PAGE,
+    currentPage * PER_PAGE
+  );
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -57,49 +69,55 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-10">
         {/* Sidebar */}
-        <div className="bg-[#EEF8FF] rounded-[0.25rem] p-[1.25rem]">
+        <aside className="bg-[#EEF8FF] rounded-[0.25rem] p-[1.25rem]">
           <h2 className="typography-p-large text-text-500 font-semibold mb-[1.25rem]">
             Laws & Regulations
           </h2>
 
           <nav className="flex flex-col space-y-2">
-            {categories.map((category, idx) => (
+            {categories.map((category) => (
               <button
-                key={idx}
+                key={category.id}
                 onClick={() => handleCategoryClick(category)}
                 className={`py-3 px-4 text-left rounded-md transition-colors ${
                   selectedCategory === category.name
                     ? "bg-blue-300 text-white"
-                    : "bg-white hover:bg-blue-100 "
+                    : "bg-white hover:bg-blue-100"
                 }`}
               >
                 {category.name}
               </button>
             ))}
           </nav>
-        </div>
+        </aside>
 
         {/* Document Listings */}
-        <div className="md:col-span-3 space-y-[0.62rem]">
-          {categoryDocumentData?.document_list.map((doc: IDocumentList) => (
-            <DocumentCard
-              key={doc.id}
-              title={doc.title}
-              date={doc?.created_at}
-              slug={doc?.slug}
-            />
-          ))}
-        </div>
+        <section className="md:col-span-3 space-y-[0.62rem]">
+          {paginatedDocs.length > 0 ? (
+            paginatedDocs.map((doc) => (
+              <DocumentCard
+                key={doc.id}
+                title={doc.title}
+                date={doc.created_at}
+                slug={doc.slug}
+              />
+            ))
+          ) : (
+            <p>No documents found.</p>
+          )}
+        </section>
       </div>
 
       {/* Pagination */}
-      <div className="mt-6">
-        <CustomPagination
-          currentPage={currentPage}
-          pageCount={pageCount}
-          onPageChange={handlePageChange}
-        />
-      </div>
+      {pageCount > 1 && (
+        <div className="mt-6">
+          <CustomPagination
+            currentPage={currentPage}
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </div>
   );
 };

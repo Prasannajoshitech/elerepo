@@ -1,5 +1,9 @@
-export interface IDocument {
-  records: IDocumentRecord[];
+export interface IActCategoryRoot {
+  data: IActData;
+}
+
+export interface IActData {
+  records: IActRecord[];
   totalRecords: number;
   perPage: number;
   totalPages: number;
@@ -12,19 +16,15 @@ export interface IDocument {
   recordShown: number;
 }
 
-export interface IDocumentRecord {
+export interface IActRecord {
   id: string;
-  document_list: IDocumentList[];
-  created_at: string;
-  updated_at: string;
+  name: string;
   ordering: number;
-  name_en: string;
-  name_np: string;
   sub_ctg_slug: string;
-  main_category: string;
+  document_list: IActDocumentList[];
 }
 
-export interface IDocumentList {
+export interface IActDocumentList {
   id: string;
   title: string;
   description: string;
@@ -34,4 +34,8 @@ export interface IDocumentList {
   main_category: string;
   sub_category: string;
   created_at: string;
+  updated_at: string;
 }
+
+
+

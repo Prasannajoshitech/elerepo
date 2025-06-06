@@ -61,7 +61,7 @@ const NoticeTab = () => {
 
       {/* Tab content */}
       <div className="mt-4">
-        <TabContent documentData={data?.results} />
+        <TabContent documentData={data?.data?.records} />
       </div>
     </div>
   );

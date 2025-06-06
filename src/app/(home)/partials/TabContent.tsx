@@ -1,11 +1,12 @@
 import { PATH } from "@/constant/path";
+import { IActDocumentList } from "@/Interface/document.interface";
+import { formatDate } from "@/utils/formatDate";
 
-import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  documentData: IDocumentDocumentList[];
+  documentData: IActDocumentList[];
 }
 
 const TabContent: React.FC<Props> = ({ documentData }) => {
@@ -23,7 +24,7 @@ const TabContent: React.FC<Props> = ({ documentData }) => {
             {item?.title}
           </Link>
           <p className="typography-p-small text-text-300 font-medium pt-[0.62rem]">
-            Published Date: {formatToNepaliDate(item?.created_at)}
+            Published Date: {formatDate(item?.created_at)}
           </p>
         </div>
       ))}
