@@ -36,6 +36,3 @@ export interface IActDocumentList {
   created_at: string;
   updated_at: string;
 }
-
-
-
