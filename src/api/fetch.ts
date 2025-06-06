@@ -20,7 +20,7 @@ export const getData = async <T = any>(
     ...params,
   };
 
-  const queryString = `${new URLSearchParams(
+  const queryString = `&${new URLSearchParams(
     Object.entries(queryParams).reduce(
       (acc, [key, value]) => {
         if (value !== undefined && value !== null) {

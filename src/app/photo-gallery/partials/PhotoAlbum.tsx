@@ -4,19 +4,19 @@ import usePaginationChange from "@/hooks/usePaginationHook";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { IPhotoGallery } from "../interface/photo.interface";
+import { IGalleryBanner, IGalleryData } from "../interface/photo.interface";
 
 interface Props {
-  photoData: IPhotoGallery;
+  photoData: IGalleryData;
+  galleryBanner: IGalleryBanner;
 }
 
-const PhotoAlbum: React.FC<Props> = ({ photoData }) => {
+const PhotoAlbum: React.FC<Props> = ({ photoData, galleryBanner }) => {
   const { handlePageChange, currentPage } = usePaginationChange();
 
-  const galleryPhotoData = photoData;
-  console.log(galleryPhotoData, "photoGalleryBanner");
+  const galleryPhotoData = photoData?.records;
 
-  const pageCount = photoData?.total_pages;
+  const pageCount = photoData?.totalPages;
 
   return (
     <div>
@@ -26,13 +26,13 @@ const PhotoAlbum: React.FC<Props> = ({ photoData }) => {
 
       {/* photo banner  */}
       <div className="w-full lg:h-[30rem] mb-[3.03rem]">
-        {/* <Image
-          src={photoGalleryBanner[0]?.image || banner}
+        <Image
+          src={galleryBanner?.image}
           alt="photo-banner"
           width={800}
           height={800}
           className="w-full h-full object-cover"
-        /> */}
+        />
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-[2rem] lg:gap-[3rem] mb-[2.5rem]">

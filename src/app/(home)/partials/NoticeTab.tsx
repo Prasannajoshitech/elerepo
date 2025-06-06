@@ -19,8 +19,6 @@ const NoticeTab = () => {
     },
   });
 
-  console.log(data, "documentdataa");
-
   const tabs = [
     {
       label: "General",
@@ -63,8 +61,7 @@ const NoticeTab = () => {
 
       {/* Tab content */}
       <div className="mt-4">
-        {/* <TabContent documentData={data?.results} /> */}
-        fkldsjkj
+        <TabContent documentData={data?.results} />
       </div>
     </div>
   );

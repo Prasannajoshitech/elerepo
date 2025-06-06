@@ -1,5 +1,5 @@
 import { PATH } from "@/constant/path";
-import { IDocumentDocumentList } from "@/Interface/document.interface";
+
 import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
 import Link from "next/link";
 import React from "react";
