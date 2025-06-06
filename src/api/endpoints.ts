@@ -15,8 +15,8 @@ interface Endpoints {
   actDetail: string;
 
   contact: string;
+  photoBanner: string;
   photoGallery: string;
-  photoGalleryBanner: string;
   photoDetail: string;
   heroSection: string;
   applicationStatus: string;
@@ -53,8 +53,8 @@ export const endpoints: Endpoints = {
 
   contact: "/contact/create/",
 
+  photoBanner: "/gallery/banner/list/",
   photoGallery: "/gallery/list/",
-  photoGalleryBanner: "/gallery/banner/list/",
   photoDetail: "/gallery/detail",
 
   heroSection: "/herosection/list/",
@@ -67,7 +67,7 @@ export const endpoints: Endpoints = {
 
   // Chatbot
   chatbot: {
-    register: "/user/register",
+    register: "/user/register/?lang=np",
     chatCategory: "/chat/category/list/",
     subCategory: "/chat/subCategory/list/",
     chatAnswer: "chat/answer/suggestion/get/",

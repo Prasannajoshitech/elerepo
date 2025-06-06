@@ -6,13 +6,11 @@ export const getHomePageData = async () => {
   const impServiceData = await safeFetch(endpoints.homeImpService);
   const missionVisionData = await safeFetch(endpoints.about);
   const teamData = await safeFetch(endpoints.homeTeam);
-  const documentData = await safeFetch(endpoints.document);
 
   return {
     homeData,
     impServiceData,
     missionVisionData,
     teamData,
-    documentData,
   };
 };

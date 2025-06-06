@@ -1,30 +1,49 @@
-export interface IPhotoRoot {
-  links: IPhotoLinks;
-  total_items: number;
-  total_pages: number;
-  current_page: number;
-  page_size: number;
-  results: IPhotoResult[];
+export interface IGalleryRoot {
+  data: IGalleryData;
 }
 
-export interface IPhotoLinks {
+export interface IGalleryData {
+  records: IGalleryRecord[];
+  totalRecords: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pagingCounter: number;
+  hasPrevious: boolean;
+  hasNext: boolean;
+  prev: string;
   next: string;
-  previous: string;
+  recordShown: number;
 }
 
-export interface IPhotoResult {
+export interface IGalleryRecord {
   id: string;
-  created_at: string;
-  updated_at: string;
   title: string;
   description: string;
   thumbnail: string;
-  images: IPhotoImage[];
 }
 
-export interface IPhotoImage {
+export interface IGalleryBanner {
   id: string;
   created_at: string;
   updated_at: string;
+  title_en: string;
+  title_np: string;
   image: string;
+}
+
+export interface IPhotoDetail {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  images: IPhotoDetailImage[];
+}
+
+export interface IPhotoDetailImage {
+  id: string;
+  image: string;
+  created_at?: string;
+  updated_at?: string;
+  gallery?: string;
 }

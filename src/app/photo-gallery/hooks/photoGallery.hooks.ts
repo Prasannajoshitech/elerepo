@@ -1,17 +1,19 @@
 import { endpoints } from "@/api/endpoints";
+import { getData } from "@/api/fetch";
 import { safeFetch } from "@/helper/safeFetch";
 
 export const getGalleryPageData = async ({ page }: { page: number }) => {
   const perPage = 6;
 
-  const photoGalleryData = await safeFetch(
-    `${endpoints.photoGallery}?p=${page}&page_size=${perPage}`
-  );
+  const photoGalleryData = await getData(`${endpoints.photoGallery}`, {
+    p: page,
+    page_size: perPage,
+  });
 
-  const photoGalleryBanner = await safeFetch(endpoints.photoGalleryBanner);
+  const photoBanner = await safeFetch(endpoints.photoBanner);
 
   return {
     photoGalleryData,
-    photoGalleryBanner,
+    photoBanner,
   };
 };

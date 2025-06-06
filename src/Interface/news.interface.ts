@@ -1,26 +1,26 @@
 export interface INewsRoot {
-  links: INewsLinks;
-  total_items: number;
-  total_pages: number;
-  current_page: number;
-  page_size: number;
-  results: INewsResult[];
-}
-
-export interface INewsLinks {
+  records: INewsRecord[];
+  totalRecords: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pagingCounter: number;
+  hasPrevious: boolean;
+  hasNext: boolean;
+  prev: string;
   next: string;
-  previous: string;
+  recordShown: number;
 }
 
-export interface INewsResult {
+export interface INewsRecord {
   id: string;
   created_at: string;
   updated_at: string;
+  slug: string;
+  title: string;
+  description: string;
   main_category: string;
   sub_category: string;
-  title_en: string;
-  description: string;
-  slug: string;
   file: string;
   image: string;
 }

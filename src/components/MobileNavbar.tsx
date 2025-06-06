@@ -1,11 +1,11 @@
 "use client";
-import { INavLinksDaum } from "@/Interface/navlinks.interface";
+import { INavLinksCategory } from "@/Interface/navlinks.interface";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
 interface Props {
-  mobileData: INavLinksDaum[];
+  mobileData: INavLinksCategory[];
 }
 
 const MobileNavbar: React.FC<Props> = ({ mobileData }) => {

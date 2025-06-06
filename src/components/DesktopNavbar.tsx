@@ -1,11 +1,11 @@
 "use client";
-import { INavLinksDaum } from "@/Interface/navlinks.interface";
+import { INavLinksCategory } from "@/Interface/navlinks.interface";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
 interface Props {
-  desktopData: INavLinksDaum[];
+  desktopData: INavLinksCategory[];
 }
 
 const DesktopNavbar: React.FC<Props> = ({ desktopData }) => {

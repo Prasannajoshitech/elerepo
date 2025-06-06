@@ -1,6 +1,6 @@
 "use client";
 import { PATH } from "@/constant/path";
-import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
+import { formatDate } from "@/utils/formatDate";
 import Image from "next/image";
 import Link from "next/link";
 import { IoEyeSharp } from "react-icons/io5";
@@ -25,7 +25,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
           {title}
         </Link>
         <p className="typography-p-small text-text-300 font-medium pt-[0.62rem]">
-          Published Date : {formatToNepaliDate(date)}
+          Published Date : {formatDate(date)}
         </p>
       </div>
       <div className="flex items-center gap-[0.75rem]">

@@ -8,7 +8,7 @@ export const getOrganizationSettingData = async () => {
   return organizationSettingData;
 };
 
-export const getNavLinksData = async () => {
+export const getDynamicNavLinksData = async () => {
   const navLinks = await safeFetch(endpoints.navLinks);
   return navLinks;
 };
@@ -23,7 +23,7 @@ export const getHeroSectionData = async () => {
   return heroSection;
 };
 
-export const getNavData = async () => {
+export const getSOACategory = async () => {
   const navData = await safeFetch(endpoints.applicationStatus);
 
   return navData;

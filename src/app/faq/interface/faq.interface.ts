@@ -1,16 +1,12 @@
-export interface IFaqRoot {
+export interface IFaq {
   status: string;
-  status_code: number;
+  statusCode: number;
   message: string;
-  data: IFaqDaum[];
+  data: IFaqData[];
 }
 
-export interface IFaqDaum {
+export interface IFaqData {
   id: string;
-  created_at: string;
-  updated_at: string;
-  ordering: number;
   question: string;
   answer: string;
-  category: string;
 }

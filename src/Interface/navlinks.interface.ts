@@ -2,10 +2,10 @@ export interface INavLinksRoot {
   status: string;
   status_code: number;
   message: string;
-  data: INavLinksDaum[];
+  data: INavLinksCategory[];
 }
 
-export interface INavLinksDaum {
+export interface INavLinksCategory {
   id: string;
   name: string;
   main_ctg_slug: string;

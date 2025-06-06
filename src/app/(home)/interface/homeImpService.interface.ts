@@ -1,27 +1,43 @@
-export interface IImpServiceRoot {
+export interface IServiceRoot {
   status: string;
-  status_code: number;
+  statusCode: number;
   message: string;
-  data: IImpServiceDaum[];
+  data: IServiceData;
 }
 
-export interface IImpServiceDaum {
+export interface IServiceData {
+  records: IServiceRecord[];
+  totalRecords: number;
+  perPage: number;
+  totalPages: number;
+  currentPage: number;
+  pagingCounter: number;
+  hasPrevious: boolean;
+  hasNext: boolean;
+  prev: string;
+  next: string;
+  recordShown: number;
+}
+
+export interface IServiceRecord {
   id: string;
   name: string;
-  icon: string;
-  ordering: number;
   title: string;
   description: string;
-  images: IImpServiceImage[];
-  files: IImpServiceFile[];
+  icon: string;
+  ordering: number;
+  images: IServiceImage[];
+  files: IServiceFile[];
 }
 
-export interface IImpServiceImage {
+export interface IServiceImage {
   id: string;
-  image?: string;
+  service_name: string;
+  image: string;
 }
 
-export interface IImpServiceFile {
+export interface IServiceFile {
   id: string;
+  service_name: string;
   file: string;
 }

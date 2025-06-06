@@ -9,10 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  ISoaDetailDetail,
-  ISoaDetailRoot,
-} from "@/Interface/soaDetai.interface";
+import { ISoa } from "@/Interface/soaDetai.interface";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -47,19 +44,19 @@ const columns: Column[] = [
 const PER_PAGE = 4;
 
 interface Props {
-  soaTableData: ISoaDetailRoot;
+  soaTableData: ISoa;
 }
 
 const TableData: React.FC<Props> = ({ soaTableData }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const pageCount = soaTableData?.total_pages;
+  const pageCount = soaTableData?.totalPages;
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page);
   };
 
-  const paginatedMembers: ISoaDetailDetail[] = soaTableData?.results?.slice(
+  const paginatedMembers = soaTableData?.data?.records?.slice(
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE
   );
@@ -89,7 +86,7 @@ const TableData: React.FC<Props> = ({ soaTableData }) => {
           </TableHeader>
 
           <TableBody>
-            {paginatedMembers.length === 0 ? (
+            {paginatedMembers?.length === 0 ? (
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
@@ -99,7 +96,7 @@ const TableData: React.FC<Props> = ({ soaTableData }) => {
                 </TableCell>
               </TableRow>
             ) : (
-              paginatedMembers.map((member, index) => (
+              paginatedMembers?.map((member, index) => (
                 <TableRow key={`${member?.id}-${index}`}>
                   <TableCell className={cn("text-center cellStyle p-4")}>
                     {(currentPage - 1) * PER_PAGE + index + 1}

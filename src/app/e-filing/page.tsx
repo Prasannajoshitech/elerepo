@@ -1,23 +1,23 @@
 import ErrorMessage from "@/components/ErrorMessage";
 import React from "react";
 import { getEFilingData } from "./hooks/getEfiling";
-import { IEFilingDaum } from "./inteface/e-filing";
+import { IEfilingData } from "./inteface/e-filing";
 
 const EFiling = async () => {
   try {
     const { eFilingData } = await getEFilingData();
 
-    const dataEFiling: IEFilingDaum = eFilingData?.data[0];
+    const dataEFiling: IEfilingData = eFilingData?.data[0];
 
     return (
       <>
-        <div className="padding-x">
-          <h3 className="typography-h3 font-semibold text-text-500 leading-[150%] py-[2.5rem]">
+        <div className="padding-x py-[2.5rem]">
+          <h3 className="typography-h3 font-semibold text-text-500 leading-[150%] ">
             {dataEFiling?.title}
           </h3>
 
           <p
-            className="pb-[3.13rem]"
+            className="text-text-400 typography-p-regular"
             dangerouslySetInnerHTML={{
               __html: dataEFiling?.description || "",
             }}

@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperCore } from "swiper/types";
 import Image from "next/image";
+import { useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperCore } from "swiper/types";
 
-import { IPhotoImage, IPhotoResult } from "../../interface/photo.interface";
-
-import { Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-import { formatToNepaliDate } from "@/utils/formatToNepaliDate";
+import { Navigation } from "swiper/modules";
+import {
+  IPhotoDetail,
+  IPhotoDetailImage,
+} from "../../interface/photo.interface";
+import { formatDate } from "@/utils/formatDate";
 
 interface Props {
-  photoData: IPhotoResult;
+  photoData: IPhotoDetail;
 }
 
 const PhotoSlider: React.FC<Props> = ({ photoData }) => {
@@ -22,12 +24,10 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
   const swiperRef = useRef<SwiperCore | null>(null);
 
   // Combine thumbnail and image list
-  const allImages: IPhotoImage[] = [
+  const allImages: IPhotoDetailImage[] = [
     {
       id: "thumbnail",
       image: photoData.thumbnail,
-      created_at: photoData.created_at,
-      updated_at: photoData.updated_at,
     },
     ...photoData.images,
   ];
@@ -47,7 +47,7 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
       </h3>
 
       <p className="typography-p1-regular font-medium text-text-300 leading-[120%] pb-5 lg:pb-10">
-        Published Date : {formatToNepaliDate(photoData?.created_at)}
+        Published Date : {formatDate(photoData?.images[0]?.created_at || "")}
       </p>
 
       <div className="relative overflow-hidden">
@@ -79,7 +79,7 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
           className="w-full h-[14rem] lg:h-[40rem] border"
           navigation={false}
         >
-          {allImages.map((img: IPhotoImage, index) => (
+          {allImages.map((img: IPhotoDetailImage, index) => (
             <SwiperSlide
               key={index}
               className="w-full h-full rounded-[0.25rem]"
@@ -97,7 +97,7 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
 
         {/* Custom Pagination with Images */}
         <div className="flex justify-center gap-2 mt-4 flex-wrap">
-          {allImages.map((photo: IPhotoImage, index: number) => (
+          {allImages.map((photo: IPhotoDetailImage, index: number) => (
             <div
               key={index}
               onClick={() => swiperRef.current?.slideTo(index)}
