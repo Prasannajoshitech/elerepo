@@ -1,5 +1,6 @@
 import React from "react";
 import { IMissionVisionGoalsObjec } from "../interface/homeMissionVision.interface";
+import ObjectiveCard from "@/components/ObjectiveCard";
 
 interface Props {
   mandatesData: IMissionVisionGoalsObjec[];
@@ -13,34 +14,12 @@ const MandatesCommission: React.FC<Props> = ({ mandatesData }) => {
       </h3>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
         {mandatesData?.map((mandate, index) => (
-          <div
+          <ObjectiveCard
             key={index}
-            className="relative px-6 pt-8 pb-8 bg-background-50 shadow-sm rounded-[0.5rem] group"
-          >
-            <div className="relative z-20">
-              <button className="mx-auto w-11 h-11 p-5 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 text-[1.25rem] font-bold leading-[120%]">
-                {mandate?.ordering}
-              </button>
-              <p className="mt-5 typography-p-large-semi-bold text-text-400 group-hover:text-white text-center">
-                {mandate?.title}
-              </p>
-              <p
-                className="mt-5 typography-p-regular text-text-400 group-hover:text-white text-center"
-                dangerouslySetInnerHTML={{
-                  __html: mandate?.description || "",
-                }}
-              />
-            </div>
-
-            <div
-              style={{
-                transitionProperty: "width, height",
-                transitionDuration: "400ms, 400ms",
-                transitionDelay: "0ms, 70ms",
-              }}
-              className="absolute z-10 bottom-0 left-1/2 -translate-x-1/2 bg-blue-400 w-24 h-3 rounded-t-[0.75rem] group-hover:w-full group-hover:h-full "
-            />
-          </div>
+            ordering={mandate?.ordering}
+            title={mandate?.title}
+            description={mandate?.description}
+          />
         ))}
       </div>
     </div>

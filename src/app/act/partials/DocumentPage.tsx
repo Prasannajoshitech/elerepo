@@ -64,14 +64,14 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
   return (
     <div className="container mx-auto py-[2.5rem] px-[1rem] lg:px-[3.12rem] rounded-[0.65rem] bg-background-100 my-[1.5rem] lg:my-[2.5rem]">
       <h1 className="typography-h3 text-text-500 font-semibold mb-4 lg:mb-8">
-        {selectedCategory}
+        {categories[0]?.main_category}
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-10">
         {/* Sidebar */}
         <aside className="bg-[#EEF8FF] rounded-[0.25rem] p-[1.25rem]">
           <h2 className="typography-p-large text-text-500 font-semibold mb-[1.25rem]">
-            Laws & Regulations
+            {selectedCategory}
           </h2>
 
           <nav className="flex flex-col space-y-2">

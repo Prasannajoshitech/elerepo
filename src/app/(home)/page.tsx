@@ -11,22 +11,30 @@ import ErrorMessage from "@/components/ErrorMessage";
 
 const Home = async () => {
   try {
-    const { homeData, impServiceData, missionVisionData, teamData } =
-      await getHomePageData();
+    const {
+      homeData,
+      impServiceData,
+      missionVisionData,
+      teamData,
+      chairperson,
+    } = await getHomePageData();
 
     return (
       <div>
-        <Hero heroData={homeData?.data?.[0]} />
+        <Hero heroData={homeData?.data[0]} />
         <ImpServices impServiceData={impServiceData?.data} />
         {/* <MissionVision
           missionVisionData={missionVisionData?.data[0]?.mission_vision}
         /> */}
         <LatestNotices serviceData={impServiceData?.data} />
-        <TeamSection teamData={teamData?.data} />
+        <TeamSection
+          teamData={teamData?.data?.records}
+          chairperson={chairperson}
+        />
         <MandatesCommission
           mandatesData={missionVisionData?.data?.[0]?.goals_objectives}
         />
-        <TeamBottom teamData={teamData?.data} />
+        <TeamBottom teamData={teamData?.data?.records} />
       </div>
     );
   } catch (error) {

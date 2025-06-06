@@ -9,6 +9,7 @@ interface Endpoints {
   about: string;
 
   homeTeam: string;
+  chairperson: string;
   document: string;
   actRule: string;
   categoryDetail: string;
@@ -42,11 +43,12 @@ export const endpoints: Endpoints = {
   navNews: "/news/list/",
   popup: "/popup/list/",
 
-  homeHero: "/homepage/list",
+  homeHero: "/homepage/list/",
   homeImpService: "/services/list",
   about: "/about/list/",
 
   homeTeam: "/team/list/",
+  chairperson: "/team/chairperson-message/list/",
   document: "/document/list/",
   actRule: "/subcategory/documentlist/",
   categoryDetail: "/subcategory/detail",

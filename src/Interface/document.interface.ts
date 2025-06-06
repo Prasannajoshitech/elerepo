@@ -22,6 +22,7 @@ export interface IActRecord {
   ordering: number;
   sub_ctg_slug: string;
   document_list: IActDocumentList[];
+  main_category: string;
 }
 
 export interface IActDocumentList {
