@@ -18,7 +18,7 @@ interface Endpoints {
   photoBanner: string;
   photoGallery: string;
   photoDetail: string;
-  heroSection: string;
+
   applicationStatus: string;
   soaDetail: string;
   faq: string;
@@ -32,6 +32,8 @@ interface Endpoints {
     subCategory: string;
     chatAnswer: string;
   };
+
+  breadcrumb: string;
 }
 
 export const endpoints: Endpoints = {
@@ -57,7 +59,6 @@ export const endpoints: Endpoints = {
   photoGallery: "/gallery/list/",
   photoDetail: "/gallery/detail",
 
-  heroSection: "/herosection/list/",
   applicationStatus: "/applicationstatus/list/",
   soaDetail: "/applicationstatus/detail",
   faq: "/faq/list/",
@@ -72,6 +73,8 @@ export const endpoints: Endpoints = {
     subCategory: "/chat/subCategory/list/",
     chatAnswer: "chat/answer/suggestion/get/",
   },
+
+  breadcrumb: "/herosection/list/",
 };
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;

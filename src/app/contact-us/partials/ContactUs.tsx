@@ -2,6 +2,7 @@ import { IOrganizationSettingRoot } from "@/Interface/organization.interface";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import defaultIcon from "./icons/location.svg"; // Example icon
+import { useTranslations } from "next-intl";
 
 interface Props {
   data: IOrganizationSettingRoot;
@@ -32,26 +33,32 @@ const ContactItem: React.FC<ContactItemProps> = ({ label, value, icon }) => (
 );
 
 const ContactUs: React.FC<Props> = ({ data }) => {
+  const t = useTranslations("OrganizationSetting");
+
   const info = data?.data[0];
 
   return (
     <div className="space-y-3">
       <ContactItem
-        label="Head Office"
+        label={t("HeadOffice")}
         value={info?.office_address}
         icon={info?.office_address_icon}
       />
       <ContactItem
-        label="Email Us"
+        label={t("EmailUs")}
         value={info?.email}
         icon={info?.email_icon}
       />
       <ContactItem
-        label="Call Us"
+        label={t("CallUs")}
         value={info?.phone}
         icon={info?.phone_icon}
       />
-      <ContactItem label="Fax Number" value={info?.fax} icon={info?.fax_icon} />
+      <ContactItem
+        label={t("FaxNumber")}
+        value={info?.fax}
+        icon={info?.fax_icon}
+      />
     </div>
   );
 };

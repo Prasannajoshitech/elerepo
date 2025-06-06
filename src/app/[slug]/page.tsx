@@ -1,6 +1,6 @@
 import React from "react";
 import TableSOA from "./partails/TableSOA";
-import HeroSection from "@/components/HeroSection";
+import HeroSection from "@/app/contact-us/partials/ContactBreadcrumb";
 import ErrorMessage from "@/components/ErrorMessage";
 
 interface SOASlug {

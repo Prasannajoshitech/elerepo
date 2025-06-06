@@ -6,6 +6,7 @@
     "list1": "Hello, I am from Nepal",
     "list2": "I am living in Kathmandu."
   },
+
   "FooterLinks": {
     "TariffDetermination": "Tariff Determination",
     "LicensingInformation": "Licensing Information",
@@ -17,5 +18,16 @@
     "NepalLawCommission": "Nepal Law Commission",
     "PublicProcurementMonitoring": "Public Procurement Monitoring",
     "MinistryEnergy": "Ministry of Energy"
+  },
+  "OrganizationSetting": {
+    "HeadOffice": "Head Office",
+    "EmailUs": "Email Us",
+    "CallUs": "Call Us",
+    "FaxNumber": "Fax Number"
+  },
+
+  "Breadcrumb": {
+    "ContactUs": "Contact Us",
+    "AboutUs": "About Us"
   }
 }
