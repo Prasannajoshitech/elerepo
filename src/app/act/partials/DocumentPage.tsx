@@ -7,8 +7,9 @@ import {
   IActDocumentList,
   IActRecord,
 } from "@/Interface/document.interface";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DocumentCard from "./DocumentCard";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   documentData: IActData;
@@ -17,13 +18,29 @@ interface Props {
 const PER_PAGE = 4;
 
 const DocumentPage: React.FC<Props> = ({ documentData }) => {
-  const categories: IActRecord[] = documentData?.records ?? [];
-
-  const [slug, setSlug] = useState<string>(categories[0]?.sub_ctg_slug ?? "");
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    categories[0]?.name ?? ""
+  const categories: IActRecord[] = useMemo(
+    () => documentData?.records ?? [],
+    [documentData]
   );
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Read slug from query param or fall back to first category
+  const initialSlug =
+    searchParams.get("slug") || categories[0]?.sub_ctg_slug || "";
+
+  const [slug, setSlug] = useState<string>(initialSlug);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // Sync selected category name from slug
+  useEffect(() => {
+    const foundCategory = categories.find((cat) => cat.sub_ctg_slug === slug);
+    if (foundCategory) {
+      setSelectedCategory(foundCategory.name);
+    }
+  }, [slug, categories]);
 
   // Fetch documents for the selected slug
   const { data: categoryDocumentData } = useGetDataQuery<{
@@ -35,20 +52,25 @@ const DocumentPage: React.FC<Props> = ({ documentData }) => {
     url: `${endpoints.categoryDetail}/${slug}/`,
   });
 
-  // Handle Category Click
+  // Handle category tab click
   const handleCategoryClick = (category: {
     name: string;
     sub_ctg_slug: string;
   }) => {
     setSelectedCategory(category.name);
     setSlug(category.sub_ctg_slug);
-    setCurrentPage(1); // Reset to first page when category changes
+    setCurrentPage(1); // Reset page
+
+    // Update query param
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set("slug", category.sub_ctg_slug);
+    router.push(`?${newSearchParams.toString()}`);
   };
 
   const allDocuments: IActDocumentList[] =
     categoryDocumentData?.data?.document_list ?? [];
 
-  // Pagination Logic
+  // Pagination
   const totalItems = allDocuments.length;
   const pageCount = Math.ceil(totalItems / PER_PAGE);
 

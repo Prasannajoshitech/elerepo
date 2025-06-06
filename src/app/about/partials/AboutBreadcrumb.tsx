@@ -6,20 +6,17 @@ import { useTranslations } from "next-intl";
 const AboutBreadcrumb = () => {
   const t = useTranslations("Breadcrumb");
 
-  const { data, isLoading, isError } = useGetDataQuery({
+  const { data, isError } = useGetDataQuery({
     url: endpoints.breadcrumb,
     params: { title: "About" },
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError || !data || !data[0]) return <div>Something went wrong</div>;
-
-  const imageUrl = data[0]?.image;
+  if (isError) return <div>Something went wrong</div>;
 
   return (
     <div
       style={{
-        backgroundImage: `url(${imageUrl})`,
+        backgroundImage: `url(${data?.[0]?.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

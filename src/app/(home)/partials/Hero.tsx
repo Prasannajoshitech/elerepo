@@ -13,11 +13,11 @@ const Hero: React.FC<Props> = ({ heroData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const modalSeen = localStorage.getItem("pdfModalShown");
+    const modalSeen = sessionStorage.getItem("pdfModalShown");
 
     if (!modalSeen) {
       setIsModalOpen(true);
-      localStorage.setItem("pdfModalShown", "true");
+      sessionStorage.setItem("pdfModalShown", "true");
     }
   }, []);
 
