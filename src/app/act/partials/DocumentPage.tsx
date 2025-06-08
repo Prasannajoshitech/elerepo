@@ -43,6 +43,8 @@ const DocumentPage: React.FC<Props> = ({ slug1 }) => {
   const allDocuments = categoryDocumentData?.data?.documents.records ?? [];
   const pageCount = Math.ceil(allDocuments.length / PER_PAGE);
 
+  const annualReport = subcategory?.is_annual_report;
+
   useEffect(() => {
     if (subcategory) {
       setSelectedCategory(subcategory.name);
@@ -73,6 +75,7 @@ const DocumentPage: React.FC<Props> = ({ slug1 }) => {
         />
 
         <DocumentList
+          annualReport={annualReport}
           documents={allDocuments}
           currentPage={currentPage}
           pageCount={pageCount}

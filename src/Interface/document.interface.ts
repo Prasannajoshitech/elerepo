@@ -17,6 +17,7 @@ export interface IActSubcategory {
   ordering: number;
   sub_ctg_slug: string;
   main_category: string;
+  is_annual_report: boolean;
 }
 
 export interface IActDocuments {

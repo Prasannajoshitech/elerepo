@@ -20,6 +20,7 @@ interface Endpoints {
   photoBanner: string;
   photoGallery: string;
   photoDetail: string;
+  videoList: string;
 
   applicationStatus: string;
   soaDetail: string;
@@ -65,6 +66,7 @@ export const endpoints: Endpoints = {
   photoBanner: "/gallery/banner/list/",
   photoGallery: "/gallery/list/",
   photoDetail: "/gallery/detail",
+  videoList: "/video/list/",
 
   applicationStatus: "/applicationstatus/list/",
   soaDetail: "/applicationstatus/detail",
