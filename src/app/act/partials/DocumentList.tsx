@@ -28,7 +28,7 @@ const DocumentList: React.FC<DocumentListProps> = ({
     currentPage * PER_PAGE
   );
 
-    return (
+  return (
     <section className="md:col-span-3 space-y-[0.62rem]">
       {paginatedDocs.length > 0 ? (
         paginatedDocs.map((doc) =>
