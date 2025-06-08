@@ -1,5 +1,5 @@
 import ErrorMessage from "@/components/ErrorMessage";
-import DocumentPage from "../interface/DocumentPage";
+import DocumentPage from "../partials/DocumentPage";
 
 interface ActSlug {
   params: Promise<{ slug1: string }>;

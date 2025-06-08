@@ -1,12 +1,12 @@
 import { PATH } from "@/constant/path";
-import { IActDocumentList } from "@/Interface/document.interface";
+import { IActRecord } from "@/Interface/document.interface";
 import { formatDate } from "@/utils/formatDate";
 
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  documentData: IActDocumentList[];
+  documentData: IActRecord[];
 }
 
 const TabContent: React.FC<Props> = ({ documentData }) => {

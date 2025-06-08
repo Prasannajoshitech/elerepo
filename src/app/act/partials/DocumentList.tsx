@@ -1,6 +1,7 @@
 import { IActRecord } from "@/Interface/document.interface";
 import CustomPagination from "@/components/CustomPagination";
-import DocumentCard from "../partials/DocumentCard";
+import DocumentCard from "./DocumentCard";
+import { useParams } from "next/navigation";
 
 interface DocumentListProps {
   documents: IActRecord[];
@@ -17,6 +18,8 @@ const DocumentList: React.FC<DocumentListProps> = ({
   pageCount,
   onPageChange,
 }) => {
+  const params = useParams<{ slug1: string }>();
+
   const paginatedDocs = documents.slice(
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE
@@ -31,6 +34,7 @@ const DocumentList: React.FC<DocumentListProps> = ({
             title={doc.title}
             date={doc.created_at}
             slug={doc.slug}
+            slugBefore={params?.slug1}
           />
         ))
       ) : (
