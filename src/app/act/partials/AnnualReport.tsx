@@ -22,14 +22,14 @@ const AnnualReport = ({
       <div className="p-4 bg-background-500 rounded-[0.5rem] flex gap-[1.5rem] overflow-hidden">
         <Link
           href={`${PATH.ACT}/${slugBefore}/${slug}`}
-          className="w-[15rem] h-[18rem] border-b-[0.5px] border-text-100 shrink-0 rounded-xl"
+          className="w-[15rem] h-[18rem] border-b-[0.5px] border-text-100 shrink-0 rounded-lg"
         >
           <Image
             src={image}
             alt={title}
             width={600}
             height={600}
-            className="w-full h-full object-cover rounded-xl"
+            className="w-full h-full object-cover rounded-lg"
           />
         </Link>
         <div>
