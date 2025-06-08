@@ -1,10 +1,10 @@
 "use client";
-import { IActRecord } from "@/Interface/document.interface";
+import { IActRelatedSubcategory } from "@/Interface/document.interface";
 
 interface CategorySidebarProps {
-  categories: IActRecord[];
+  categories: IActRelatedSubcategory[];
   selectedCategory: string;
-  onCategoryClick: (category: IActRecord) => void;
+  onCategoryClick: (category: IActRelatedSubcategory) => void;
 }
 
 const CategorySidebar: React.FC<CategorySidebarProps> = ({

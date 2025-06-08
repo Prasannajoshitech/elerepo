@@ -1,9 +1,9 @@
-import { IActDocumentList } from "@/Interface/document.interface";
+import { IActRecord } from "@/Interface/document.interface";
 import CustomPagination from "@/components/CustomPagination";
 import DocumentCard from "../partials/DocumentCard";
 
 interface DocumentListProps {
-  documents: IActDocumentList[];
+  documents: IActRecord[];
   currentPage: number;
   pageCount: number;
   onPageChange: (page: number) => void;

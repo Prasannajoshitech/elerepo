@@ -1,8 +1,25 @@
-export interface IActCategoryRoot {
+export interface IActRoot {
+  status: string;
+  statusCode: number;
+  message: string;
   data: IActData;
 }
 
 export interface IActData {
+  subcategory: IActSubcategory;
+  documents: IActDocuments;
+  related_subcategories: IActRelatedSubcategory[];
+}
+
+export interface IActSubcategory {
+  id: string;
+  name: string;
+  ordering: number;
+  sub_ctg_slug: string;
+  main_category: string;
+}
+
+export interface IActDocuments {
   records: IActRecord[];
   totalRecords: number;
   perPage: number;
@@ -18,15 +35,6 @@ export interface IActData {
 
 export interface IActRecord {
   id: string;
-  name: string;
-  ordering: number;
-  sub_ctg_slug: string;
-  document_list: IActDocumentList[];
-  main_category: string;
-}
-
-export interface IActDocumentList {
-  id: string;
   title: string;
   description: string;
   slug: string;
@@ -36,4 +44,12 @@ export interface IActDocumentList {
   sub_category: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface IActRelatedSubcategory {
+  id: string;
+  name: string;
+  ordering: number;
+  sub_ctg_slug: string;
+  main_category: string;
 }

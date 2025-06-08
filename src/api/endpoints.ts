@@ -10,6 +10,7 @@ interface Endpoints {
 
   homeTeam: string;
   chairperson: string;
+  subcategory: string;
   document: string;
   actRule: string;
   categoryDetail: string;
@@ -50,7 +51,11 @@ export const endpoints: Endpoints = {
   homeTeam: "/team/list/",
   chairperson: "/team/chairperson-message/list/",
   document: "/document/list/",
+
+  subcategory: "/maincategory/detail/",
+
   actRule: "/subcategory/documentlist/",
+
   categoryDetail: "/subcategory/detail",
 
   actDetail: "/document/detail",
