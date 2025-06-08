@@ -7,6 +7,30 @@
     "News": "News"
   },
 
+  "nav": {
+    "about_us": "About Us",
+    "introduction": "Introduction",
+    "vision_mission": "Vision/Mission",
+    "function_duties": "Function, Duties & Auth.",
+    "commission": "Commission",
+    "organizational_structure": "Organizational Strut",
+    "chairperson_message": "Chairperson Message",
+    "employee_details": "Employee Details",
+    "laws_and_regulations": "Laws & Regulations",
+    "act_rules": "Act & Rules",
+    "bylaws": "ByLaws",
+    "directive": "Directive",
+    "grid_code": "Grid Code",
+    "manual": "Manual",
+    "proposed_draft": "Proposed Draft",
+    "status_of_application": "Status of Application",
+    "gallery": "Gallery",
+    "photo_gallery": "Photo Gallery",
+    "video_gallery": "Video Gallery",
+    "contact_us": "Contact Us",
+    "e_filing": "E-Filing"
+  },
+
   "FooterLinks": {
     "Company": "Company",
     "ImportantLinks": "Important Links",

@@ -1,48 +1,37 @@
 export const navLinks = [
   {
-    name: "About Us",
+    name: "about_us",
     url: "/about",
     dropdown: [
-      { name: "Introduction", url: "/about" },
-      { name: "Vision/Mission", url: "/about" },
-      { name: "Function, Duties & Auth.", url: "/about" },
-      { name: "Commission", url: "/about" },
-      { name: "Organizational Strut", url: "/about" },
-      { name: "Chairperson Message ", url: "/about" },
-      { name: "Employee Details", url: "/about" },
+      { name: "introduction", url: "/about" },
+      { name: "vision_mission", url: "/about" },
+      { name: "function_duties", url: "/about" },
+      { name: "commission", url: "/about" },
+      { name: "organizational_structure", url: "/about" },
+      { name: "chairperson_message", url: "/about" },
+      { name: "employee_details", url: "/about" },
     ],
   },
+
   {
-    name: "Laws & Regulations",
-    url: "/act",
-    dropdown: [
-      { name: "Act & Rules", url: "/act" },
-      { name: "ByLaws", url: "/act" },
-      { name: "Directive", url: "/act" },
-      { name: "Grid Code", url: "/act" },
-      { name: "Manual", url: "/act" },
-      { name: "Proposed Draft", url: "/act" },
-    ],
-  },
-  {
-    name: "Status of Application", // dropdown will be filled later dynamically
+    name: "status_of_application",
     url: "/status-of-application",
-    dropdown: [], // initially empty
+    dropdown: [],
   },
   {
-    name: "Gallery",
+    name: "gallery",
     url: "/gallery",
     dropdown: [
-      { name: "Photo Gallery", url: "/photo-gallery" },
-      { name: "Video Gallery", url: "/video-gallery" },
+      { name: "photo_gallery", url: "/photo-gallery" },
+      { name: "video_gallery", url: "/video-gallery" },
     ],
   },
   {
-    name: "Contact Us",
+    name: "contact_us",
     url: "/contact-us",
   },
   {
-    name: "E-Filing",
+    name: "e_filing",
     url: "/e-filing",
   },
 ];

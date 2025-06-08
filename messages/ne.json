@@ -7,6 +7,30 @@
     "News": "समाचार"
   },
 
+  "nav": {
+    "about_us": "हाम्रो बारेमा",
+    "introduction": "परिचय",
+    "vision_mission": "दृष्टिकोण / मिशन",
+    "function_duties": "कार्य, कर्तव्य र अधिकार",
+    "commission": "आयोग",
+    "organizational_structure": "संगठनात्मक संरचना",
+    "chairperson_message": "अध्यक्षको सन्देश",
+    "employee_details": "कर्मचारी विवरण",
+    "laws_and_regulations": "कानून र नियमावली",
+    "act_rules": "ऐन र नियमहरू",
+    "bylaws": "उपविधि",
+    "directive": "निर्देशिका",
+    "grid_code": "ग्रिड कोड",
+    "manual": "म्यानुअल",
+    "proposed_draft": "प्रस्तावित मस्यौदा",
+    "status_of_application": "निवेदनको स्थिति",
+    "gallery": "ग्यालेरी",
+    "photo_gallery": "फोटो ग्यालेरी",
+    "video_gallery": "भिडियो ग्यालेरी",
+    "contact_us": "सम्पर्क गर्नुहोस्",
+    "e_filing": "ई-फाइलिङ"
+  },
+
   "FooterLinks": {
     "Company": "कम्पनी",
     "ImportantLinks": "महत्त्वपूर्ण लिङ्कहरू",
