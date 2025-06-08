@@ -6,7 +6,7 @@ const News = () => {
   const t = useTranslations("Header");
 
   return (
-    <>fo
+    <>
       <div
         style={{
           background: "linear-gradient(180deg, #003386 0%, #002E78 100%)",
