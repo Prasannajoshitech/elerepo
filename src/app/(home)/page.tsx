@@ -1,14 +1,12 @@
-import React from "react";
 import Hero from "./partials/Hero";
 import ImpServices from "./partials/ImpServices";
 
-import LatestNotices from "./partials/LatestNotices";
+import ErrorMessage from "@/components/ErrorMessage";
 import TeamSection from "../../components/TeamSection";
+import { getHomePageData } from "./hooks/home.hook";
+import LatestNotices from "./partials/LatestNotices";
 import MandatesCommission from "./partials/MandatesCommission";
 import TeamBottom from "./partials/TeamBottom";
-import { getHomePageData } from "./hooks/home.hook";
-import ErrorMessage from "@/components/ErrorMessage";
-import MissionVision from "./partials/MissionVision";
 
 const Home = async () => {
   try {
@@ -24,9 +22,9 @@ const Home = async () => {
       <div>
         <Hero heroData={homeData?.data[0]} />
         <ImpServices impServiceData={impServiceData?.data} />
-        <MissionVision
+        {/* <MissionVision
           missionVisionData={missionVisionData?.data[0]?.mission_vision}
-        />
+        /> */}
         <LatestNotices serviceData={impServiceData?.data} />
         <TeamSection
           teamData={teamData?.data?.records}

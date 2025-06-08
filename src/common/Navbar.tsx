@@ -9,6 +9,17 @@ import {
 } from "@/Interface/navlinks.interface";
 import { ISAOResult } from "@/Interface/soa.interface";
 
+// Process dynamic nav links
+interface DynamicNavLinksCategory extends INavLinksCategory {
+  id: string;
+  subcategories: DynamicNavLinksSubcategory[];
+}
+
+interface DynamicNavLinksSubcategory extends INavLinksSubcategory {
+  id: string;
+  sub_ctg_slug: string;
+}
+
 const Navbar = async () => {
   try {
     const [dynamicNavLinkData, soaCategoryData] = await Promise.all([
@@ -16,8 +27,26 @@ const Navbar = async () => {
       getSOACategory(),
     ]);
 
-    const dynamicLinks: INavLinksCategory[] = dynamicNavLinkData?.data;
+    const dynamicLinks: DynamicNavLinksCategory[] =
+      dynamicNavLinkData?.data.map(
+        (category: INavLinksCategory, i: number): DynamicNavLinksCategory => ({
+          ...category,
+          id: `dynamic-${i}`,
+          subcategories:
+            category.subcategories?.map(
+              (
+                sub: INavLinksSubcategory,
+                j: number
+              ): DynamicNavLinksSubcategory => ({
+                ...sub,
+                id: `dynamic-sub-${i}-${j}`,
+                sub_ctg_slug: `/act/${sub.sub_ctg_slug.replace(/^\/+/, "")}`,
+              })
+            ) || [],
+        })
+      );
 
+    // Process static nav links
     const updatedNavLinks = navLinks.map((item) => {
       if (item.name === "status_of_application") {
         return {

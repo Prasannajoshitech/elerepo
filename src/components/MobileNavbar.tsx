@@ -61,7 +61,9 @@ const MobileNavbar: React.FC<Props> = ({ dynamicData, staticData }) => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-sm text-text-500 hover:text-blue-500"
                 >
-                  {shouldTranslate ? t(subItem?.name) : subItem?.name}
+                  {shouldTranslate && !subItem?.noTranslate
+                    ? t(subItem.name)
+                    : subItem.name}
                 </Link>
               ))}
             </div>
