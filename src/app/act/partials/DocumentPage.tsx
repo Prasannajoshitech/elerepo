@@ -67,20 +67,24 @@ const DocumentPage: React.FC<Props> = ({ slug1 }) => {
         {subcategory?.main_category || "Documents"}
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-10">
-        <CategorySidebar
-          categories={categoriesList}
-          selectedCategory={selectedCategory}
-          onCategoryClick={handleCategoryClick}
-        />
+      <div className="flex  gap-5 lg:gap-10">
+        <div className="shrink-0">
+          <CategorySidebar
+            categories={categoriesList}
+            selectedCategory={selectedCategory}
+            onCategoryClick={handleCategoryClick}
+          />
+        </div>
 
-        <DocumentList
-          annualReport={annualReport}
-          documents={allDocuments}
-          currentPage={currentPage}
-          pageCount={pageCount}
-          onPageChange={setCurrentPage}
-        />
+        <div className="w-full">
+          <DocumentList
+            annualReport={annualReport}
+            documents={allDocuments}
+            currentPage={currentPage}
+            pageCount={pageCount}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       </div>
     </div>
   );
