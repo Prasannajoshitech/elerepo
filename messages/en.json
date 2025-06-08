@@ -2,12 +2,16 @@
   "TabTitles": {
     "home": "Create Next App"
   },
-  "HomePage": {
-    "list1": "Hello, I am from Nepal",
-    "list2": "I am living in Kathmandu."
+
+  "Header": {
+    "News": "News"
   },
 
   "FooterLinks": {
+    "Company": "Company",
+    "ImportantLinks": "Important Links",
+    "AffiliatedOrganizations": "Affiliated Organizations",
+    "OfficeHours": "Office Hours",
     "TariffDetermination": "Tariff Determination",
     "LicensingInformation": "Licensing Information",
     "ElectricityMarketRegulations": "Electricity Market Regulations",
@@ -19,6 +23,7 @@
     "PublicProcurementMonitoring": "Public Procurement Monitoring",
     "MinistryEnergy": "Ministry of Energy"
   },
+
   "OrganizationSetting": {
     "HeadOffice": "Head Office",
     "EmailUs": "Email Us",
@@ -28,6 +33,7 @@
 
   "Breadcrumb": {
     "ContactUs": "Contact Us",
-    "AboutUs": "About Us"
+    "AboutUs": "About Us",
+    "ApplicationStatus": "Application Status"
   }
 }

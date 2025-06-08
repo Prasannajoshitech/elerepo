@@ -24,12 +24,12 @@ const AboutPage = () => {
   };
 
   return (
-    <>
-      <div className="padding-x py-10">
+    <div className="w-full mx-auto padding-x">
+      <div className=" py-10">
         <AboutBreadcrumb />
       </div>
 
-      <div className="container mx-auto mb-10">
+      <div className="mb-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Sidebar Tabs */}
           <aside className="sticky inset-0 bg-[rgba(216,235,247,0.60)] rounded-[0.75rem] p-[1.25rem]">
@@ -59,7 +59,7 @@ const AboutPage = () => {
           </main>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

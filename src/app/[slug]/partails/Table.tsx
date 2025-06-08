@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ISoa } from "@/Interface/soaDetai.interface";
+import { ISoaRoot } from "@/Interface/soaDetai.interface";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -44,13 +44,13 @@ const columns: Column[] = [
 const PER_PAGE = 4;
 
 interface Props {
-  soaTableData: ISoa;
+  soaTableData: ISoaRoot;
 }
 
 const TableData: React.FC<Props> = ({ soaTableData }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const pageCount = soaTableData?.totalPages;
+  const pageCount = soaTableData?.data?.totalPages;
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page);

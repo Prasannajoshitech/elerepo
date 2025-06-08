@@ -1,7 +1,5 @@
-import React from "react";
-import TableSOA from "./partails/TableSOA";
-import HeroSection from "@/app/contact-us/partials/ContactBreadcrumb";
 import ErrorMessage from "@/components/ErrorMessage";
+import TableSOA from "./partails/TableSOA";
 
 interface SOASlug {
   params: Promise<{ slug: string }>;
@@ -13,7 +11,6 @@ const StatusOfApplication = async ({ params }: SOASlug) => {
 
     return (
       <div className="my-10">
-        <HeroSection />
         <TableSOA slug={slug} />
       </div>
     );

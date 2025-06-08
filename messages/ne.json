@@ -2,12 +2,16 @@
   "TabTitles": {
     "home": "नेक्स्ट एप बनाउनुहोस्"
   },
-  "HomePage": {
-    "list1": "नमस्ते, म नेपालबाट हुँ",
-    "list2": "म काठमाडौंमा बस्दैछु।"
+
+  "Header": {
+    "News": "समाचार"
   },
 
   "FooterLinks": {
+    "Company": "कम्पनी",
+    "ImportantLinks": "महत्त्वपूर्ण लिङ्कहरू",
+    "AffiliatedOrganizations": "सम्बद्ध संगठनहरू",
+    "OfficeHours": "कार्यालय समय",
     "TariffDetermination": "दर निर्धारण",
     "LicensingInformation": "इजाजतपत्र सम्बन्धी जानकारी",
     "ElectricityMarketRegulations": "विद्युत बजार नियमावली",

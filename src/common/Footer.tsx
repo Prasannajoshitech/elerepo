@@ -1,16 +1,14 @@
 import { getOrganizationSettingData } from "@/hooks/globalHook";
 import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
-import { formatTime } from "@/utils/formatTime";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaFacebook, FaSquareXTwitter } from "react-icons/fa6";
-import { IoMail } from "react-icons/io5";
-import { MdCall, MdLocationOn } from "react-icons/md";
 import FooterFallback from "./FooterFallback";
 import {
   AffiliatedOrganizationsSection,
+  Company,
   ImportantLinksSection,
+  OfficeHorus,
 } from "./FooterLinks";
 
 const Footer: React.FC = async () => {
@@ -64,68 +62,12 @@ const Footer: React.FC = async () => {
         {/* links  */}
         <div className="pt-[1.5rem] lg:pt-[2.5rem] pb-[1.44rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2.88rem]">
           {/* Company Section */}
-          <div>
-            <h2 className="mb-[1.5rem] text-white typography-p-large font-semibold">
-              Company
-            </h2>
-            <ul className=" text-white font-medium typography-p-regular ">
-              <div className="space-y-[1.25rem] cursor-pointer">
-                <li>{footerData?.org_name_eng}</li>
-                <li className="flex items-center gap-[0.38rem]">
-                  <MdLocationOn className="shrink-0" size={20} />
-                  {footerData?.office_address}
-                </li>
-                <li className="flex items-center gap-[0.38rem]">
-                  <MdCall className="shrink-0" size={20} />
-                  {footerData?.phone}
-                </li>
-                <li className="flex items-center gap-[0.38rem]">
-                  <IoMail className="shrink-0" size={20} />
-                  {footerData?.email}
-                </li>
-                <li className="flex items-center gap-[0.56rem]">
-                  <Link
-                    href={footerData?.social_media?.facebook || ""}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaFacebook className="shrink-0" size={24} />
-                  </Link>
-                  <Link
-                    href={footerData?.social_media?.twitter || ""}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaSquareXTwitter className="shrink-0" size={24} />
-                  </Link>
-                </li>
-              </div>
-            </ul>
-          </div>
+          <Company footerData={footerData} />
 
           <ImportantLinksSection />
           <AffiliatedOrganizationsSection />
 
-          {/* Office Hours */}
-          <div>
-            <h2 className="mb-[1.5rem] text-white typography-p-large font-semibold">
-              Office Hours
-            </h2>
-            <ul className=" text-white typography-p-regular ">
-              {footerData?.office_hours?.map((item, index) => (
-                <div key={index}>
-                  <p className="font-semibold pb-[0.88rem]">
-                    {item?.season} {item?.start_date} to {item?.end_date}
-                  </p>
-                  <p className="font-medium pb-[0.88rem]">{item?.days}</p>
-                  <p className="pb-[1.5rem] font-semibold">
-                    {formatTime(item?.opening_time)} to{" "}
-                    {formatTime(item?.closing_time)}
-                  </p>
-                </div>
-              ))}
-            </ul>
-          </div>
+          <OfficeHorus officeData={footerData?.office_hours} />
         </div>
 
         <div className="relative">

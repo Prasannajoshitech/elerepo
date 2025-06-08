@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import TableData from "./Table";
+import SoaBreadcrumb from "./SoaBreadcrumb";
 
 interface TableSOAProps {
   slug: string;
@@ -34,6 +35,10 @@ const TableSOA = ({ slug }: TableSOAProps) => {
 
   return (
     <div>
+      <div className="padding-x">
+        <SoaBreadcrumb title={data?.data.records[0]?.title} />
+      </div>
+
       {/* Tabs Header */}
       <div className="padding-x flex justify-between items-center flex-wrap gap-2 mt-[2.88rem] mb-[1.25rem]">
         <div className="flex flex-wrap lg:overflow-x-auto lg:space-x-2 p-[0.38rem] bg-white rounded-[0.5rem] shadow-sm">

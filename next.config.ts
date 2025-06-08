@@ -12,11 +12,7 @@ const nextConfig: NextConfig = {
         hostname: "localhost",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "api.vatsalya.com.np",
-        pathname: "/**",
-      },
+
       {
         protocol: "http",
         hostname: "electricity.pokharauae.com",
@@ -33,6 +29,7 @@ const nextConfig: NextConfig = {
         port: "8001",
         pathname: "/media/**",
       },
+
       {
         protocol: "http",
         hostname: "192.168.1.125",
