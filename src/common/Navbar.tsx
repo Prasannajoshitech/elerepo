@@ -28,33 +28,33 @@ const Navbar = async () => {
     ]);
 
     const dynamicLinks: DynamicNavLinksCategory[] =
-      dynamicNavLinkData?.data.map(
+      dynamicNavLinkData?.data?.map(
         (category: INavLinksCategory, i: number): DynamicNavLinksCategory => ({
           ...category,
           id: `dynamic-${i}`,
           subcategories:
-            category.subcategories?.map(
+            category?.subcategories?.map(
               (
                 sub: INavLinksSubcategory,
                 j: number
               ): DynamicNavLinksSubcategory => ({
                 ...sub,
                 id: `dynamic-sub-${i}-${j}`,
-                sub_ctg_slug: `/act/${sub.sub_ctg_slug.replace(/^\/+/, "")}`,
+                sub_ctg_slug: `/act/${sub?.sub_ctg_slug?.replace(/^\/+/, "")}`,
               })
             ) || [],
         })
       );
 
     // Process static nav links
-    const updatedNavLinks = navLinks.map((item) => {
+    const updatedNavLinks = navLinks?.map((item) => {
       if (item.name === "status_of_application") {
         return {
           ...item,
           dropdown:
             soaCategoryData?.data?.records.map((result: ISAOResult) => ({
-              name: result.title,
-              url: `/${result.slug}`,
+              name: result?.title,
+              url: `/${result?.slug}`,
             })) || [],
         };
       }
@@ -63,20 +63,20 @@ const Navbar = async () => {
 
     const staticLinks: INavLinksCategory[] = updatedNavLinks.map(
       (data, index) => {
-        const isSOA = data.name === "status_of_application";
+        const isSOA = data?.name === "status_of_application";
 
         return {
           id: `static-${index}`,
-          name: data.name,
-          main_ctg_slug: data.url,
+          name: data?.name,
+          main_ctg_slug: data?.url,
           ordering: index,
           subcategories:
             data?.dropdown?.map((item: INavLinksSubcategory, idx: number) => ({
               id: `sub-${index}-${idx}`,
-              name: item.name,
+              name: item?.name,
               sub_ctg_slug: isSOA
-                ? `/status-of-application${item.url}`
-                : item.url,
+                ? `/status-of-application${item?.url}`
+                : item?.url,
               ordering: idx,
               noTranslate: isSOA,
             })) || [],

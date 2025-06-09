@@ -35,7 +35,9 @@
     "Services": "Services",
     "LatestNotices": "Latest Notices",
     "Mandates": "Mandates of the Commission",
-    "Technical": "Technical Personalities"
+    "Technical": "Technical Personalities",
+    "ExploreRegulation": "Explore Regulation",
+    "SubmitComplaint": "Submit a Complaint"
   },
 
   "about": {
@@ -134,5 +136,12 @@
   "Gallery": {
     "PhotoGallery": "Photo Gallery",
     "VideoGallery": "Video Gallery"
+  },
+
+  "ComplaintStatus": {
+    "All": "All",
+    "UnderPreliminaryReview": "Under Preliminary Review",
+    "ReviewedAndCommentSaid": "Reviewed And Comment Said",
+    "Approved": "Approved"
   }
 }
