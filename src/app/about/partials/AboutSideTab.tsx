@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-
+import { useTranslations } from "next-intl";
 import Introduction from "./Introduction";
 import MissionVision from "./MissionVission";
 import FunctionDuties from "./FunctionDuties";
@@ -9,41 +8,41 @@ import CeoMessage from "./CeoMessage";
 import EmployeeDetail from "./EmployeeDetail";
 import Commission from "./Commission";
 
-interface Section {
-  name: string;
-  content: ReactNode;
-}
-export const sections: Section[] = [
-  {
-    name: "Introduction",
-    content: <Introduction />,
-  },
-  {
-    name: "Vision and Mission",
-    content: <MissionVision />,
-  },
-  {
-    name: "Electricity Report Overview",
-    content: <ReportOverview />,
-  },
-  {
-    name: "Functions, Duties & Authorities",
-    content: <FunctionDuties />,
-  },
-  {
-    name: "Commission",
-    content: <Commission />,
-  },
-  {
-    name: "Organizational Structure",
-    content: <OrganizationStructure />,
-  },
-  {
-    name: "Message from Chairperson",
-    content: <CeoMessage />,
-  },
-  {
-    name: "Employee Details",
-    content: <EmployeeDetail />,
-  },
-];
+export const useAboutSidebar = () => {
+  const t = useTranslations("about");
+
+  return [
+    {
+      name: t("Introduction"),
+      content: <Introduction />,
+    },
+    {
+      name: t("VisionAndMission"),
+      content: <MissionVision />,
+    },
+    {
+      name: t("ReportOverview"),
+      content: <ReportOverview />,
+    },
+    {
+      name: t("FunctionsDuties"),
+      content: <FunctionDuties />,
+    },
+    {
+      name: t("Commission"),
+      content: <Commission />,
+    },
+    {
+      name: t("OrganizationalStructure"),
+      content: <OrganizationStructure />,
+    },
+    {
+      name: t("ChairpersonMessage"),
+      content: <CeoMessage />,
+    },
+    {
+      name: t("EmployeeDetails"),
+      content: <EmployeeDetail />,
+    },
+  ];
+};

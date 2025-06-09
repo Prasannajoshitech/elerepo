@@ -1,16 +1,18 @@
 import React from "react";
 import { IVideoDaum } from "../interface/interface";
 import { getYoutubeEmbedUrl } from "@/utils/getYoutubeEmbedUrl";
+import { useTranslations } from "next-intl";
 
 interface IPropsVideo {
   videoData: IVideoDaum[];
 }
 
 const VideoCard: React.FC<IPropsVideo> = ({ videoData }) => {
+  const t = useTranslations("Gallery");
   return (
     <section>
       <h3 className="typography-h3 text-black font-semibold leading-[150%] pb-5 lg:pb-10">
-        Video Gallery
+        {t("VideoGallery")}
       </h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-[2rem] lg:gap-[3rem]">

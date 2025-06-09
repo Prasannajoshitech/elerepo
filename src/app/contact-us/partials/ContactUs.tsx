@@ -1,8 +1,11 @@
 import { IOrganizationSettingRoot } from "@/Interface/organization.interface";
-import Image, { StaticImageData } from "next/image";
-import React from "react";
-import defaultIcon from "./icons/location.svg"; // Example icon
+import { Printer } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import React, { ReactNode } from "react";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { IoIosCall, IoMdMail } from "react-icons/io";
+import defaultIcon from "./icons/location.svg"; // Example icon
 
 interface Props {
   data: IOrganizationSettingRoot;
@@ -11,19 +14,22 @@ interface Props {
 interface ContactItemProps {
   label: string;
   value: string | undefined;
-  icon: string | StaticImageData | undefined;
+  icon: ReactNode | undefined;
 }
+
+const icons = {
+  map: <FaMapMarkerAlt className="text-white size-5" />,
+  mail: <IoMdMail className="text-white size-5" />,
+  call: <IoIosCall className="text-white size-5" />,
+  fax: <Printer className="text-white size-5" />,
+};
 
 const ContactItem: React.FC<ContactItemProps> = ({ label, value, icon }) => (
   <div className="p-5 rounded-lg bg-[rgba(255,255,255,0.50)] shadow-xs">
-    <div className="flex items-center gap-5">
-      <Image
-        src={icon || defaultIcon}
-        alt="icon"
-        width={44}
-        height={44}
-        className="w-11 h-11 object-contain"
-      />
+    <div className="flex items-center gap-5 bg-red">
+      <div className="w-[2.8125rem] h-[2.8125rem] bg-blue-400 rounded-lg flex justify-center items-center">
+        {icon || <Image src={defaultIcon} alt="icon" width={44} height={44} />}
+      </div>
       <div>
         <p className="typography-p-regular-medium text-black">{label}</p>
         <p className="typography-p-regular text-text-300">{value || "N/A"}</p>
@@ -42,23 +48,15 @@ const ContactUs: React.FC<Props> = ({ data }) => {
       <ContactItem
         label={t("HeadOffice")}
         value={info?.office_address}
-        icon={info?.office_address_icon}
+        icon={icons?.map}
       />
       <ContactItem
         label={t("EmailUs")}
         value={info?.email}
-        icon={info?.email_icon}
+        icon={icons?.mail}
       />
-      <ContactItem
-        label={t("CallUs")}
-        value={info?.phone}
-        icon={info?.phone_icon}
-      />
-      <ContactItem
-        label={t("FaxNumber")}
-        value={info?.fax}
-        icon={info?.fax_icon}
-      />
+      <ContactItem label={t("CallUs")} value={info?.phone} icon={icons?.call} />
+      <ContactItem label={t("FaxNumber")} value={info?.fax} icon={icons?.fax} />
     </div>
   );
 };

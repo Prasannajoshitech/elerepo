@@ -1,8 +1,11 @@
 "use client";
 import { useComplaintForm } from "@/hooks/useComplaintForm";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const ComplaintForm: React.FC = () => {
+  const t = useTranslations("ComplaintForm");
+
   const {
     formik,
     document,
@@ -14,22 +17,23 @@ const ComplaintForm: React.FC = () => {
   } = useComplaintForm();
 
   type FormValues = typeof formik.values;
+
   const renderInput = <T extends keyof FormValues>(
     name: T,
-    label: string,
+    labelKey: string,
     type: string = "text",
     isTextArea: boolean = false
   ) => (
     <div className={`${isTextArea ? "col-span-1 md:col-span-2" : ""}`}>
       <label htmlFor={name} className="block mb-2 font-medium text-gray-700">
-        {label}
+        {t(`${labelKey}Label`)}
       </label>
       {isTextArea ? (
         <textarea
           id={name}
           name={name}
           rows={5}
-          placeholder={label}
+          placeholder={t(`${labelKey}Placeholder`)}
           value={formik.values[name]}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -44,7 +48,7 @@ const ComplaintForm: React.FC = () => {
           id={name}
           name={name}
           type={type}
-          placeholder={`Enter your ${label}`}
+          placeholder={t(`${labelKey}Placeholder`)}
           value={formik.values[name]}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -68,7 +72,7 @@ const ComplaintForm: React.FC = () => {
   return (
     <div>
       <h3 className="text-2xl text-black font-semibold leading-[150%] pb-5 lg:pb-10">
-        Submit a Complaint
+        {t("title")}
       </h3>
 
       <form
@@ -76,18 +80,18 @@ const ComplaintForm: React.FC = () => {
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
         encType="multipart/form-data"
       >
-        {renderInput("first_name", "First Name")}
-        {renderInput("last_name", "Last Name")}
-        {renderInput("phone_number", "Contact Number", "tel")}
-        {renderInput("email", "Email Address", "email")}
-        {renderInput("address", "Address")}
+        {renderInput("first_name", "firstName")}
+        {renderInput("last_name", "lastName")}
+        {renderInput("phone_number", "phone")}
+        {renderInput("email", "email")}
+        {renderInput("address", "address")}
 
         <div>
           <label
             htmlFor="complain_type"
             className="block mb-2 font-medium text-gray-700"
           >
-            Complaint Type
+            {t("complainTypeLabel")}
           </label>
           <select
             id="complain_type"
@@ -101,12 +105,12 @@ const ComplaintForm: React.FC = () => {
                 : "border-gray-300"
             }`}
           >
-            <option value="">Select Complaint Type</option>
-            <option value="Billing Issue">Billing Issue</option>
-            <option value="Power Outage">Power Outage</option>
-            <option value="Voltage Fluctuation">Voltage Fluctuation</option>
-            <option value="Meter Problem">Meter Problem</option>
-            <option value="Other">Other</option>
+            <option value="">{t("complainTypePlaceholder")}</option>
+            <option value="Billing Issue">{t("type.billing")}</option>
+            <option value="Power Outage">{t("type.outage")}</option>
+            <option value="Voltage Fluctuation">{t("type.fluctuation")}</option>
+            <option value="Meter Problem">{t("type.meter")}</option>
+            <option value="Other">{t("type.other")}</option>
           </select>
           {formik.touched.complain_type && formik.errors.complain_type && (
             <p className="text-red-500 text-sm mt-1">
@@ -120,7 +124,7 @@ const ComplaintForm: React.FC = () => {
             htmlFor="document"
             className="block mb-2 font-medium text-gray-700"
           >
-            Upload Documents
+            {t("uploadLabel")}
           </label>
           <input
             ref={inputRef}
@@ -136,10 +140,10 @@ const ComplaintForm: React.FC = () => {
               className="bg-white px-6 py-2 text-blue-500 border border-blue-500 rounded-md"
               onClick={() => inputRef.current?.click()}
             >
-              Choose File
+              {t("uploadLabel")}
             </button>
             <span className="text-gray-500 pl-3 py-2">
-              {document ? document.name : "No File Chosen"}
+              {document ? document.name : t("uploadPlaceholder")}
             </span>
           </div>
           {formErrors.document && (
@@ -147,27 +151,27 @@ const ComplaintForm: React.FC = () => {
           )}
         </div>
 
-        {renderInput("description", "Service Complaint", "text", true)}
+        {renderInput("description", "description", "text", true)}
 
         <div className="flex gap-4">
           <button
             type="submit"
             className="px-7 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition duration-300"
           >
-            {isLoading ? "Submitting..." : "Submit"}
+            {isLoading ? t("submitting") : t("submit")}
           </button>
           <button
             type="button"
             onClick={resetForm}
             className="px-7 py-3 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition duration-300"
           >
-            Reset
+            {t("reset")}
           </button>
           <button
             type="button"
             className="px-7 py-3 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 transition duration-300"
           >
-            Cancel
+            {t("cancel")}
           </button>
         </div>
       </form>

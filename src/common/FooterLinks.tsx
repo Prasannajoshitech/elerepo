@@ -27,37 +27,59 @@ export const Company: React.FC<ICompany> = ({ footerData }) => {
       <h2 className="mb-[1.5rem] text-white typography-p-large font-semibold">
         {t("Company")}
       </h2>
-      <ul className=" text-white font-medium typography-p-regular ">
+      <ul className="text-white font-medium typography-p-regular">
         <div className="space-y-[1.25rem] cursor-pointer">
-          <li>{footerData?.org_name_eng}</li>
-          <li className="flex items-center gap-[0.38rem]">
-            <MdLocationOn className="shrink-0" size={20} />
-            {footerData?.office_address}
-          </li>
-          <li className="flex items-center gap-[0.38rem]">
-            <MdCall className="shrink-0" size={20} />
-            {footerData?.phone}
-          </li>
-          <li className="flex items-center gap-[0.38rem]">
-            <IoMail className="shrink-0" size={20} />
-            {footerData?.email}
-          </li>
-          <li className="flex items-center gap-[0.56rem]">
-            <Link
-              href={footerData?.social_media?.facebook || ""}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaFacebook className="shrink-0" size={24} />
-            </Link>
-            <Link
-              href={footerData?.social_media?.twitter || ""}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaSquareXTwitter className="shrink-0" size={24} />
-            </Link>
-          </li>
+          {/* Organization Name */}
+          {footerData?.org_name_eng && <li>{footerData.org_name_eng}</li>}
+
+          {/* Address */}
+          {footerData?.office_address && (
+            <li className="flex items-center gap-[0.38rem]">
+              <MdLocationOn className="shrink-0" size={20} />
+              {footerData.office_address}
+            </li>
+          )}
+
+          {/* Phone */}
+          {footerData?.phone && (
+            <li className="flex items-center gap-[0.38rem]">
+              <MdCall className="shrink-0" size={20} />
+              {footerData.phone}
+            </li>
+          )}
+
+          {/* Email */}
+          {footerData?.email && (
+            <li className="flex items-center gap-[0.38rem]">
+              <IoMail className="shrink-0" size={20} />
+              {footerData.email}
+            </li>
+          )}
+
+          {/* Social Media Icons */}
+          {(footerData?.social_media?.facebook ||
+            footerData?.social_media?.twitter) && (
+            <li className="flex items-center gap-[0.56rem]">
+              {footerData?.social_media?.facebook && (
+                <Link
+                  href={footerData.social_media.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook className="shrink-0" size={24} />
+                </Link>
+              )}
+              {footerData?.social_media?.twitter && (
+                <Link
+                  href={footerData.social_media.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaSquareXTwitter className="shrink-0" size={24} />
+                </Link>
+              )}
+            </li>
+          )}
         </div>
       </ul>
     </div>

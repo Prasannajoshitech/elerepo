@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { IHomeHeroDaum } from "../interface/homeHero.interface";
 import PdfModal from "@/components/modal/PdfModal";
+import Link from "next/link";
 
 interface Props {
   heroData: IHomeHeroDaum;
@@ -49,9 +50,12 @@ const Hero: React.FC<Props> = ({ heroData }) => {
             Explore Regulation
           </button>
 
-          <button className="py-[0.62rem] px-[1.25rem] border border-white text-white typography-p-large font-semibold bg-[rgba(255,255,255,0.12)] rounded-[0.5rem] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-md cursor-pointer">
+          <Link
+            href="/submit-a-complain"
+            className="py-[0.62rem] px-[1.25rem] border border-white text-white typography-p-large font-semibold bg-[rgba(255,255,255,0.12)] rounded-[0.5rem] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-md cursor-pointer"
+          >
             Submit a Complaint
-          </button>
+          </Link>
         </div>
       </div>
 

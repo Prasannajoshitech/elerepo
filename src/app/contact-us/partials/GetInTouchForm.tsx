@@ -1,21 +1,23 @@
 "use client";
+import { useTranslations } from "next-intl";
 import { useContactForm } from "../hooks/useContact";
 
 const GetInTouchForm = () => {
   const { formik, isLoading } = useContactForm();
+  const t = useTranslations("contact");
 
   return (
     <form onSubmit={formik.handleSubmit} className="grid grid-cols-2 gap-8">
       {/* First Name */}
       <div>
         <label htmlFor="first_name" className="block mb-2 font-medium">
-          First Name
+          {t("firstNameLabel")}
         </label>
         <input
           id="first_name"
           name="first_name"
           type="text"
-          placeholder="Enter Your First Name"
+          placeholder={t("firstNamePlaceholder")}
           value={formik.values.first_name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -35,13 +37,13 @@ const GetInTouchForm = () => {
       {/* Last Name */}
       <div>
         <label htmlFor="last_name" className="block mb-2 font-medium">
-          Last Name
+          {t("lastNameLabel")}
         </label>
         <input
           id="last_name"
           name="last_name"
           type="text"
-          placeholder="Enter Your Last Name"
+          placeholder={t("lastNamePlaceholder")}
           value={formik.values.last_name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -59,13 +61,13 @@ const GetInTouchForm = () => {
       {/* Contact Number */}
       <div>
         <label htmlFor="phone_no" className="block mb-2 font-medium">
-          Contact Number
+          {t("contactLabel")}
         </label>
         <input
           id="phone_no"
           name="phone_no"
           type="text"
-          placeholder="Enter Your Contact Number"
+          placeholder={t("contactPlaceholder")}
           value={formik.values.phone_no}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -83,13 +85,13 @@ const GetInTouchForm = () => {
       {/* Email */}
       <div>
         <label htmlFor="email" className="block mb-2 font-medium">
-          Email
+          {t("emailLabel")}
         </label>
         <input
           id="email"
           name="email"
           type="email"
-          placeholder="Enter Your Email Address"
+          placeholder={t("emailPlaceholder")}
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -107,12 +109,12 @@ const GetInTouchForm = () => {
       {/* Message */}
       <div className="col-span-2">
         <label htmlFor="message" className="block mb-2 font-medium">
-          What can we help you with?
+          {t("messageLabel")}
         </label>
         <textarea
           id="message"
           name="message"
-          placeholder="Your message"
+          placeholder={t("messagePlaceholder")}
           rows={5}
           value={formik.values.message}
           onChange={formik.handleChange}
@@ -134,7 +136,7 @@ const GetInTouchForm = () => {
           type="submit"
           className="text-white px-7 py-3 rounded-lg bg-blue-500 hover:bg-blue-400 transition duration-300"
         >
-          {isLoading ? "Submitting..." : "Submit"}
+          {isLoading ? t("submitting") : t("submit")}
         </button>
       </div>
     </form>

@@ -2,10 +2,11 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import AboutBreadcrumb from "./AboutBreadcrumb";
-import { sections } from "./AboutSideTab";
+import { useAboutSidebar } from "./AboutSideTab";
 
 const AboutPage = () => {
   const searchParams = useSearchParams();
+  const sections = useAboutSidebar(); // ✅ Call the hook here
   const router = useRouter();
 
   const initialTab = parseInt(searchParams.get("tab") || "0", 10);

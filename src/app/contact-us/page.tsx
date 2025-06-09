@@ -10,7 +10,9 @@ const ContactUs = async () => {
 
     return (
       <div className="padding-x bg-background-400 ">
-        <ContactBreadcrumb />
+        <div className="my-10">
+          <ContactBreadcrumb />
+        </div>
 
         <GetInTouch data={organizationSettingData} />
 
