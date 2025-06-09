@@ -1,123 +1,91 @@
 "use client";
 import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
-import CustomPagination from "@/components/CustomPagination";
 import {
-  IActData,
-  IActDocumentList,
-  IActRecord,
+  IActRelatedSubcategory,
+  IActRecord as IActDocumentRecord,
+  IActSubcategory,
 } from "@/Interface/document.interface";
-import { useState } from "react";
-import DocumentCard from "./DocumentCard";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import CategorySidebar from "./CategorySidebar";
+import DocumentList from "./DocumentList";
 
 interface Props {
-  documentData: IActData;
+  slug1: string;
 }
 
 const PER_PAGE = 4;
 
-const DocumentPage: React.FC<Props> = ({ documentData }) => {
-  const categories: IActRecord[] = documentData?.records ?? [];
-
-  const [slug, setSlug] = useState<string>(categories[0]?.sub_ctg_slug ?? "");
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    categories[0]?.name ?? ""
-  );
+const DocumentPage: React.FC<Props> = ({ slug1 }) => {
+  const router = useRouter();
+  const [slug, setSlug] = useState<string>(slug1);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // Fetch documents for the selected slug
   const { data: categoryDocumentData } = useGetDataQuery<{
     data: {
-      data: IActRecord;
-      document_list: IActDocumentList[];
+      data: {
+        subcategory: IActSubcategory;
+        documents: {
+          records: IActDocumentRecord[];
+        };
+        related_subcategories: IActRelatedSubcategory[];
+      };
     };
   }>({
     url: `${endpoints.categoryDetail}/${slug}/`,
   });
 
-  // Handle Category Click
-  const handleCategoryClick = (category: {
-    name: string;
-    sub_ctg_slug: string;
-  }) => {
-    setSelectedCategory(category.name);
+  const categoriesList =
+    categoryDocumentData?.data?.related_subcategories ?? [];
+  const subcategory = categoryDocumentData?.data?.subcategory;
+  const allDocuments = categoryDocumentData?.data?.documents.records ?? [];
+  const pageCount = Math.ceil(allDocuments.length / PER_PAGE);
+
+  const annualReport = subcategory?.is_annual_report;
+
+  useEffect(() => {
+    if (subcategory) {
+      setSelectedCategory(subcategory.name);
+    }
+  }, [subcategory]);
+
+  const handleCategoryClick = (category: IActRelatedSubcategory) => {
     setSlug(category.sub_ctg_slug);
-    setCurrentPage(1); // Reset to first page when category changes
-  };
+    setSelectedCategory(category.name);
+    setCurrentPage(1);
 
-  const allDocuments: IActDocumentList[] =
-    categoryDocumentData?.data?.document_list ?? [];
-
-  // Pagination Logic
-  const totalItems = allDocuments.length;
-  const pageCount = Math.ceil(totalItems / PER_PAGE);
-
-  const paginatedDocs = allDocuments.slice(
-    (currentPage - 1) * PER_PAGE,
-    currentPage * PER_PAGE
-  );
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set("slug", category.sub_ctg_slug);
+    router.push(`?${newSearchParams.toString()}`);
   };
 
   return (
     <div className="container mx-auto py-[2.5rem] px-[1rem] lg:px-[3.12rem] rounded-[0.65rem] bg-background-100 my-[1.5rem] lg:my-[2.5rem]">
       <h1 className="typography-h3 text-text-500 font-semibold mb-4 lg:mb-8">
-        {selectedCategory}
+        {subcategory?.main_category || "Documents"}
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-10">
-        {/* Sidebar */}
-        <aside className="bg-[#EEF8FF] rounded-[0.25rem] p-[1.25rem]">
-          <h2 className="typography-p-large text-text-500 font-semibold mb-[1.25rem]">
-            Laws & Regulations
-          </h2>
-
-          <nav className="flex flex-col space-y-2">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => handleCategoryClick(category)}
-                className={`py-3 px-4 text-left rounded-md transition-colors ${
-                  selectedCategory === category.name
-                    ? "bg-blue-300 text-white"
-                    : "bg-white hover:bg-blue-100"
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </nav>
-        </aside>
-
-        {/* Document Listings */}
-        <section className="md:col-span-3 space-y-[0.62rem]">
-          {paginatedDocs.length > 0 ? (
-            paginatedDocs.map((doc) => (
-              <DocumentCard
-                key={doc.id}
-                title={doc.title}
-                date={doc.created_at}
-                slug={doc.slug}
-              />
-            ))
-          ) : (
-            <p>No documents found.</p>
-          )}
-        </section>
-      </div>
-
-      {/* Pagination */}
-      {pageCount > 1 && (
-        <div className="mt-6">
-          <CustomPagination
-            currentPage={currentPage}
-            pageCount={pageCount}
-            onPageChange={handlePageChange}
+      <div className="flex  gap-5 lg:gap-10">
+        <div className="shrink-0">
+          <CategorySidebar
+            categories={categoriesList}
+            selectedCategory={selectedCategory}
+            onCategoryClick={handleCategoryClick}
           />
         </div>
-      )}
+
+        <div className="w-full">
+          <DocumentList
+            annualReport={annualReport}
+            documents={allDocuments}
+            currentPage={currentPage}
+            pageCount={pageCount}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+      </div>
     </div>
   );
 };

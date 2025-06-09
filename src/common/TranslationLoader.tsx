@@ -3,7 +3,7 @@ import React from "react";
 
 const TranslationLoader = () => {
   return (
-    <div className=" flex justify-center items-center mx-auto h-screen ">
+    <div className="flex justify-center items-center mx-auto h-screen z-50">
       <div className="w-40 h-40 ">
         <Image
           src="/translation.gif"

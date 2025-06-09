@@ -4,7 +4,7 @@ import { useGetDataQuery } from "@/api/api";
 import { endpoints } from "@/api/endpoints";
 import { X } from "lucide-react";
 import DisplayPdf from "../DisplayPdf";
-import { IActDetailData } from "@/app/act/[slug]/interface/actDetail.interface";
+import { IActDetailData } from "@/app/act/[slug1]/[slug]/interface/actDetail.interface";
 import { useClickOutside } from "@/hooks/useClickoutside";
 
 interface PdfModalProps {

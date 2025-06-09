@@ -9,7 +9,7 @@ import expandIcon from "@/assets/actRuleDetail/expand.svg";
 import optionIcon from "@/assets/actRuleDetail/option.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { IActDetailData } from "../app/act/[slug]/interface/actDetail.interface";
+import { IActDetailData } from "../app/act/[slug1]/[slug]/interface/actDetail.interface";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
 

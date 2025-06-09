@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IGalleryBanner, IGalleryData } from "../interface/photo.interface";
+import { useTranslations } from "next-intl";
 
 interface Props {
   photoData: IGalleryData;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const PhotoAlbum: React.FC<Props> = ({ photoData, galleryBanner }) => {
+  const t = useTranslations("Gallery");
+
   const { handlePageChange, currentPage } = usePaginationChange();
 
   const galleryPhotoData = photoData?.records;
@@ -21,7 +24,7 @@ const PhotoAlbum: React.FC<Props> = ({ photoData, galleryBanner }) => {
   return (
     <div>
       <h3 className="typography-h3 text-black font-semibold leading-[150%] pb-5 lg:pb-10">
-        Photo Gallery
+        {t("PhotoGallery")}
       </h3>
 
       {/* photo banner  */}

@@ -19,4 +19,5 @@ export interface INavLinksSubcategory {
   sub_ctg_slug: string;
   ordering: number;
   url: string;
+  noTranslate?: boolean; // optional flag to skip translation
 }

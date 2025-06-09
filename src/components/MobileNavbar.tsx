@@ -3,18 +3,74 @@ import { INavLinksCategory } from "@/Interface/navlinks.interface";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface Props {
-  mobileData: INavLinksCategory[];
+  dynamicData: INavLinksCategory[];
+  staticData: INavLinksCategory[];
 }
 
-const MobileNavbar: React.FC<Props> = ({ mobileData }) => {
+const MobileNavbar: React.FC<Props> = ({ dynamicData, staticData }) => {
+  const t = useTranslations("nav");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
+
+  const renderNavItems = (
+    navItems: INavLinksCategory[],
+    shouldTranslate: boolean = false
+  ) =>
+    navItems.map((navItem) => {
+      const hasSubcategories = navItem?.subcategories?.length > 0;
+      const isActive = activeDropdown === navItem.name;
+      const label = shouldTranslate ? t(navItem?.name) : navItem?.name;
+
+      return (
+        <div key={navItem?.id} className="flex flex-col">
+          {!hasSubcategories ? (
+            <Link
+              href={navItem?.main_ctg_slug}
+              className="flex items-center justify-between text-text-500 font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {label}
+            </Link>
+          ) : (
+            <button
+              onClick={() => toggleDropdown(navItem?.name)}
+              className="flex items-center justify-between text-text-500 font-medium"
+            >
+              {label}
+              <ChevronDown
+                className={`h-4 w-4 transform transition-transform duration-300 ${
+                  isActive ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          )}
+
+          {isActive && hasSubcategories && (
+            <div className="mt-2 ml-4 flex flex-col gap-2">
+              {navItem?.subcategories?.map((subItem) => (
+                <Link
+                  key={subItem?.id}
+                  href={subItem?.sub_ctg_slug}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm text-text-500 hover:text-blue-500"
+                >
+                  {shouldTranslate && !subItem?.noTranslate
+                    ? t(subItem.name)
+                    : subItem.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    });
 
   return (
     <div className="md:hidden px-6 py-3">
@@ -29,56 +85,9 @@ const MobileNavbar: React.FC<Props> = ({ mobileData }) => {
 
       {mobileMenuOpen && (
         <div className="mt-4 flex flex-col gap-4">
-          {mobileData?.map((navItem) => {
-            const hasSubcategories = navItem?.subcategories?.length > 0;
-            const isActive = activeDropdown === navItem.name;
+          {renderNavItems(staticData, true)}
+          {renderNavItems(dynamicData, false)}
 
-            return (
-              <div key={navItem?.name} className="flex flex-col">
-                {/* If NO subcategories => Link */}
-                {!hasSubcategories ? (
-                  <Link
-                    href={navItem?.main_ctg_slug}
-                    className="flex items-center justify-between text-text-500 font-medium"
-                    onClick={() => setMobileMenuOpen(false)} // close menu after link click
-                  >
-                    {navItem?.name}
-                  </Link>
-                ) : (
-                  // If HAS subcategories => Button to toggle dropdown
-                  <button
-                    onClick={() => toggleDropdown(navItem?.name)}
-                    className="flex items-center justify-between text-text-500 font-medium"
-                  >
-                    {navItem?.name}
-                    <ChevronDown
-                      className={`h-4 w-4 transform transition-transform duration-300 ${
-                        isActive ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                )}
-
-                {/* Subcategory Dropdown */}
-                {isActive && hasSubcategories && (
-                  <div className="mt-2 ml-4 flex flex-col gap-2">
-                    {navItem?.subcategories?.map((subItem) => (
-                      <Link
-                        key={subItem?.name}
-                        href={subItem?.sub_ctg_slug}
-                        onClick={() => setMobileMenuOpen(false)} // close menu after sub link click
-                        className="text-sm text-text-500 hover:text-blue-500"
-                      >
-                        {subItem?.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-
-          {/* DMS Button */}
           <button className="mt-4 text-white uppercase font-semibold bg-blue-500 px-4 py-2 rounded-[0.5rem]">
             dms
           </button>

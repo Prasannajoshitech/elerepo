@@ -9,9 +9,15 @@ type DocumentCardProps = {
   title: string;
   date: string;
   slug: string;
+  slugBefore: string;
 };
 
-export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
+export default function DocumentCard({
+  title,
+  date,
+  slug,
+  slugBefore,
+}: DocumentCardProps) {
   return (
     <div
       className="flex justify-between items-center 
@@ -19,7 +25,7 @@ export default function DocumentCard({ title, date, slug }: DocumentCardProps) {
     >
       <div>
         <Link
-          href={`${PATH.ACT}/${slug}`}
+          href={`${PATH.ACT}/${slugBefore}/${slug}`}
           className="typography-p-large text-text-500 font-medium group-hover:text-blue-500 transition-colors duration-300"
         >
           {title}

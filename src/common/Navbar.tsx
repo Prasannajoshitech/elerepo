@@ -9,6 +9,17 @@ import {
 } from "@/Interface/navlinks.interface";
 import { ISAOResult } from "@/Interface/soa.interface";
 
+// Process dynamic nav links
+interface DynamicNavLinksCategory extends INavLinksCategory {
+  id: string;
+  subcategories: DynamicNavLinksSubcategory[];
+}
+
+interface DynamicNavLinksSubcategory extends INavLinksSubcategory {
+  id: string;
+  sub_ctg_slug: string;
+}
+
 const Navbar = async () => {
   try {
     const [dynamicNavLinkData, soaCategoryData] = await Promise.all([
@@ -16,11 +27,28 @@ const Navbar = async () => {
       getSOACategory(),
     ]);
 
-    const dynamicLinks: INavLinksCategory[] = dynamicNavLinkData?.data;
+    const dynamicLinks: DynamicNavLinksCategory[] =
+      dynamicNavLinkData?.data.map(
+        (category: INavLinksCategory, i: number): DynamicNavLinksCategory => ({
+          ...category,
+          id: `dynamic-${i}`,
+          subcategories:
+            category.subcategories?.map(
+              (
+                sub: INavLinksSubcategory,
+                j: number
+              ): DynamicNavLinksSubcategory => ({
+                ...sub,
+                id: `dynamic-sub-${i}-${j}`,
+                sub_ctg_slug: `/act/${sub.sub_ctg_slug.replace(/^\/+/, "")}`,
+              })
+            ) || [],
+        })
+      );
 
-    // Inject dynamic dropdown into the "Status of Application" menu
+    // Process static nav links
     const updatedNavLinks = navLinks.map((item) => {
-      if (item.name === "Status of Application") {
+      if (item.name === "status_of_application") {
         return {
           ...item,
           dropdown:
@@ -34,27 +62,32 @@ const Navbar = async () => {
     });
 
     const staticLinks: INavLinksCategory[] = updatedNavLinks.map(
-      (data, index) => ({
-        id: index.toString(),
-        name: data.name,
-        main_ctg_slug: data.url,
-        ordering: index,
-        subcategories:
-          data?.dropdown?.map((item: INavLinksSubcategory, idx: string) => ({
-            id: idx.toString(),
-            name: item.name,
-            sub_ctg_slug: item.url,
-            ordering: idx,
-          })) || [],
-      })
-    );
+      (data, index) => {
+        const isSOA = data.name === "status_of_application";
 
-    const mergedData = [...dynamicLinks, ...staticLinks];
+        return {
+          id: `static-${index}`,
+          name: data.name,
+          main_ctg_slug: data.url,
+          ordering: index,
+          subcategories:
+            data?.dropdown?.map((item: INavLinksSubcategory, idx: number) => ({
+              id: `sub-${index}-${idx}`,
+              name: item.name,
+              sub_ctg_slug: isSOA
+                ? `/status-of-application${item.url}`
+                : item.url,
+              ordering: idx,
+              noTranslate: isSOA,
+            })) || [],
+        };
+      }
+    );
 
     return (
       <nav className="bg-background-100">
-        <MobileNavbar mobileData={mergedData} />
-        <DesktopNavbar desktopData={mergedData} />
+        <MobileNavbar dynamicData={dynamicLinks} staticData={staticLinks} />
+        <DesktopNavbar dynamicData={dynamicLinks} staticData={staticLinks} />
       </nav>
     );
   } catch (error) {

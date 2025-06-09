@@ -9,6 +9,8 @@ interface Endpoints {
   about: string;
 
   homeTeam: string;
+  chairperson: string;
+  subcategory: string;
   document: string;
   actRule: string;
   categoryDetail: string;
@@ -18,7 +20,8 @@ interface Endpoints {
   photoBanner: string;
   photoGallery: string;
   photoDetail: string;
-  heroSection: string;
+  videoList: string;
+
   applicationStatus: string;
   soaDetail: string;
   faq: string;
@@ -32,6 +35,8 @@ interface Endpoints {
     subCategory: string;
     chatAnswer: string;
   };
+
+  breadcrumb: string;
 }
 
 export const endpoints: Endpoints = {
@@ -40,13 +45,18 @@ export const endpoints: Endpoints = {
   navNews: "/news/list/",
   popup: "/popup/list/",
 
-  homeHero: "/homepage/list",
+  homeHero: "/homepage/list/",
   homeImpService: "/services/list",
   about: "/about/list/",
 
   homeTeam: "/team/list/",
+  chairperson: "/team/chairperson-message/list/",
   document: "/document/list/",
+
+  subcategory: "/maincategory/detail/",
+
   actRule: "/subcategory/documentlist/",
+
   categoryDetail: "/subcategory/detail",
 
   actDetail: "/document/detail",
@@ -56,8 +66,8 @@ export const endpoints: Endpoints = {
   photoBanner: "/gallery/banner/list/",
   photoGallery: "/gallery/list/",
   photoDetail: "/gallery/detail",
+  videoList: "/video/list/",
 
-  heroSection: "/herosection/list/",
   applicationStatus: "/applicationstatus/list/",
   soaDetail: "/applicationstatus/detail",
   faq: "/faq/list/",
@@ -72,6 +82,8 @@ export const endpoints: Endpoints = {
     subCategory: "/chat/subCategory/list/",
     chatAnswer: "chat/answer/suggestion/get/",
   },
+
+  breadcrumb: "/herosection/list/",
 };
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;

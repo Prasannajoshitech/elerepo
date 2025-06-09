@@ -18,11 +18,6 @@ export const getNavNewsData = async () => {
   return navNews;
 };
 
-export const getHeroSectionData = async () => {
-  const heroSection = await safeFetch(endpoints.heroSection);
-  return heroSection;
-};
-
 export const getSOACategory = async () => {
   const navData = await safeFetch(endpoints.applicationStatus);
 
