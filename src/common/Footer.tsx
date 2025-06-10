@@ -1,4 +1,8 @@
-import { getOrganizationSettingData } from "@/hooks/globalHook";
+import {
+  getAffiliatedOrganization,
+  getImportantLinks,
+  getOrganizationSettingData,
+} from "@/hooks/globalHook";
 import { IOrganizationSettingDaum } from "@/Interface/organization.interface";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +23,12 @@ const Footer: React.FC = async () => {
 
     const footerData: IOrganizationSettingDaum =
       organizationSettingData?.data[0];
+
+    const importantLinks = await getImportantLinks();
+    const importantLinksData = importantLinks?.data;
+
+    const affiliatedOrganization = await getAffiliatedOrganization();
+    const affiliatedOrganizationData = affiliatedOrganization?.data;
 
     return (
       <footer className="footer-gradient padding-x pt-[2.06rem]">
@@ -65,8 +75,8 @@ const Footer: React.FC = async () => {
           {/* Company Section */}
           <Company footerData={footerData} />
 
-          <ImportantLinksSection />
-          <AffiliatedOrganizationsSection />
+          <ImportantLinksSection importantLinksData={importantLinksData} />
+          <AffiliatedOrganizationsSection affiliatedOrganizationData={affiliatedOrganizationData}/>
 
           <OfficeHorus officeData={footerData?.office_hours} />
         </div>

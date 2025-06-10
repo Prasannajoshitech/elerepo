@@ -23,3 +23,17 @@ export const getSOACategory = async () => {
 
   return navData;
 };
+
+export const getImportantLinks = async () => {
+  const importantLinks = await safeFetch(endpoints.footer.importantLinks);
+
+  return importantLinks;
+};
+
+export const getAffiliatedOrganization = async () => {
+  const affiliatedOrganization = await safeFetch(
+    endpoints.footer.affiliatedOrganization
+  );
+
+  return affiliatedOrganization;
+};
