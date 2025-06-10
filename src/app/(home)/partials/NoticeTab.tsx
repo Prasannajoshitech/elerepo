@@ -56,7 +56,7 @@ const NoticeTab = () => {
         </button>
 
         {/* Dynamic tabs */}
-        {MainCategory?.data?.map((tab: Tab, index: number) => (
+        {MainCategory?.data?.slice(0, 3).map((tab: Tab, index: number) => (
           <button
             key={index}
             onClick={() => setSelectedTab(tab?.id)}
@@ -71,7 +71,13 @@ const NoticeTab = () => {
 
       {/* Tab content */}
       <div className="mt-4">
-        <TabContent documentData={displayData} />
+        {displayData && displayData.length > 0 ? (
+          <TabContent documentData={displayData} />
+        ) : (
+          <div className="text-center py-8 text-gray-500">
+            {t("NoDataAvailable")}
+          </div>
+        )}
       </div>
     </div>
   );
