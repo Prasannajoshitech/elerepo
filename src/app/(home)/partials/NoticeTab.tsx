@@ -19,6 +19,9 @@ const NoticeTab = () => {
   // Fetch all data (used for "regular")
   const { data: AllData } = useGetDataQuery({
     url: endpoints.document,
+    params: {
+      page_size: 5,
+    },
   });
 
   // Fetch filtered data (used for other tabs)
@@ -26,6 +29,7 @@ const NoticeTab = () => {
     url: endpoints.document,
     params: {
       main_category: selectedTab,
+      page_size: 5,
     },
   });
 
