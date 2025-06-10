@@ -12,7 +12,7 @@ const MissionVision: React.FC<Props> = ({ missionVisionData }) => {
       <div className="p-[1rem] lg:p-[5rem] flex flex-col lg:flex-row gap-[2.5rem]  items-center">
         <div className="lg:w-3xl lg:h-[25rem]">
           <Image
-            src={missionVisionData[1]?.image}
+            src={missionVisionData?.[1]?.image}
             alt="mission & vision image"
             width={800}
             height={800}
@@ -21,25 +21,25 @@ const MissionVision: React.FC<Props> = ({ missionVisionData }) => {
         </div>
         <div className="w-full ">
           <h3 className="typography-h3 font-bold leading-[150%] text-text-500 pb-[0.75rem]">
-            {missionVisionData[0]?.title}
+            {missionVisionData?.[0]?.title}
           </h3>
           <h4 className="typography-p-large capitalize text-text-500 font-semibold pb-[0.62rem]">
-            {missionVisionData[1]?.select}
+            {missionVisionData?.[1]?.select}
           </h4>
           <p
             className="typography-p-regular text-text-400 text-justify pb-[0.88rem]"
             dangerouslySetInnerHTML={{
-              __html: missionVisionData[1]?.description || "",
+              __html: missionVisionData?.[1]?.description || "",
             }}
           />
 
           <h4 className="typography-p-large capitalize text-text-500 font-semibold pb-[0.62rem] pt-[0.88]">
-            {missionVisionData[0]?.select}
+            {missionVisionData?.[0]?.select}
           </h4>
           <p
             className="typography-p-regular text-text-400 text-justify pb-[0.88rem]"
             dangerouslySetInnerHTML={{
-              __html: missionVisionData[0]?.description || "",
+              __html: missionVisionData?.[0]?.description || "",
             }}
           />
         </div>

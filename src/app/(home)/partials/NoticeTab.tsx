@@ -5,48 +5,56 @@ import React, { useState } from "react";
 import TabContent from "./TabContent";
 
 interface Tab {
-  label: string;
+  name: string;
   id: string;
 }
 
 const NoticeTab = () => {
-  const [selectedTab, setSelectedTab] = useState("");
+  const [selectedTab, setSelectedTab] = useState("regular");
 
-  const { data } = useGetDataQuery({
+  const { data: MainCategory } = useGetDataQuery({
+    url: endpoints.navLinks,
+  });
+
+  // Fetch all data (used for "regular")
+  const { data: AllData } = useGetDataQuery({
     url: endpoints.document,
     params: {
-      search: selectedTab,
+      page_size: 5,
     },
   });
 
-  const tabs = [
-    {
-      label: "General",
-      id: "",
+  // Fetch filtered data (used for other tabs)
+  const { data: DocumentData } = useGetDataQuery({
+    url: endpoints.document,
+    params: {
+      main_category: selectedTab,
+      page_size: 5,
     },
-    {
-      label: "Tariff ",
-      id: "Law",
-    },
-    {
-      label: "Regulations",
-      id: "Regulations",
-    },
-    {
-      label: "Consumers",
-      id: "Consumers",
-    },
-    {
-      label: "Licensees ",
-      id: "Licensees",
-    },
-  ];
+  });
+
+  // Choose which data to display
+  const displayData =
+    selectedTab === "regular"
+      ? AllData?.data?.records
+      : DocumentData?.data?.records;
 
   return (
     <div className="w-full">
       {/* Tab buttons */}
-      <div className="flex flex-wrap lg:gap-2  bg-blue-400 rounded-t-[0.7rem] lg:pt-[0.31rem] pb-[0.25rem] lg:pl-[0.25rem] lg:pr-[0.25rem]">
-        {tabs.map((tab: Tab, index: number) => (
+      <div className="flex flex-wrap lg:gap-2 bg-blue-400 rounded-t-[0.7rem] lg:pt-[0.31rem] pb-[0.25rem] lg:pl-[0.25rem] lg:pr-[0.25rem]">
+        {/* Regular tab */}
+        <button
+          onClick={() => setSelectedTab("regular")}
+          className={`p-[0.75rem] lg:p-4 typography-p-regular font-semibold text-center text-white border-b-2 ${
+            selectedTab === "regular" ? "border-white" : "border-transparent"
+          } hover:border-white`}
+        >
+          Regular
+        </button>
+
+        {/* Dynamic tabs */}
+        {MainCategory?.data?.map((tab: Tab, index: number) => (
           <button
             key={index}
             onClick={() => setSelectedTab(tab?.id)}
@@ -54,14 +62,14 @@ const NoticeTab = () => {
               tab.id === selectedTab ? "border-white" : "border-transparent"
             } hover:border-white`}
           >
-            {tab?.label}
+            {tab?.name}
           </button>
         ))}
       </div>
 
       {/* Tab content */}
       <div className="mt-4">
-        <TabContent documentData={data?.data?.records} />
+        <TabContent documentData={displayData} />
       </div>
     </div>
   );

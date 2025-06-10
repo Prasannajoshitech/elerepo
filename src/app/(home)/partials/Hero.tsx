@@ -5,6 +5,7 @@ import React from "react";
 import { IHomeHeroDaum } from "../interface/homeHero.interface";
 import PdfModal from "@/components/modal/PdfModal";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface Props {
   heroData: IHomeHeroDaum;
@@ -12,6 +13,7 @@ interface Props {
 
 const Hero: React.FC<Props> = ({ heroData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const t = useTranslations("home");
 
   useEffect(() => {
     const modalSeen = sessionStorage.getItem("pdfModalShown");
@@ -47,14 +49,14 @@ const Hero: React.FC<Props> = ({ heroData }) => {
 
         <div className="flex flex-col lg:flex-row gap-[1.12rem] pt-4">
           <button className="py-[0.62rem] px-[1.25rem] text-blue-500 typography-p-large font-semibold bg-white rounded-[0.5rem] shadow-[0px_4px_5.3px_0px rgba(0,0,0,0.25)] cursor-pointer">
-            Explore Regulation
+            {t("ExploreRegulation")}
           </button>
 
           <Link
             href="/submit-a-complain"
             className="py-[0.62rem] px-[1.25rem] border border-white text-white typography-p-large font-semibold bg-[rgba(255,255,255,0.12)] rounded-[0.5rem] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-md cursor-pointer"
           >
-            Submit a Complaint
+            {t("SubmitComplaint")}
           </Link>
         </div>
       </div>

@@ -35,7 +35,9 @@
     "Services": "सेवाहरू",
     "LatestNotices": "पछिल्लो सूचनाहरू",
     "Mandates": "आयोगको आदेश",
-    "Technical": "प्राविधिक व्यक्तित्वहरू"
+    "Technical": "प्राविधिक व्यक्तित्वहरू",
+    "ExploreRegulation": "नियमन अन्वेषण गर्नुहोस्",
+    "SubmitComplaint": "उजुरी पेश गर्नुहोस्"
   },
 
   "about": {
@@ -98,6 +100,7 @@
     "ContactUs": "हामीसँग सम्पर्क गर्नुहोस्",
     "AboutUs": "हाम्रो बारेमा"
   },
+
   "ComplaintForm": {
     "title": "गुनासो पेश गर्नुहोस्",
     "firstNameLabel": "पहिलो नाम",
@@ -132,5 +135,12 @@
   "Gallery": {
     "PhotoGallery": "फोटो ग्यालेरी",
     "VideoGallery": "भिडियो ग्यालरी"
+  },
+
+  "ComplaintStatus": {
+    "All": "सबै",
+    "UnderPreliminaryReview": "प्रारम्भिक समीक्षा अन्तर्गत",
+    "ReviewedAndCommentSaid": "समीक्षा गरिएको र टिप्पणी गरिएको",
+    "Approved": "स्वीकृत"
   }
 }

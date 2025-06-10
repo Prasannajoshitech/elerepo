@@ -43,6 +43,7 @@ export interface IActRecord {
   image: string;
   main_category: string;
   sub_category: string;
+  sub_ctg_slug: string;
   created_at: string;
   updated_at: string;
 }
