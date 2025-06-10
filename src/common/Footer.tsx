@@ -76,7 +76,9 @@ const Footer: React.FC = async () => {
           <Company footerData={footerData} />
 
           <ImportantLinksSection importantLinksData={importantLinksData} />
-          <AffiliatedOrganizationsSection affiliatedOrganizationData={affiliatedOrganizationData}/>
+          <AffiliatedOrganizationsSection
+            affiliatedOrganizationData={affiliatedOrganizationData}
+          />
 
           <OfficeHorus officeData={footerData?.office_hours} />
         </div>
