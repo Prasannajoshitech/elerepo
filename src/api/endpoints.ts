@@ -36,6 +36,11 @@ interface Endpoints {
     chatAnswer: string;
   };
 
+  footer: {
+    affiliatedOrganization: string;
+    importantLinks: string;
+  };
+
   breadcrumb: string;
 }
 
@@ -84,6 +89,11 @@ export const endpoints: Endpoints = {
   },
 
   breadcrumb: "/herosection/list/",
+
+  footer: {
+    affiliatedOrganization: "/link/affiliated-organizations/",
+    importantLinks: "/link/important-links/",
+  },
 };
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;

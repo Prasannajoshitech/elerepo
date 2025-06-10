@@ -1,4 +1,7 @@
-import { AffiliatedOrganizations, ImportantLinks } from "@/data/footer";
+import {
+  IAffiliatedOrg,
+  IImportantLinks,
+} from "@/Interface/footerLinks.interface";
 import {
   IOrganizationSettingDaum,
   IOrganizationSettingOfficeHour,
@@ -18,6 +21,17 @@ interface ICompany {
 interface IOfficeData {
   officeData: IOrganizationSettingOfficeHour[];
 }
+interface IOfficeData {
+  officeData: IOrganizationSettingOfficeHour[];
+}
+
+interface IImportantLinksData {
+  importantLinksData: IImportantLinks[];
+}
+
+interface IAffiliatedOrganizationData {
+  affiliatedOrganizationData: IAffiliatedOrg[];
+}
 
 export const Company: React.FC<ICompany> = ({ footerData }) => {
   const t = useTranslations("FooterLinks");
@@ -27,6 +41,7 @@ export const Company: React.FC<ICompany> = ({ footerData }) => {
       <h2 className="mb-[1.5rem] text-white typography-p-large font-semibold">
         {t("Company")}
       </h2>
+
       <ul className="text-white font-medium typography-p-regular">
         <div className="space-y-[1.25rem] cursor-pointer">
           {/* Organization Name */}
@@ -86,7 +101,9 @@ export const Company: React.FC<ICompany> = ({ footerData }) => {
   );
 };
 
-export const ImportantLinksSection = () => {
+export const ImportantLinksSection: React.FC<IImportantLinksData> = ({
+  importantLinksData,
+}) => {
   const t = useTranslations("FooterLinks");
 
   return (
@@ -95,13 +112,15 @@ export const ImportantLinksSection = () => {
         {t("ImportantLinks")}
       </h2>
       <ul className="text-white font-medium typography-p-regular space-y-[1.25rem]">
-        {ImportantLinks.map((link, index) => (
+        {importantLinksData?.map((link, index) => (
           <div key={index}>
             <Link
-              href={link.url}
+              href={link?.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-l rounded-[0.25rem] py-[0.1875rem] px-[0.625rem] cursor-pointer"
             >
-              {t(link.label)}
+              {link?.title}
             </Link>
           </div>
         ))}
@@ -110,7 +129,9 @@ export const ImportantLinksSection = () => {
   );
 };
 
-export const AffiliatedOrganizationsSection = () => {
+export const AffiliatedOrganizationsSection: React.FC<
+  IAffiliatedOrganizationData
+> = ({ affiliatedOrganizationData }) => {
   const t = useTranslations("FooterLinks");
 
   return (
@@ -119,13 +140,15 @@ export const AffiliatedOrganizationsSection = () => {
         {t("AffiliatedOrganizations")}
       </h2>
       <ul className="text-white font-medium typography-p-regular space-y-[1.25rem]">
-        {AffiliatedOrganizations.map((item, index) => (
+        {affiliatedOrganizationData?.map((item, index) => (
           <div key={index}>
             <Link
-              href={item.url}
+              href={item?.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-l rounded-[0.25rem] py-[0.1875rem] px-[0.625rem] cursor-pointer"
             >
-              {t(item.label)}
+              {item?.name}
             </Link>
           </div>
         ))}
