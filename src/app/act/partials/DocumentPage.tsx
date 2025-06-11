@@ -68,7 +68,7 @@ const DocumentPage: React.FC<Props> = ({ slug1 }) => {
       </h1>
 
       <div className="flex  gap-5 lg:gap-10">
-        <div className="shrink-0">
+        <div className="w-1/4">
           <CategorySidebar
             categories={categoriesList}
             selectedCategory={selectedCategory}

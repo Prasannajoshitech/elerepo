@@ -8,7 +8,7 @@ const Introduction = () => {
     url: endpoints.about,
   });
 
-  if (error || !IntroductionData?.data || !IntroductionData.data[0]) {
+  if (error) {
     console.error("Failed to load introduction data:", error);
     return <ErrorMessage errorMessage="introduction data" />;
   }

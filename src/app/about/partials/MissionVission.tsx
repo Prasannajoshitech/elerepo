@@ -37,7 +37,7 @@ const MissionVision = () => {
     url: endpoints.about,
   });
 
-  if (error || !data?.data || !data?.data[0]?.mission_vision) {
+  if (error) {
     console.error("Failed to load mission and vision data:", error);
     return <ErrorMessage errorMessage="mission and vision data" />;
   }

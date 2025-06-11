@@ -14,12 +14,10 @@ const AboutPage = () => {
   const initialTab = parseInt(searchParams.get("tab") || "0", 10);
   const [selectedSection, setSelectedSection] = useState(initialTab);
 
-  // Handle both direct clicks and navigation from other pages
   useEffect(() => {
     const tab = parseInt(searchParams.get("tab") || "0", 10);
     setSelectedSection(tab);
 
-    // Scroll after a small delay to ensure DOM is ready
     const timer = setTimeout(() => {
       contentRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -48,7 +46,7 @@ const AboutPage = () => {
   return (
     <div ref={containerRef} className="w-full mx-auto padding-x">
       <div className="py-10">
-        <AboutBreadcrumb />
+        <AboutBreadcrumb sectionName={sections[selectedSection]?.key || ""} />
       </div>
 
       <div className="mb-10">

@@ -18,7 +18,7 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
         {selectedCategory}
       </h2>
 
-      <nav className="flex flex-col space-y-2">
+      <nav className="flex flex-col space-y-2 ">
         {categories.map((category) => (
           <button
             key={category.id}
