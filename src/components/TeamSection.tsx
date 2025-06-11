@@ -11,7 +11,6 @@ interface Props {
 }
 
 const TeamSection: React.FC<Props> = ({ teamData, chairperson }) => {
-  console.log(teamData, "teamData");
   return (
     <div>
       {teamData?.length > 0 && (

@@ -6,7 +6,6 @@ import TeamSection from "../../components/TeamSection";
 import { getHomePageData } from "./hooks/home.hook";
 import LatestNotices from "./partials/LatestNotices";
 import MandatesCommission from "./partials/MandatesCommission";
-import TeamBottom from "./partials/TeamBottom";
 import MissionVision from "./partials/MissionVision";
 
 const Home = async () => {
@@ -18,7 +17,6 @@ const Home = async () => {
       teamData,
       chairperson,
     } = await getHomePageData();
-    console.log(teamData, "teamData");
     return (
       <div>
         <Hero heroData={homeData?.data[0]} />

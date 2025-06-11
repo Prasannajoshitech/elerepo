@@ -1,7 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import { CiMail } from "react-icons/ci";
 
 interface TeamCardProps {
   name: string;

@@ -21,7 +21,6 @@ const CeoMessage = () => {
     return <ErrorMessage errorMessage="Chairperson message data" />;
   }
 
-  console.log(data, "ele dta");
   const ceoMessage: ICeoMessage = data;
 
   return (
