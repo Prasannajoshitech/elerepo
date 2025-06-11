@@ -1,7 +1,21 @@
-export const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  const year = date.getFullYear();
-  const month = `0${date.getMonth() + 1}`.slice(-2); // Months are 0-indexed
-  const day = `0${date.getDate()}`.slice(-2);
-  return `${year}-${month}-${day}`;
+// utils/date.ts
+import { Locale } from "next-intl";
+
+export const formatDate = (dateString: string, locale: Locale): string => {
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(dateString));
+};
+
+export const formatNepaliDate = (
+  dateString: string,
+  locale: Locale
+): string => {
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(dateString));
 };

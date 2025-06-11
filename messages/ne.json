@@ -38,7 +38,9 @@
     "Technical": "प्राविधिक व्यक्तित्वहरू",
     "ExploreRegulation": "नियमन अन्वेषण गर्नुहोस्",
     "SubmitComplaint": "उजुरी पेश गर्नुहोस्",
-    "Regular": "नियमित"
+    "Regular": "नियमित",
+    "NoDataAvailable": "डाटा उपलब्ध छैन",
+    "PublishedDate": "प्रकाशित मिति"
   },
 
   "about": {

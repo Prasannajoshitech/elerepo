@@ -38,7 +38,9 @@
     "Technical": "Technical Personalities",
     "ExploreRegulation": "Explore Regulation",
     "SubmitComplaint": "Submit a Complaint",
-    "Regular": "Regular"
+    "Regular": "Regular",
+    "NoDataAvailable": "Data is not Available",
+    "PublishedDate": "Published Date"
   },
 
   "about": {
@@ -144,5 +146,11 @@
     "UnderPreliminaryReview": "Under Preliminary Review",
     "ReviewedAndCommentSaid": "Reviewed And Comment Said",
     "Approved": "Approved"
+  },
+
+  "dateFormat": {
+    "year": "numeric",
+    "month": "2-digit",
+    "day": "2-digit"
   }
 }

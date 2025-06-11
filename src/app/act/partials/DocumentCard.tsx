@@ -1,6 +1,7 @@
 "use client";
 import { PATH } from "@/constant/path";
-import { formatDate } from "@/utils/formatDate";
+import { formatNepaliDate } from "@/utils/formatDate";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { IoEyeSharp } from "react-icons/io5";
@@ -18,6 +19,8 @@ export default function DocumentCard({
   slug,
   slugBefore,
 }: DocumentCardProps) {
+  const t = useTranslations("home");
+  const locale = useLocale();
   return (
     <div
       className="flex justify-between items-center 
@@ -31,7 +34,7 @@ export default function DocumentCard({
           {title}
         </Link>
         <p className="typography-p-small text-text-300 font-medium pt-[0.62rem]">
-          Published Date : {formatDate(date)}
+          {t("PublishedDate")}: {formatNepaliDate(date, locale)}
         </p>
       </div>
       <div className="flex items-center gap-[0.75rem]">

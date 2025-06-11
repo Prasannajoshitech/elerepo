@@ -6,6 +6,7 @@ import { IHomeHeroDaum } from "../interface/homeHero.interface";
 import PdfModal from "@/components/modal/PdfModal";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import backgroundImage from "@/assets/home/hero.jpg";
 
 interface Props {
   heroData: IHomeHeroDaum;
@@ -17,7 +18,6 @@ const Hero: React.FC<Props> = ({ heroData }) => {
 
   useEffect(() => {
     const modalSeen = sessionStorage.getItem("pdfModalShown");
-
     if (!modalSeen) {
       setIsModalOpen(true);
       sessionStorage.setItem("pdfModalShown", "true");
@@ -25,21 +25,25 @@ const Hero: React.FC<Props> = ({ heroData }) => {
   }, []);
 
   return (
-    <div className="my-[1.5rem] lg:my-[2.5rem] padding-x ">
-      <div className="relative z-5 bg-blue-500 text-white py-[7.5rem]  px-4 lg:px-0 lg:pl-[3.75rem]  rounded-[0.25rem]">
-        {/* Background Image */}
-        <div className="absolute inset-0 w-full ">
+    <div className="my-[1.5rem] lg:my-[2.5rem] padding-x">
+      {/* Main Container - Added min-h-[500px] for proper sizing */}
+      <div className="relative min-h-[500px] z-5 bg-blue-500 text-white py-[7.5rem] px-4 lg:px-0 lg:pl-[3.75rem] rounded-[0.25rem] overflow-hidden">
+        {/* Background Image - Fixed positioning and sizing */}
+        <div className="absolute inset-0 w-full h-full">
           <Image
-            src={heroData?.image}
-            alt="Background Image"
-            width={1000}
-            height={1000}
-            className="w-full h-full object-cover opacity-20 "
+            src={heroData?.image || backgroundImage}
+            alt="Hero background"
+            fill
+            priority
+            quality={80}
+            className="object-cover opacity-20"
+            sizes="100vw"
           />
         </div>
 
-        <div className="lg:w-[32rem]">
-          <h1 className=" text-[1.9375rem] lg:text-[2.9375rem] text-white font-bold leading-[130%] pb-[0.62rem]">
+        {/* Content */}
+        <div className="relative z-10 lg:w-[32rem]">
+          <h1 className="text-[1.9375rem] lg:text-[2.9375rem] text-white font-bold leading-[130%] pb-[0.62rem]">
             {heroData?.slogan}
           </h1>
           <p className="typography-p-large text-white pb-[1.25rem]">
@@ -47,7 +51,8 @@ const Hero: React.FC<Props> = ({ heroData }) => {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-[1.12rem] pt-4">
+        {/* Buttons */}
+        <div className="relative z-10 flex flex-col lg:flex-row gap-[1.12rem] pt-4">
           <button className="py-[0.62rem] px-[1.25rem] text-blue-500 typography-p-large font-semibold bg-white rounded-[0.5rem] shadow-[0px_4px_5.3px_0px rgba(0,0,0,0.25)] cursor-pointer">
             {t("ExploreRegulation")}
           </button>

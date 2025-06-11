@@ -1,6 +1,7 @@
 import { PATH } from "@/constant/path";
 import { IActRecord } from "@/Interface/document.interface";
-import { formatDate } from "@/utils/formatDate";
+import { formatNepaliDate } from "@/utils/formatDate";
+import { useLocale, useTranslations } from "next-intl";
 
 import Link from "next/link";
 import React from "react";
@@ -10,6 +11,9 @@ interface Props {
 }
 
 const TabContent: React.FC<Props> = ({ documentData }) => {
+  const t = useTranslations("home");
+  const locale = useLocale();
+
   return (
     <div className="space-y-[0.88rem]">
       {documentData?.map((item, index) => (
@@ -24,7 +28,7 @@ const TabContent: React.FC<Props> = ({ documentData }) => {
             {item?.title}
           </Link>
           <p className="typography-p-small text-text-300 font-medium pt-[0.62rem]">
-            Published Date: {formatDate(item?.created_at)}
+            {t("PublishedDate")}: {formatNepaliDate(item?.created_at, locale)}
           </p>
         </div>
       ))}
