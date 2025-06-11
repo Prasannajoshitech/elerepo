@@ -4,7 +4,7 @@ import Image from "next/image";
 interface TeamCardProps {
   name: string;
   designation: string;
-  email: string;
+  email?: string;
   image: string;
   isChairperson?: boolean;
 }
@@ -12,7 +12,6 @@ interface TeamCardProps {
 const TeamCard = ({
   name,
   designation,
-  email,
   image,
   isChairperson = false,
 }: TeamCardProps) => {
