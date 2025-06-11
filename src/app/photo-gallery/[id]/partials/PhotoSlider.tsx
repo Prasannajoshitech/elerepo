@@ -13,7 +13,8 @@ import {
   IPhotoDetail,
   IPhotoDetailImage,
 } from "../../interface/photo.interface";
-import { formatDate } from "@/utils/formatDate";
+import { formatNepaliDate } from "@/utils/formatDate";
+import { useLocale, useTranslations } from "next-intl";
 
 interface Props {
   photoData: IPhotoDetail;
@@ -22,6 +23,8 @@ interface Props {
 const PhotoSlider: React.FC<Props> = ({ photoData }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const swiperRef = useRef<SwiperCore | null>(null);
+  const t = useTranslations("home");
+  const locale = useLocale();
 
   // Combine thumbnail and image list
   const allImages: IPhotoDetailImage[] = [
@@ -47,7 +50,8 @@ const PhotoSlider: React.FC<Props> = ({ photoData }) => {
       </h3>
 
       <p className="typography-p1-regular font-medium text-text-300 leading-[120%] pb-5 lg:pb-10">
-        Published Date : {formatDate(photoData?.images[0]?.created_at || "")}
+        {t("PublishedDate")}:{" "}
+        {formatNepaliDate(photoData?.images[0]?.created_at || "", locale)}
       </p>
 
       <div className="relative overflow-hidden">
