@@ -9,7 +9,7 @@ const Commission = () => {
     url: endpoints.homeTeam,
   });
 
-  if (error || !data?.data || !data.data) {
+  if (error) {
     console.error("Failed to load commission data:", error);
     return <ErrorMessage errorMessage="commission data" />;
   }

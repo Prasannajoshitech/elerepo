@@ -8,9 +8,11 @@
   },
 
   "nav": {
+    "home": "होम",
     "about_us": "हाम्रो बारेमा",
     "introduction": "परिचय",
     "vision_mission": "दृष्टिकोण / मिशन",
+    "ReportOverview": "विधुत प्रतिवेदन अवलोकन",
     "function_duties": "कार्य, कर्तव्य र अधिकार",
     "commission": "आयोग",
     "organizational_structure": "संगठनात्मक संरचना",

@@ -17,7 +17,7 @@ const EmployeeDetail = () => {
     url: endpoints.about,
   });
 
-  if (error || !data?.data || !data.data) {
+  if (error) {
     console.error("Failed to load employee detail data:", error);
     return <ErrorMessage errorMessage="employee data" />;
   }
@@ -54,9 +54,14 @@ const EmployeeDetail = () => {
 
                 <Link
                   href={`mailto:${team?.email}`}
-                  className="typography-regular text-text-500 font-medium flex items-center lg:gap-[0.28rem] cursor-pointer"
+                  style={{
+                    wordBreak: "break-all",
+                  }}
+                  className="typography-regular text-text-500 font-medium flex  text-wrap lg:gap-[0.28rem] cursor-pointer"
                 >
-                  <CiMail />
+                  <div className="mt-1">
+                    <CiMail />
+                  </div>
                   {team?.email}
                 </Link>
               </div>

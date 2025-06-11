@@ -9,6 +9,8 @@ interface Props {
 
 const MandatesCommission: React.FC<Props> = ({ mandatesData }) => {
   const t = useTranslations("home");
+
+  console.log(mandatesData, "mandatesData");
   return (
     <div className="padding-x mb-[1.5rem] lg:mb-[2.5rem]">
       <h3 className="text-text-500 font-bold typography-h3 leading-[150%] pb-[1.25rem]">

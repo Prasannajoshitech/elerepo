@@ -13,7 +13,7 @@ const ReportOverview = () => {
     url: endpoints.about,
   });
 
-  if (error || !data?.data || !data?.data[0]?.electricity_report_overview) {
+  if (error) {
     console.error("Failed to load report review detail data:", error);
     return <ErrorMessage errorMessage="report review detail data" />;
   }

@@ -11,6 +11,7 @@ interface Props {
 }
 
 const TeamSection: React.FC<Props> = ({ teamData, chairperson }) => {
+  console.log(teamData, "teamData");
   return (
     <div>
       {teamData?.length > 0 && (
@@ -22,6 +23,7 @@ const TeamSection: React.FC<Props> = ({ teamData, chairperson }) => {
               designation={chairperson?.designation}
               email={chairperson?.email}
               image={chairperson?.image}
+              isChairperson={true}
             />
           </div>
 
@@ -37,7 +39,7 @@ const TeamSection: React.FC<Props> = ({ teamData, chairperson }) => {
           </div>
 
           {/* Other team members */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 mt-6 lg:mt-0 gap-4 lg:gap-10 max-w-[280rem] mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 mt-6 lg:mt-0 gap-4 lg:gap-5 max-w-[280rem] mx-auto">
             {teamData?.map((team, index) => (
               <TeamCard
                 key={index}

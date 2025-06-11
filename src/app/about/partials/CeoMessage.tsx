@@ -13,15 +13,16 @@ interface ICeoMessage {
 
 const CeoMessage = () => {
   const { data, error } = useGetDataQuery({
-    url: endpoints.homeTeam,
+    url: endpoints.chairperson,
   });
 
-  if (error || !data?.data || !data.data[0]) {
+  if (error) {
     console.error("Failed to load Chairperson message data:", error);
     return <ErrorMessage errorMessage="Chairperson message data" />;
   }
 
-  const ceoMessage: ICeoMessage = data?.data[0];
+  console.log(data, "ele dta");
+  const ceoMessage: ICeoMessage = data;
 
   return (
     <>
@@ -38,7 +39,7 @@ const CeoMessage = () => {
           {/* Image with hover effect */}
           <div className="w-full lg:w-[16.25rem] lg:aspect-[65/76] ">
             <Image
-              src={ceoMessage?.image}
+              src={ceoMessage?.image || ""}
               alt="ceo"
               width={800}
               height={800}

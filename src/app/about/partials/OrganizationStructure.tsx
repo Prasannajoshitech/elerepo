@@ -15,13 +15,13 @@ const OrganizationStructure = () => {
     url: endpoints.about,
   });
 
-  if (error || !data?.data || !data.data[0]) {
+  if (error) {
     console.error("Failed to load organization data:", error);
     return <ErrorMessage errorMessage="organization data" />;
   }
 
   const organizationData: IorgazizationData =
-    data.data[0]?.organizational_structure[0];
+    data?.data[0]?.organizational_structure[0];
 
   return (
     <div className="w-full aspect-[1353.57/962.00]">

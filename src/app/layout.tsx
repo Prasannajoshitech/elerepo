@@ -5,7 +5,6 @@ import { Noto_Sans } from "next/font/google";
 import Providers from "./provider";
 import Header from "@/common/Header";
 import Footer from "@/common/Footer";
-import BotPopup from "@/features/chatbot/BotPopup";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
@@ -36,7 +35,6 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <div className="flex flex-col min-h-screen">
               <Header />
-              <BotPopup />
               <div className="flex-grow">{children}</div>
               <Footer />
             </div>

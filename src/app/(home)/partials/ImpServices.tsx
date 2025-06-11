@@ -15,7 +15,7 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
   return (
     <div className="padding-x  mb-[1.5rem] lg:mb-[2.5rem]">
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-[1.25rem] ">
-        {impServiceData?.records?.map((service, index) => (
+        {impServiceData?.records?.slice(0, 4)?.map((service, index) => (
           <div
             key={index}
             className="bg-background-50 p-[1.2rem] rounded-[0.5rem] cursor-pointer border border-transparent transform transition-all duration-300 ease-in-out hover:border-blue-500 hover:scale-[1.02]"
@@ -32,12 +32,12 @@ const ImpServices: React.FC<Props> = ({ impServiceData }) => {
                   />
                 </div>
               </div>
-              <div className="w-[187px]">
+              <div className="">
                 <h2 className="typography-p-large font-semibold text-text-500 pb-[0.25rem]">
                   {service?.name}
                 </h2>
                 <p
-                  className="text-text-400 typography-p-regular"
+                  className="!text-text-400 typography-p-regular line-clamp-2"
                   dangerouslySetInnerHTML={{
                     __html: service?.description || "",
                   }}

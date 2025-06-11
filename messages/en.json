@@ -8,9 +8,11 @@
   },
 
   "nav": {
+    "home": "Home",
     "about_us": "About Us",
     "introduction": "Introduction",
     "vision_mission": "Vision/Mission",
+    "ReportOverview": "Electricity Report Overview",
     "function_duties": "Function, Duties & Auth.",
     "commission": "Commission",
     "organizational_structure": "Organizational Strut",

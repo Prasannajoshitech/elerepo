@@ -13,7 +13,7 @@ const FunctionDuties = () => {
     url: endpoints.about,
   });
 
-  if (error || !data?.data || !data.data[0]) {
+  if (error) {
     console.error("Failed to load function and duties data:", error);
     return <ErrorMessage errorMessage="function and duties data" />;
   }

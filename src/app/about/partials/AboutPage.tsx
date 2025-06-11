@@ -1,32 +1,53 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AboutBreadcrumb from "./AboutBreadcrumb";
 import { useAboutSidebar } from "./AboutSideTab";
 
 const AboutPage = () => {
   const searchParams = useSearchParams();
-  const sections = useAboutSidebar(); // ✅ Call the hook here
+  const sections = useAboutSidebar();
   const router = useRouter();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const initialTab = parseInt(searchParams.get("tab") || "0", 10);
   const [selectedSection, setSelectedSection] = useState(initialTab);
 
+  // Handle both direct clicks and navigation from other pages
   useEffect(() => {
-    // Keep state in sync if the URL changes manually
-    setSelectedSection(initialTab);
-  }, [initialTab]);
+    const tab = parseInt(searchParams.get("tab") || "0", 10);
+    setSelectedSection(tab);
+
+    // Scroll after a small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      contentRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [searchParams]);
 
   const handleCategoryClick = (idx: number) => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("tab", idx.toString());
-    router.push(`?${newParams.toString()}`);
+    router.push(`?${newParams.toString()}`, {
+      scroll: false,
+    });
     setSelectedSection(idx);
+
+    // Immediate scroll for better UX on clicks
+    contentRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
-    <div className="w-full mx-auto padding-x">
-      <div className=" py-10">
+    <div ref={containerRef} className="w-full mx-auto padding-x">
+      <div className="py-10">
         <AboutBreadcrumb />
       </div>
 
@@ -55,7 +76,7 @@ const AboutPage = () => {
           </aside>
 
           {/* Active Section Content */}
-          <main className="md:col-span-3">
+          <main ref={contentRef} className="md:col-span-3 scroll-mt-[100px]">
             {sections[selectedSection]?.content}
           </main>
         </div>

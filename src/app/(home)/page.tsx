@@ -18,7 +18,7 @@ const Home = async () => {
       teamData,
       chairperson,
     } = await getHomePageData();
-
+    console.log(teamData, "teamData");
     return (
       <div>
         <Hero heroData={homeData?.data[0]} />
@@ -34,7 +34,7 @@ const Home = async () => {
         <MandatesCommission
           mandatesData={missionVisionData?.data?.[0]?.goals_objectives}
         />
-        <TeamBottom teamData={teamData?.data?.records} />
+        {/* <TeamBottom teamData={teamData?.data?.records} /> */}
       </div>
     );
   } catch (error) {
