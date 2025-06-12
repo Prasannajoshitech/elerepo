@@ -1,7 +1,6 @@
 import { endpoints } from "@/api/endpoints";
 import { getData } from "@/api/fetch";
 import ErrorMessage from "@/components/ErrorMessage";
-import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

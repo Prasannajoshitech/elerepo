@@ -29,7 +29,6 @@ const Footer: React.FC = async () => {
 
     const affiliatedOrganization = await getAffiliatedOrganization();
     const affiliatedOrganizationData = affiliatedOrganization?.data;
-    console.log(organizationSettingData, "organizationSettingData");
     return (
       <footer className="footer-gradient padding-x pt-[2.06rem]">
         {/* logos  */}
