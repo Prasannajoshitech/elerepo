@@ -10,7 +10,6 @@ interface IProps {
 
 const FooterBottom: React.FC<IProps> = ({ footerData }) => {
   const t = useTranslations("FooterLinks");
-  console.log(footerData, "footerdata");
   return (
     <div>
       <div className="relative">
