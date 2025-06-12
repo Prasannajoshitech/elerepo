@@ -11,6 +11,7 @@ type DocumentCardProps = {
   date: string;
   slug: string;
   slugBefore: string;
+  file?: string;
 };
 
 export default function DocumentCard({
@@ -18,6 +19,7 @@ export default function DocumentCard({
   date,
   slug,
   slugBefore,
+  file,
 }: DocumentCardProps) {
   const t = useTranslations("home");
   const locale = useLocale();
@@ -39,9 +41,12 @@ export default function DocumentCard({
       </div>
       <div className="flex items-center gap-[0.75rem]">
         <Link
-          href="#"
+          href={`${file}`} // Ensure this points to a real PDF file
           className="flex items-center justify-center w-[1.25rem] h-[1.25rem] lg:w-[2.125rem] lg:h-[2.125rem]"
           title="Download PDF"
+          download
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <Image
             src="/pdf2.svg"
@@ -52,7 +57,7 @@ export default function DocumentCard({
           />
         </Link>
         <Link
-          href={`${PATH.ACT}/${slug}`}
+          href={`${PATH.ACT}/${slugBefore}/${slug}`}
           className="flex items-center justify-center "
           title="View Document"
         >

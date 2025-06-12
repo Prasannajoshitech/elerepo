@@ -9,6 +9,7 @@ interface Endpoints {
   about: string;
 
   homeTeam: string;
+  teamDetail: string;
   chairperson: string;
   subcategory: string;
   document: string;
@@ -55,6 +56,7 @@ export const endpoints: Endpoints = {
   about: "/about/list/",
 
   homeTeam: "/team/list/",
+  teamDetail: "/team/detail/",
   chairperson: "/team/chairperson-message/list/",
   document: "/document/list/",
 

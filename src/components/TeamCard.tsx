@@ -1,5 +1,7 @@
 "use client";
+import { PATH } from "@/constant/path";
 import Image from "next/image";
+import Link from "next/link";
 
 interface TeamCardProps {
   name: string;
@@ -7,12 +9,14 @@ interface TeamCardProps {
   email?: string;
   image: string;
   isChairperson?: boolean;
+  id?: string;
 }
 
 const TeamCard = ({
   name,
   designation,
   image,
+  id,
   isChairperson = false,
 }: TeamCardProps) => {
   return (
@@ -39,17 +43,26 @@ const TeamCard = ({
             {designation}
           </h3>
           {!isChairperson ? (
-            <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointer justify-self-end">
+            <Link
+              href={`${PATH.team_member_details}/${id}`}
+              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointer justify-self-end"
+            >
               View Profile
-            </button>
+            </Link>
           ) : (
             <div className="flex gap-2 w-full">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointer justify-self-end w-1/2">
+              <Link
+                href={`${PATH.team_member_details}/${id}`}
+                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointer justify-self-end w-1/2"
+              >
                 View Profile
-              </button>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointer justify-self-end w-1/2">
+              </Link>
+              <Link
+                href={`${PATH.team_member_details}/${id}`}
+                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointer justify-self-end w-1/2"
+              >
                 Message
-              </button>
+              </Link>
             </div>
           )}
           {/* <Link
