@@ -53,9 +53,12 @@ const Hero: React.FC<Props> = ({ heroData }) => {
 
         {/* Buttons */}
         <div className="relative z-10 flex flex-col lg:flex-row gap-[1.12rem] pt-4">
-          <button className="py-[0.62rem] px-[1.25rem] text-blue-500 typography-p-large font-semibold bg-white rounded-[0.5rem] shadow-[0px_4px_5.3px_0px rgba(0,0,0,0.25)] cursor-pointer">
+          <Link
+            href="/about"
+            className="py-[0.62rem] px-[1.25rem] text-blue-500 typography-p-large font-semibold bg-white rounded-[0.5rem] shadow-[0px_4px_5.3px_0px rgba(0,0,0,0.25)] cursor-pointer"
+          >
             {t("ExploreRegulation")}
-          </button>
+          </Link>
 
           <Link
             href="/submit-a-complain"

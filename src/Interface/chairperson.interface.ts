@@ -6,5 +6,6 @@ export interface IChairperson {
   email: string;
   message: string;
   image: string;
+  slug: string;
   is_chairperson: boolean;
 }

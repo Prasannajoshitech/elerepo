@@ -23,7 +23,7 @@ const TeamSection: React.FC<Props> = ({ teamData, chairperson }) => {
               email={chairperson?.email}
               image={chairperson?.image}
               isChairperson={true}
-              id={chairperson?.id}
+              id={chairperson?.slug}
             />
           </div>
 
@@ -47,7 +47,7 @@ const TeamSection: React.FC<Props> = ({ teamData, chairperson }) => {
                 designation={team.designation}
                 email={team.email}
                 image={team.image}
-                id={team.id}
+                id={team.slug}
               />
             ))}
           </div>

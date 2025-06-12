@@ -54,16 +54,14 @@ const Header = async () => {
               </Link>
               <div className="text-white">
                 <h1 className="text-lg sm:text-xl notranslate md:text-[1.85125rem] font-semibold leading-[150%] tracking-tight">
-                  {headerData?.org_name_nepali}
+                  {/* {headerData?.organization_name} */}
+                  विधुत नियमन आयोग
                 </h1>
-                <p className="text-sm sm:text-base md:text-[0.92563rem] font-medium leading-[120%]">
-                  {headerData?.org_name_eng}
-                </p>
+                <h1 className="text-lg  notranslate  font-semibold leading-[150%] tracking-tight">
+                  {/* {headerData?.organization_name} */}
+                  Electricity Regulatory Commission
+                </h1>
               </div>
-            </div>
-
-            {/* Right Logo */}
-            <div className="flex flex-row gap-2 sm:gap-4 items-center ">
               <Link
                 href="/"
                 className="w-[3.5rem] sm:w-[4.5rem] md:w-[4.875rem] aspect-square flex-shrink-0"
@@ -76,6 +74,22 @@ const Header = async () => {
                   className="w-full h-full object-cover"
                 />
               </Link>
+            </div>
+
+            {/* Right Logo */}
+            <div className="flex flex-row gap-2 sm:gap-4 items-center ">
+              {/* <Link
+                href="/"
+                className="w-[3.5rem] sm:w-[4.5rem] md:w-[4.875rem] aspect-square flex-shrink-0"
+              >
+                <Image
+                  src={headerData?.erc_logo}
+                  alt="logo"
+                  width={1000}
+                  height={1000}
+                  className="w-full h-full object-cover"
+                />
+              </Link> */}
               <div className="hidden lg:block w-[2.5rem] sm:w-[2.75rem] md:w-[3rem] aspect-[24/31] flex-shrink-0 ml-6 sm:ml-0">
                 <Image
                   src="/flag.gif"

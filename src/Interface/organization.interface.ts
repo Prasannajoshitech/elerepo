@@ -17,7 +17,7 @@ export interface IOrganizationSettingDaum {
   phone: string;
   fax: string;
   google_map: string;
-  disclaimer: string;
+  disclimer: string;
   domain: string;
   office_hours: IOrganizationSettingOfficeHour[];
   social_media: IOrganizationSettingSocialMedia;

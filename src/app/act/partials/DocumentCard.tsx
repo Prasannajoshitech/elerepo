@@ -41,7 +41,7 @@ export default function DocumentCard({
       </div>
       <div className="flex items-center gap-[0.75rem]">
         <Link
-          href={`${file}`} // Ensure this points to a real PDF file
+          href={`${file}`}
           className="flex items-center justify-center w-[1.25rem] h-[1.25rem] lg:w-[2.125rem] lg:h-[2.125rem]"
           title="Download PDF"
           download

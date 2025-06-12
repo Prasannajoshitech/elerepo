@@ -30,6 +30,7 @@ interface Endpoints {
   eFilingData: string;
   createComplain: string;
 
+  serviceDetail: string;
   chatbot: {
     register: string;
     chatCategory: string;
@@ -54,7 +55,7 @@ export const endpoints: Endpoints = {
   homeHero: "/homepage/list/",
   homeImpService: "/services/list",
   about: "/about/list/",
-
+  serviceDetail: "/services/detail/",
   homeTeam: "/team/list/",
   teamDetail: "/team/detail/",
   chairperson: "/team/chairperson-message/list/",

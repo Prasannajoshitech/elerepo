@@ -8,8 +8,11 @@ const Commission = () => {
   const { data, error } = useGetDataQuery({
     url: endpoints.homeTeam,
   });
+  const { data: chairpersonData, error: chairpersonError } = useGetDataQuery({
+    url: endpoints.chairperson,
+  });
 
-  if (error) {
+  if (error || chairpersonError) {
     console.error("Failed to load commission data:", error);
     return <ErrorMessage errorMessage="commission data" />;
   }
@@ -19,6 +22,13 @@ const Commission = () => {
   return (
     <div>
       <div className="grid grid-cols-2 lg:grid-cols-3 mt-6 lg:mt-0 gap-4 lg:gap-8">
+        <TeamCard
+          designation={chairpersonData?.data?.designation}
+          email={chairpersonData?.email}
+          image={chairpersonData?.image}
+          name={chairpersonData?.name}
+          id={chairpersonData?.slug}
+        />
         {aboutCommission?.map((team, index) => (
           <TeamCard
             key={index}
@@ -26,6 +36,7 @@ const Commission = () => {
             email={team?.email}
             image={team?.image}
             name={team?.name}
+            id={team?.slug}
           />
         ))}
       </div>

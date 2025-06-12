@@ -33,7 +33,7 @@ const PdfModal = ({ isOpen, setIsOpen, onClose }: PdfModalProps) => {
     }
   };
   const ref = useRef<HTMLDivElement | null>(null);
-  useClickOutside(ref, isOpen, setIsOpen);
+  // useClickOutside(ref, isOpen, setIsOpen);
 
   return (
     <>

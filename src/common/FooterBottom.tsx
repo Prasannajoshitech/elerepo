@@ -10,6 +10,7 @@ interface IProps {
 
 const FooterBottom: React.FC<IProps> = ({ footerData }) => {
   const t = useTranslations("FooterLinks");
+  console.log(footerData, "footerdata");
   return (
     <div>
       <div className="relative">
@@ -21,7 +22,7 @@ const FooterBottom: React.FC<IProps> = ({ footerData }) => {
           <p
             className="text-white typography-p-small pb-[1.94rem] "
             dangerouslySetInnerHTML={{
-              __html: footerData?.disclaimer || "",
+              __html: footerData?.disclimer || "",
             }}
           />
         </div>
