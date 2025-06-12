@@ -33,10 +33,10 @@ const Footer: React.FC = async () => {
       <footer className="footer-gradient padding-x pt-[2.06rem]">
         {/* logos  */}
         <div>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-center ">
             <Link
               href="/"
-              className="w-[4.5rem] sm:w-[5rem] md:w-[5.47988rem] aspect-[87.68/74] flex-shrink-0"
+              className="w-[4.5rem] sm:w-[5rem] md:w-[5.47988rem] aspect-[87.68/74] flex-shrink-0 "
             >
               <Image
                 src={footerData?.gov_logo}
@@ -46,13 +46,15 @@ const Footer: React.FC = async () => {
                 className="w-full h-full object-cover"
               />
             </Link>
-            <div className="text-white w-[9.5rem] sm:w-fit">
-              <h1 className="text-lg sm:text-xl notranslate md:text-[1.85125rem] font-semibold leading-[150%] tracking-tight">
-                {footerData?.org_name_nepali}
+            <div className="text-white">
+              <h1 className="text-lg  notranslate  font-semibold leading-[150%] tracking-tight">
+                {/* {headerData?.organization_name} */}
+                विधुत नियमन आयोग
               </h1>
-              <p className="text-sm sm:text-base md:text-[0.92563rem] font-medium leading-[120%]">
-                {footerData?.org_name_eng}
-              </p>
+              <h1 className="text-xs  notranslate  font-semibold leading-[150%] tracking-tight">
+                {/* {headerData?.organization_name} */}
+                Electricity Regulatory Commission
+              </h1>
             </div>
             <Link
               href="/"
