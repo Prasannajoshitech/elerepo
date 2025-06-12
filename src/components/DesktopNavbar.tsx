@@ -90,9 +90,12 @@ const DesktopNavbar: React.FC<Props> = ({ dynamicData, staticData }) => {
         {renderNavItems(staticData, true)}
         {renderNavItems(dynamicData, false)}
 
-        <button className="text-white uppercase font-semibold typography-p-regular bg-blue-500 px-4 py-2 rounded-[0.5rem] cursor-pointer">
+        <Link
+          href={"http://dms.erc.gov.np/a_Login.aspx?ReturnUrl=%2f"}
+          className="text-white uppercase font-semibold typography-p-regular bg-blue-500 px-4 py-2 rounded-[0.5rem] cursor-pointer"
+        >
           dms
-        </button>
+        </Link>
       </div>
     </div>
   );
