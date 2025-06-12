@@ -5,15 +5,15 @@ import { endpoints } from "@/api/endpoints";
 import { X } from "lucide-react";
 import DisplayPdf from "../DisplayPdf";
 import { IActDetailData } from "@/app/act/[slug1]/[slug]/interface/actDetail.interface";
-import { useClickOutside } from "@/hooks/useClickoutside";
+// import { useClickOutside } from "@/hooks/useClickoutside";
 
 interface PdfModalProps {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   onClose: () => void;
 }
 
-const PdfModal = ({ isOpen, setIsOpen, onClose }: PdfModalProps) => {
+const PdfModal = ({ isOpen, onClose }: PdfModalProps) => {
   const { data } = useGetDataQuery({
     url: endpoints.popup,
   });
